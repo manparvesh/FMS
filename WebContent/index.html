@@ -31,15 +31,17 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Personal Info
-							Management</a></li>
+					<li class="active"><a href="index.html">Freelancer
+							Management System</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>
 							Settings <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a onclick="window.location.reload(true);"><span
+							<li><a onclick=""><span
+									class="glyphicon glyphicon-wrench"></span> Set initial wage</a></li><!-- TODO -->
+                            <li><a onclick="window.location.reload(true);"><span
 									class="glyphicon glyphicon-refresh"></span> Reload</a></li>
 							<li><a onclick="DB.init();"><span
 									class="glyphicon glyphicon-repeat"></span> Init DB</a></li>
@@ -56,34 +58,41 @@
 
 	<div class="container">
 		<form action="index.html" class="form-inline text-center">
-			<div class="form-group">
-				<input name="q1" type="text" class="form-control"
-					placeholder="employee number">
-			</div>
-			<div class="form-group">
-				<input name="q2" type="text" class="form-control"
-					placeholder="part of name">
-			</div>
-			<button type="submit" class="btn btn-primary">
-				<span class="glyphicon glyphicon-search"></span> Search
-			</button>
+			<div class="input-group">
+                <input type="text" class="form-control" placeholder="Enter search term" aria-label="..." id="input-search">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="search-col">Name</span> <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#">Number</a></li>
+                        <li><a href="#">Name</a></li>
+                        <li><a href="#">Action</a></li>
+                    </ul>
+                </div><!-- /btn-group -->
+            </div><!-- /input-group -->
 		</form>
 		<hr>
+        
+        <div class="row">
 
-		<div class="clearfix" style="margin: 10px 0;">
-			<a href="emp-form.html" class="btn btn-sm btn-success pull-right"><span
-				class="glyphicon glyphicon-plus"></span> New</a>
+		<div class="clearfix col-xs-6" style="margin: 10px 0;">
+			<a href="emp-form.html" class="btn btn-sm btn-warning pull-left" target="_blank"><span class="glyphicon glyphicon-filter"></span>&nbsp;Filter results</a>
 		</div>
+
+		<div class="clearfix col-xs-6" style="margin: 10px 0;">
+			<a href="emp-form.html" class="btn btn-sm btn-success pull-right"><span
+				class="glyphicon glyphicon-plus"></span>&nbsp;New</a>
+		</div>
+        </div>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th></th>
-					<th>Number</th>
-					<th>Name</th>
-					<th>Gender</th>
-					<th>Date of Birth</th>
-					<th>Telephone</th>
+					<th style="cursor: pointer;">Number</th>
+					<th style="cursor: pointer;">Name</th>
+					<th style="cursor: pointer;">Gender</th>
+					<th style="cursor: pointer;">Date of Birth</th>
+					<th style="cursor: pointer;">Telephone</th>
 				</tr>
 			</thead>
 			<tbody id="tbody-emps"></tbody>

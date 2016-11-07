@@ -15,7 +15,7 @@ $('#pspt_name').text(emp.pspt_name);
 $('#rental').text(DB.choice(emp.rental));
 
 // set image and name
-$('#img-emp').attr('src', 'img/' + emp.id + '.jpg');
+$('#img-emp').attr('src', 'img/ (' + emp.id + ').jpg');
 $('#div-name_kanji').text(emp.name);
 $('#div-number').text(emp.number);
 $('#nav-emp').text(emp.name);
@@ -77,7 +77,7 @@ $('#ins-edu').attr('href', 'edu-form.html?emp=' + id);
 
 // delete employee
 function destroy() {
-	if (window.confirm('are you sure to delete employee?')) {
+	if (window.confirm('Are you sure to delete employee?')) {
 		alasql('DELETE FROM emp WHERE id=?', [ id ]);
 		window.location.assign('index.html');
 	}

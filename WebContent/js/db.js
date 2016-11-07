@@ -55,14 +55,36 @@ DB.load = function() {
 				}
 			});
 
+
+	// projects
+	alasql('DROP TABLE IF EXISTS projects;');
+	alasql('CREATE TABLE projects(id INT IDENTITY, emp INT, name STRING, difficulty INT, hours_worked INT, hours_needed INT, client_rating INT, date_of_completion DATE, money_earned INT);');
+	var pproject = alasql.promise('SELECT MATRIX * FROM CSV("data/PROJECTS-PROJECTS.csv", {headers: true})').then(
+			function(projects) {
+				for (var i = 0; i < projects.length; i++) {
+					alasql('INSERT INTO projects VALUES(?,?,?,?,?,?,?,?,?);', projects[i]);
+				}
+			});
+
+
+	// tags
+	alasql('DROP TABLE IF EXISTS tags;');
+	alasql('CREATE TABLE tags(id INT IDENTITY, project_id INT, tag STRING);');
+	var ptag = alasql.promise('SELECT MATRIX * FROM CSV("data/TAG-TAG.csv", {headers: true})').then(
+			function(tags) {
+				for (var i = 0; i < tags.length; i++) {
+					alasql('INSERT INTO tags VALUES(?,?,?);', tags[i]);
+				}
+			});
+
 	// reload html
-	Promise.all([ pemp, paddr, pfamily, pedu, pchoice ]).then(function() {
+	Promise.all([ pemp, paddr, pfamily, pedu, pchoice, pproject, ptag ]).then(function() {
 		window.location.reload(true);
 	});
 };
 
 DB.remove = function() {
-	if (window.confirm('are you sure do delete dababase?')) {
+	if (window.confirm('are you sure you want to delete the dababase?')) {
 		alasql('DROP localStorage DATABASE EMP')
 	}
 };

@@ -15,6 +15,7 @@
 </head>
 <body>
 
+    <!-- Navigation bar -->
 	<nav class="navbar navbar-default">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -39,14 +40,14 @@
 						data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>
 							Settings <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a onclick=""><span
+							<li><a onclick=""  style="cursor: pointer;"><span
 									class="glyphicon glyphicon-wrench"></span> Set initial wage</a></li><!-- TODO -->
-                            <li><a onclick="window.location.reload(true);"><span
+                            <li><a onclick="window.location.reload(true);" style="cursor: pointer;"><span
 									class="glyphicon glyphicon-refresh"></span> Reload</a></li>
-							<li><a onclick="DB.init();"><span
+							<li><a onclick="DB.init();" style="cursor: pointer;"><span
 									class="glyphicon glyphicon-repeat"></span> Init DB</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a onclick="DB.remove();"><span
+							<li><a onclick="DB.remove();" style="cursor: pointer;"><span
 									class="glyphicon glyphicon-trash"></span> Delete DB</a></li>
 						</ul></li>
 				</ul>
@@ -56,6 +57,7 @@
 		<!-- /.container-fluid -->
 	</nav>
 
+    <!-- Search bar -->
 	<div class="container">
 		<form action="index.html" class="form-inline text-center">
 			<div class="input-group">
@@ -72,6 +74,25 @@
 		</form>
 		<hr>
         
+    <!-- comparison bar -->
+    <nav class="navbar navbar-default" id="comparison-bar">
+		<div class="container">
+			<!-- Comparison bar compponents -->
+				<ul class="nav navbar-nav container">
+					<li>
+                        <div class="img-circle">
+                            <span class="glyphicon glyphicon-filter"></span>
+                        </div> 
+                    </li>
+					<li class="active">a</li>
+					<li class="active">a</li>
+				</ul>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+        
+        <!-- filter and new user buttons -->
         <div class="row">
 
 		<div class="clearfix col-xs-6" style="margin: 10px 0;">
@@ -84,9 +105,11 @@
 		</div>
         </div>
 
+        <!-- The data -->
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th></th>
 					<th></th>
 					<th style="cursor: pointer;">Number</th>
 					<th style="cursor: pointer;">Name</th>

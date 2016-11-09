@@ -110,12 +110,46 @@ function checkIfCompareIsFull(){
 }
 
 function ui(){
-    showComparisonMenuAtTheTop();
+    if(compareNumber > 0){
+        showComparisonMenuAtTheTop();
+    }else{
+        hideComparisonMenu();
+    }
     setBackgroundColorOfSelectedIDsForComparison();
+    displayUsersInComparisonBar();
+    updateCompareURL();
+}
+
+function displayUsersInComparisonBar(){
+    var tempEmps = alasql('SELECT * FROM emp', []);
+    for(var i=0;i<compareNumber;i++){
+        var id = compareIDs[i];
+        var name = tempEmps[id - 1].name;
+        var number = tempEmps[id - 1].number;
+        var image = 'img/%20(' + id + ').jpg';
+        
+        //set values
+        $('#compare-number-'+i).text(number);
+        $('#compare-name-'+i).text(name);
+        $('#profile-pic-'+i).attr('src', image);
+        document.getElementById('close-button-'+i).style.display = 'block';
+    }
+    if(compareNumber < 5){
+        for(var i=compareNumber;i<5;i++){
+            $('#compare-number-'+i).text('ID');
+            $('#compare-name-'+i).text('Name');
+            $('#profile-pic-'+i).attr('src', 'img/demo.jpg');
+            document.getElementById('close-button-'+i).style.display = 'none';
+        }
+    }
 }
 
 function showComparisonMenuAtTheTop(){
-    //TODO----------------------------------------------------------------------------------------------
+    document.getElementById('comparison-bar').style.display = 'block';
+}
+
+function hideComparisonMenu(){
+    document.getElementById('comparison-bar').style.display = 'none';
 }
 
 function setBackgroundColorOfSelectedIDsForComparison(){
@@ -168,3 +202,62 @@ function isIDThere(id){
     }
     return false;
 }
+
+// --------------------------------- delete buttons in comparison bar ---------------------------------
+$('#close-button-0').on('click', function(){
+    var id = compareIDs[0];
+    removeFromCompare(id);
+    if(isIDThere(id)){
+        document.getElementById('checkbox-'+id).checked = false;
+    }
+});
+
+$('#close-button-1').on('click', function(){
+    var id = compareIDs[1];
+    removeFromCompare(id);
+    if(isIDThere(id)){
+        document.getElementById('checkbox-'+id).checked = false;
+    }
+});
+
+$('#close-button-2').on('click', function(){
+    var id = compareIDs[2];
+    removeFromCompare(id);
+    if(isIDThere(id)){
+        document.getElementById('checkbox-'+id).checked = false;
+    }
+});
+
+$('#close-button-3').on('click', function(){
+    var id = compareIDs[3];
+    removeFromCompare(id);
+    if(isIDThere(id)){
+        document.getElementById('checkbox-'+id).checked = false;
+    }
+});
+
+$('#close-button-4').on('click', function(){
+    var id = compareIDs[4];
+    removeFromCompare(id);
+    if(isIDThere(id)){
+        document.getElementById('checkbox-'+id).checked = false;
+    }
+});
+// --------------------------------- / delete buttons in comparison bar ---------------------------------
+
+// --------------------------------- update compare button href url ---------------------------------
+function updateCompareURL(){
+    var url = 'compare.html?';
+    for(var i=0;i<compareNumber;i++){
+        url += ('id' + (i+1) + '=');
+        url += (compareIDs[i] + '&');
+    }
+    for(var i=compareNumber;i<5;i++){
+        url += ('id' + (i+1) + '=&');
+    }
+    //alert(url);
+    $('#button-compare').attr('href', url);
+}
+
+// starting and ending comment template:
+// ---------------------------------  ---------------------------------

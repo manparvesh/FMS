@@ -24,8 +24,8 @@ if (q) {
         tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
         tr.append('<td>' + emp.birthday + '</td>'); //hours
         tr.append('<td>' + emp.tel + '</td>'); // experienced in
-        tr.append('<td>' + emp.tel + '</td>'); // Available for hire?
-        tr.append('<td>' + emp.tel + '</td>'); // hire button
+        tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick=""></td>'); // Available for hire?
+        tr.append('<td><a href="mailto:' + emp.tel + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
         tr.appendTo(tbody);
     }
 }

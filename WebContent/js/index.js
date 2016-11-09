@@ -21,9 +21,11 @@ if (q) {
         tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
         tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
         tr.append('<td>' + emp.name + '</td>');
-        tr.append('<td>' + DB.choice(emp.sex) + '</td>');
-        tr.append('<td>' + emp.birthday + '</td>');
-        tr.append('<td>' + emp.tel + '</td>');
+        tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
+        tr.append('<td>' + emp.birthday + '</td>'); //hours
+        tr.append('<td>' + emp.tel + '</td>'); // experienced in
+        tr.append('<td>' + emp.tel + '</td>'); // Available for hire?
+        tr.append('<td>' + emp.tel + '</td>'); // hire button
         tr.appendTo(tbody);
     }
 }
@@ -259,5 +261,30 @@ function updateCompareURL(){
     $('#button-compare').attr('href', url);
 }
 
+// --------------------------------- set wage function ---------------------------------
+var wage = 0;
+function setWage(){
+    $( function() {
+        $( "#setWageDialog" ).dialog({
+            closeOnEscape: true,
+            open: function(event, ui) {
+                $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+            }
+        });
+        $( "#wageSpinner" ).spinner();
+    } );
+    document.getElementById('setWageDialog').style.display = 'block';
+}
+
+$('#doneWage').on('click', function(){
+    var spinner = $( "#wageSpinner" ).spinner();
+    wage = spinner.spinner( "value" );
+    $( "#setWageDialog" ).dialog('close');
+    //alert(wage);
+});
+
+
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------
+// sample label with count:
+// <h4><span class="label label-primary">Primary <span class="badge">4</span></span></h4>

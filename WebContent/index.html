@@ -3,7 +3,10 @@
 <head>
 <script src="lib/jquery.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/index.css" rel="stylesheet" />
+<link href="css/jquery-ui.css" rel="stylesheet" />
 <script src="lib/bootstrap.js"></script>
+<script src="lib/jquery-ui.js"></script>
 <script src="lib/alasql.js"></script>
 <script src="lib/purl.js"></script>
 <script src="js/db.js"></script>
@@ -40,7 +43,7 @@
 						data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>
 							Settings <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a onclick=""  style="cursor: pointer;"><span
+							<li><a onclick="setWage();"  style="cursor: pointer;"><span
 									class="glyphicon glyphicon-wrench"></span> Set initial wage</a></li><!-- TODO -->
                             <li><a onclick="window.location.reload(true);" style="cursor: pointer;"><span
 									class="glyphicon glyphicon-refresh"></span> Reload</a></li>
@@ -199,18 +202,26 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th></th>
-					<th></th>
-					<th style="cursor: pointer;">Number</th>
-					<th style="cursor: pointer;">Name</th>
-					<th style="cursor: pointer;">Gender</th>
-					<th style="cursor: pointer;">Date of Birth</th>
-					<th style="cursor: pointer;">Telephone</th>
+					<th></th> <!-- checkboxes -->
+					<th></th>  <!-- photos -->
+					<th style="cursor: pointer;" class="selected">Number&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+					<th>Name</th>
+					<th style="cursor: pointer;">Rating&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+					<th style="cursor: pointer;">Hours worked&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+                    <th>Experienced in</th>
+					<th>Available for hire</th>
+					<th></th>  <!-- hire button -->
 				</tr>
 			</thead>
 			<tbody id="tbody-emps"></tbody>
 		</table>
 	</div>
+    
+    <div id="setWageDialog" title="Select initial wage" style="display:none;" class="center-block">
+        <label for="wageSpinner">Select a value:</label>
+        <input id="wageSpinner" name="wage">
+        <a class="btn btn-primary" id="doneWage">Done</a>
+    </div>
 	<script src="js/index.js"></script>
 </body>
 </html>

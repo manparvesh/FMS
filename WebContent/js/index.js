@@ -25,7 +25,7 @@ if (q) {
         tr.append('<td>' + emp.birthday + '</td>'); //hours
         tr.append('<td>' + emp.tel + '</td>'); // experienced in
         tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick=""></td>'); // Available for hire?
-        tr.append('<td><a href="mailto:' + emp.tel + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+        tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
         tr.appendTo(tbody);
     }
     updateCheckBoxes();
@@ -61,7 +61,7 @@ $('#input-search').on('input',function(){
         tr.append('<td>' + emp.birthday + '</td>'); //hours
         tr.append('<td>' + emp.tel + '</td>'); // experienced in
         tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick=""></td>'); // Available for hire?
-        tr.append('<td><a href="mailto:' + emp.tel + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+        tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
         tr.appendTo(tbody);
     }
     updateCheckBoxes();
@@ -126,6 +126,11 @@ function ui(){
     setBackgroundColorOfSelectedIDsForComparison();
     displayUsersInComparisonBar();
     updateCompareURL();
+    if(compareNumber < 2){
+        document.getElementById("button-compare").onclick = function() { return false; };
+    }else{
+        document.getElementById("button-compare").onclick = function() { return true; };
+    }
 }
 
 function displayUsersInComparisonBar(){

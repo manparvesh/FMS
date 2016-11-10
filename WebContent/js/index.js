@@ -1,6 +1,10 @@
 // read data from database
 var q;
+
+//tables
 var emps;
+var projects;
+var tags;
 
 var compareIDs = [];
 var compareNumber = 0;
@@ -8,9 +12,16 @@ var compareNumber = 0;
 var colors = ['#ffb3ff', '#b3ecff', '#b3ffb3', '#fad581', '#ff9a9a'];
 
 if (q) {
-	emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
+	//emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
 } else {
 	emps = alasql('SELECT * FROM emp', []);
+    
+    // set tables 
+	projects = alasql('SELECT id,emp,difficulty,sum(hours_worked) as sum_hours_worked,hours_worked,client_rating,date_of_completion,money_earned FROM projects GROUP BY emp', []);
+    //alert(projects[0].sum_hours_worked);
+	tags = alasql('SELECT * FROM tags', []);
+    
+    
     // create employee list
     var tbody = $('#tbody-emps');
     tbody.empty();
@@ -22,8 +33,21 @@ if (q) {
         tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
         tr.append('<td>' + emp.name + '</td>');
         tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
-        tr.append('<td>' + emp.birthday + '</td>'); //hours
-        tr.append('<td>' + emp.tel + '</td>'); // experienced in
+        tr.append('<td>' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
+        
+        var tagCount = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var projectList = alasql('SELECT * FROM projects WHERE emp=?', [emp.id]);
+        
+        for(var j=0;j<projectList.length;j++){
+            var project = projectList[j];
+            var tagList = alasql('SELECT * FROM tags WHERE project_id=?', [ project.id ]);
+            for(var k=0;k<tagList.length;k++){
+                tagCount[getCodeForTag(tagList[k].tag)]++;
+            }
+        }
+        
+        tr.append(getTagsHTML(tagCount)); // experienced in
+        
         if(emp.hire){
             tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
             tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
@@ -336,6 +360,100 @@ function toggleHireButtonVisibility(id){
     }else{
         $('#hire-button-' + id).css('visibility', 'hidden');
     }
+}
+
+// --------------------------------- get code for tag ---------------------------------
+function getCodeForTag(tag){
+    var ret = 0;
+    switch(tag){
+        case 'C++':
+            ret = 0;
+            break;
+        case 'Java':
+            ret = 1;
+            break;
+        case 'JavaScript':
+            ret = 2;
+            break;
+        case 'HTML':
+            ret = 3;
+            break;
+        case 'C#':
+            ret = 4;
+            break;
+        case 'CSS':
+            ret = 5;
+            break;
+        case 'PHP':
+            ret = 6;
+            break;
+        case 'Python':
+            ret = 7;
+            break;
+        case 'Scala':
+            ret = 8;
+            break;
+        case 'Ruby':
+            ret = 9;
+            break;
+        case 'Android':
+            ret = 10;
+            break;
+        case 'Windows':
+            ret = 11;
+            break;
+        case 'Linux':
+            ret = 12;
+            break;
+    }
+    return ret;
+}
+
+function getTagForCode(code){
+    var ret;
+    var ar = [
+        "C++",
+        "Java",
+        "JavaScript",
+        "HTML",
+        "C#",
+        "CSS",
+        "PHP",
+        "Python",
+        "Scala",
+        "Ruby",
+        "Android",
+        "Windows",
+        "Linux"
+    ];
+    ret = ar[code];
+    return ret;
+}
+/*"C++",
+			"Java",
+			"JavaScript",
+			"HTML",
+			"C#",
+			"CSS",
+			"PHP",
+			"Python",
+			"Scala",
+			"Ruby",
+			"Android",
+			"Windows",
+			"Linux"
+            */
+
+// ---------------------------------  ---------------------------------
+function getTagsHTML(tagCount){
+    var cell = '<td>';
+    for(var i=0;i<tagCount.length;i++){
+        if(tagCount[i]){
+            cell += ('<span class="label label-info">' + getTagForCode(i) + ' <span class="badge">' + tagCount[i] +'</span></span> ');
+        }
+    }
+    cell += '</td>';
+    return cell;
 }
 
 // starting and ending comment template:

@@ -28,6 +28,7 @@ if (q) {
         tr.append('<td><a href="mailto:' + emp.tel + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
         tr.appendTo(tbody);
     }
+    updateCheckBoxes();
 }
 
 $('#input-search').on('input',function(){
@@ -42,6 +43,9 @@ $('#input-search').on('input',function(){
         case 'Skills':
             emps = alasql('SELECT * FROM emp WHERE name LIKE ?', [ '%' + q + '%' ]);
             break;
+        case '':
+            emps = alasql('SELECT * FROM emp', []);
+            break;
     }
     // create employee list
     var tbody = $('#tbody-emps');
@@ -53,9 +57,11 @@ $('#input-search').on('input',function(){
         tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
         tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
         tr.append('<td>' + emp.name + '</td>');
-        tr.append('<td>' + DB.choice(emp.sex) + '</td>');
-        tr.append('<td>' + emp.birthday + '</td>');
-        tr.append('<td>' + emp.tel + '</td>');
+        tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
+        tr.append('<td>' + emp.birthday + '</td>'); //hours
+        tr.append('<td>' + emp.tel + '</td>'); // experienced in
+        tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick=""></td>'); // Available for hire?
+        tr.append('<td><a href="mailto:' + emp.tel + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
         tr.appendTo(tbody);
     }
     updateCheckBoxes();
@@ -193,6 +199,7 @@ function updateCheckBoxes(){
     if(checkIfCompareIsFull()){
         disableOtherCheckboxes();
     }
+    ui();
 }
 
 function isIDThere(id){
@@ -262,7 +269,7 @@ function updateCompareURL(){
 }
 
 // --------------------------------- set wage function ---------------------------------
-var wage = 0;
+var wage = 10;
 function setWage(){
     $( function() {
         $( "#setWageDialog" ).dialog({
@@ -272,17 +279,27 @@ function setWage(){
             }
         });
         $( "#wageSpinner" ).spinner();
+        $( "#wageSpinner" ).spinner().spinner("value", wage);
     } );
     document.getElementById('setWageDialog').style.display = 'block';
 }
+
+var stars = 0;
 
 $('#doneWage').on('click', function(){
     var spinner = $( "#wageSpinner" ).spinner();
     wage = spinner.spinner( "value" );
     $( "#setWageDialog" ).dialog('close');
-    //alert(wage);
+    //alert($('#star-rating-test').value);
+    alert(stars);
 });
 
+$(':radio').change(
+  function(){
+    //alert(this.value+" stars");
+      stars = this.value;
+  }
+);
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

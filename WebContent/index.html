@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="lib/jquery.js"></script>
-<link href="css/bootstrap.css" rel="stylesheet" />
-<link href="css/index.css" rel="stylesheet" />
-<link href="css/jquery-ui.css" rel="stylesheet" />
-<script src="lib/bootstrap.js"></script>
-<script src="lib/jquery-ui.js"></script>
-<script src="lib/alasql.js"></script>
-<script src="lib/purl.js"></script>
-<script src="js/db.js"></script>
-<meta charset="utf-8">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta name="viewport" content="width=device-width">
-<title>COMPANY</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+    <link href="css/star-rating.css" rel="stylesheet" />
+
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap.js"></script>
+    <script src="lib/jquery-ui.js"></script>
+    <script src="lib/alasql.js"></script>
+    <script src="lib/purl.js"></script>
+    <script src="js/db.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="viewport" content="width=device-width">
+    <title>COMPANY</title>
 </head>
 <body>
 
@@ -221,6 +224,13 @@
         <label for="wageSpinner">Select a value (in USD):</label>
         <input id="wageSpinner" name="wage">
         <a class="btn btn-primary" id="doneWage">Done</a>
+        <span class="star-rating" id="star-rating-test">
+            <input type="radio" name="rating" value="1"><i></i>
+            <input type="radio" name="rating" value="2"><i></i>
+            <input type="radio" name="rating" value="3"><i></i>
+            <input type="radio" name="rating" value="4"><i></i>
+            <input type="radio" name="rating" value="5"><i></i>
+        </span>
     </div>
 	<script src="js/index.js"></script>
 </body>

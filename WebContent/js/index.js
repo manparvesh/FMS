@@ -24,8 +24,13 @@ if (q) {
         tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
         tr.append('<td>' + emp.birthday + '</td>'); //hours
         tr.append('<td>' + emp.tel + '</td>'); // experienced in
-        tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick=""></td>'); // Available for hire?
-        tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+        if(emp.hire){
+            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
+            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+        }else{
+            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
+            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+        }
         tr.appendTo(tbody);
     }
     updateCheckBoxes();
@@ -305,6 +310,33 @@ $(':radio').change(
       stars = this.value;
   }
 );
+
+// --------------------------------- Hire button visibility toggler ---------------------------------
+function toggleHireButtonVisibility(id){
+    var tempEmps =  alasql('SELECT * FROM emp WHERE id = ?', [ id ]);
+    var emp = tempEmps[0];
+    
+    var x;
+    var hire = [];
+    if(emp.hire){
+        hire.push(0);
+        x = 0;
+    }else{
+        hire.push(1);
+        x = 1;
+    }
+    hire.push(id);
+    alasql(
+        'UPDATE emp SET \
+        hire = ? \
+        WHERE id = ?',
+        hire);
+    if(x){
+        $('#hire-button-' + id).css('visibility', 'visible');
+    }else{
+        $('#hire-button-' + id).css('visibility', 'hidden');
+    }
+}
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

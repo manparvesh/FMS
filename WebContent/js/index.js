@@ -409,11 +409,11 @@ function getTagForCode(code){
 
 // --------------------------------- get tags + count cell  ---------------------------------
 function getTagsHTML(id){
-    var cell = '<td>';
+    var cell = '<td class="col-md-4">';
     var tagLocalArray = allTags[id - 1];
     for(var i=0;i<tagLocalArray.length;i++){
         if(tagLocalArray[i]){
-            cell += ('<span class="label label-info">' + getTagForCode(i) + ' <span class="badge">' + tagLocalArray[i] +'</span></span> ');
+            cell += ('<button class="btn btn-info btn-xs" type="button" style="margin:1px;">' + getTagForCode(i) + ' <span class="badge">' + tagLocalArray[i] +'</span></button> ');
         }
     }
     cell += '</td>';
@@ -434,26 +434,27 @@ function populateDatabase(){
     tbody.empty();
     for (var i = 0; i < emps.length; i++) {
         var emp = emps[i];
-        var tr = $('<tr id="row-' + emp.id + '"></tr>');
+        var tr = $('<tr id="row-' + emp.id + '" class="row"></tr>');
         tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')"></td>');
         tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
-        tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
-        tr.append('<td>' + emp.name + '</td>');
-        tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
+        tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
+        tr.append('<td class="col-md-2">' + emp.name + '</td>');
         if(projects[emp.id - 1]){
-            tr.append('<td>' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
+            tr.append('<td class="col-md-1">' + calculateRating(emp.id) + '</td>'); // rating
+            tr.append('<td class="col-md-1">' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
             tr.append(getTagsHTML(emp.id)); // experienced in
         }else{
-            tr.append('<td>' + 0 + '</td>'); //hours
-            tr.append('<td></td>'); //experienced in
+            tr.append('<td class="col-md-1">' + 0 + '</td>'); // rating
+            tr.append('<td class="col-md-1">' + 0 + '</td>'); //hours
+            tr.append('<td class="col-md-4">-</td>'); //experienced in
         }
                 
         if(emp.hire){
-            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
-            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+            tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
+            tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
         }else{
-            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
-            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+            tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
+            tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
         }
         tr.appendTo(tbody);
     }
@@ -482,8 +483,150 @@ function initTags(){
         allTags.push(tagCount);
     }
 }
-
 // --------------------------------- / init values of project tags etc to be used later quickly ---------------------------------
+
+// --------------------------------- rating caulculator ---------------------------------
+function calculateRating(id){
+    //var tEmp =  = alasql('SELECT * FROM emp WHERE id=?', [ id ]);
+    var tProjects = alasql('SELECT * FROM projects WHERE emp=?', [ id ]);
+    var client = 0, difficulty = 0, time = 0;
+    for(var i=0;i<tProjects.length;i++){
+        var tProject = tProjects[i];
+        client += tProject.client_rating;
+        difficulty += tProject.difficulty;
+        time += (tProject.hours_needed / tProject.hours_worked);
+    }
+    return (client + difficulty + time)/(tProjects.length * 3);
+}
+// --------------------------------- / rating caulculator ---------------------------------
+
+// --------------------------------- table sorting \m/ ---------------------------------
+function tableSorter(order, n) {
+    var rows = $('#tbody-emps tr').get();
+
+    rows.sort(function (a, b) {
+
+        var A = getVal(a);
+        var B = getVal(b);
+
+        if (A < B) {
+            return -1 * order;
+        }
+        if (A > B) {
+            return 1 * order;
+        }
+        return 0;
+    });
+
+    function getVal(element) {
+        var v = $(element).children('td').eq(n).text().toUpperCase();
+        if ($.isNumeric(v)) {
+            v = parseFloat(v, 10);
+        }
+        return v;
+    }
+
+    $.each(rows, function (index, row) {
+        $('#tbody-emps').append(row);
+    });
+}
+// --------------------------------- / table sorting \m/ ---------------------------------
+
+// --------------------------------- onclick functions to sort \m/ ---------------------------------
+var colSort = [1, -1, -1, -1]; //num, name, rating, hours
+
+function displayArrows(){
+    $('#num-desc').hide();
+    $('#num-asc').hide();
+    $('#name-desc').hide();
+    $('#name-asc').hide();
+    $('#rating-desc').hide();
+    $('#rating-asc').hide();
+    $('#hours-desc').hide();
+    $('#hours-asc').hide();
+
+    $('#num-sort').show();
+    $('#name-sort').show();
+    $('#rating-sort').show();
+    $('#hours-sort').show();
+    
+    $("#col-num").css('background-color', 'white');
+    $("#col-name").css('background-color', 'white');
+    $("#col-rating").css('background-color', 'white');
+    $("#col-hours").css('background-color', 'white');
+}
+
+//in the beginning
+displayArrows();
+$('#num-sort').hide();
+$('#num-asc').show();
+$("#col-num").css('background-color', '#98dfff');
+
+$("#col-num").click(function () {
+    displayArrows();
+    var pos = 0;
+    var order = colSort[pos];
+    $('#num-sort').hide();
+    if (order === -1) {
+        $('#num-asc').show();
+    } else {
+        $('#num-desc').show();
+    }
+    $("#col-num").css('background-color', '#98dfff');
+    colSort[pos] *= -1; // toggle the sorting order
+    var n = $(this).prevAll().length;
+    tableSorter(colSort[pos], n);
+});
+
+$("#col-name").click(function () {
+    displayArrows();
+    var pos = 1;
+    var order = colSort[pos];
+    $('#name-sort').hide();
+    if (order === -1) {
+        $('#name-asc').show();
+    } else {
+        $('#name-desc').show();
+    }
+    $("#col-name").css('background-color', '#98dfff');
+    colSort[pos] *= -1; // toggle the sorting order
+    var n = $(this).prevAll().length;
+    tableSorter(colSort[pos], n);
+});
+
+$("#col-rating").click(function () {
+    displayArrows();
+    var pos = 2;
+    var order = colSort[pos];
+    $('#rating-sort').hide();
+    if (order === -1) {
+        $('#rating-asc').show();
+    } else {
+        $('#rating-desc').show();
+    }
+    $("#col-rating").css('background-color', '#98dfff');
+    colSort[pos] *= -1; // toggle the sorting order
+    var n = $(this).prevAll().length;
+    tableSorter(colSort[pos], n);
+});
+
+$("#col-hours").click(function () {
+    displayArrows();
+    var pos = 3;
+    var order = colSort[pos];
+    $('#hours-sort').hide();
+    if (order === -1) {
+        $('#hours-asc').show();
+    } else {
+        $('#hours-desc').show();
+    }
+    $("#col-hours").css('background-color', '#98dfff');
+    colSort[pos] *= -1; // toggle the sorting order
+    var n = $(this).prevAll().length;
+    tableSorter(colSort[pos], n);
+});
+// --------------------------------- / onclick functions to sort \m/ ---------------------------------
+
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

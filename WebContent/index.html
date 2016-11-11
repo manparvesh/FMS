@@ -204,16 +204,38 @@
         <!-- The data -->
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th></th> <!-- checkboxes -->
-                    <th></th>  <!-- photos -->
-                    <th style="cursor: pointer;" class="selected">Number&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th style="cursor: pointer;">Name&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th style="cursor: pointer;">Rating&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th style="cursor: pointer;">Hours worked&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th>Experienced in</th>
-                    <th>Available for hire</th>
-                    <th></th>  <!-- hire button -->
+                <tr class="row">
+                    <div class="col-md-1">
+                        <th></th> <!-- checkboxes -->
+                        <th></th>  <!-- photos -->
+                    </div>
+                    <th style="cursor: pointer;" class="col-md-1" id="col-num">
+                        Number&nbsp;
+                        <span class="glyphicon glyphicon-sort" id="num-sort"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes" id="num-asc"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="num-desc"></span>
+                    </th>
+                    <th style="cursor: pointer;" class="col-md-2" id="col-name">
+                        Name&nbsp;
+                        <span class="glyphicon glyphicon-sort" id="name-sort"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes" id="name-asc"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="name-desc"></span>
+                    </th>
+                    <th style="cursor: pointer;" class="col-md-1" id="col-rating">
+                        Rating&nbsp;
+                        <span class="glyphicon glyphicon-sort" id="rating-sort"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes" id="rating-asc"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="rating-desc"></span>
+                    </th>
+                    <th style="cursor: pointer;" class="col-md-1" id="col-hours">
+                        Hours worked&nbsp;
+                        <span class="glyphicon glyphicon-sort" id="hours-sort"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes" id="hours-asc"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="hours-desc"></span>
+                    </th>
+                    <th class="col-md-4">Experienced in</th>
+                    <th class="col-md-1">Available for hire</th>
+                    <th class="col-md-1"></th>  <!-- hire button -->
                 </tr>
             </thead>
             <tbody id="tbody-emps"></tbody>

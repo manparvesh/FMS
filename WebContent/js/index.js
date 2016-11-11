@@ -9,54 +9,21 @@ var tags;
 var compareIDs = [];
 var compareNumber = 0;
 
+var allTags;
+
 var colors = ['#ffb3ff', '#b3ecff', '#b3ffb3', '#fad581', '#ff9a9a'];
+
+initTags();
 
 if (q) {
 	//emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
 } else {
 	emps = alasql('SELECT * FROM emp', []);
     
-    // set tables 
-	projects = alasql('SELECT id,emp,difficulty,sum(hours_worked) as sum_hours_worked,hours_worked,client_rating,date_of_completion,money_earned FROM projects GROUP BY emp', []);
-    //alert(projects[0].sum_hours_worked);
-	tags = alasql('SELECT * FROM tags', []);
+    // input values into table
+    populateDatabase();
     
-    
-    // create employee list
-    var tbody = $('#tbody-emps');
-    tbody.empty();
-    for (var i = 0; i < emps.length; i++) {
-        var emp = emps[i];
-        var tr = $('<tr id="row-' + emp.id + '"></tr>');
-        tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')"></td>');
-        tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
-        tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
-        tr.append('<td>' + emp.name + '</td>');
-        tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
-        tr.append('<td>' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
-        
-        var tagCount = [0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var projectList = alasql('SELECT * FROM projects WHERE emp=?', [emp.id]);
-        
-        for(var j=0;j<projectList.length;j++){
-            var project = projectList[j];
-            var tagList = alasql('SELECT * FROM tags WHERE project_id=?', [ project.id ]);
-            for(var k=0;k<tagList.length;k++){
-                tagCount[getCodeForTag(tagList[k].tag)]++;
-            }
-        }
-        
-        tr.append(getTagsHTML(tagCount)); // experienced in
-        
-        if(emp.hire){
-            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
-            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
-        }else{
-            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
-            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
-        }
-        tr.appendTo(tbody);
-    }
+    // update checkboxes and row backgrounds
     updateCheckBoxes();
 }
 
@@ -76,23 +43,11 @@ $('#input-search').on('input',function(){
             emps = alasql('SELECT * FROM emp', []);
             break;
     }
-    // create employee list
-    var tbody = $('#tbody-emps');
-    tbody.empty();
-    for (var i = 0; i < emps.length; i++) {
-        var emp = emps[i];
-        var tr = $('<tr id="row-' + emp.id + '"></tr>');
-        tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')"></td>');
-        tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
-        tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
-        tr.append('<td>' + emp.name + '</td>');
-        tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
-        tr.append('<td>' + emp.birthday + '</td>'); //hours
-        tr.append('<td>' + emp.tel + '</td>'); // experienced in
-        tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick=""></td>'); // Available for hire?
-        tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
-        tr.appendTo(tbody);
-    }
+    
+    // input values into table
+    populateDatabase();
+
+    // update checkboxes and row backgrounds
     updateCheckBoxes();
 });
 
@@ -109,6 +64,7 @@ $('#cols-skills').on('click',function(){
     $('#search-col').text('Skills');
 });
 
+// ----------------------------- comparison bar functions with UI ans stuff -----------------------------
 
 function comparisonProcedure(id){
     if(compareIDs.includes(id)){
@@ -245,6 +201,7 @@ function isIDThere(id){
     }
     return false;
 }
+// ----------------------------- / comparison bar functions with UI ans stuff -----------------------------
 
 // --------------------------------- delete buttons in comparison bar ---------------------------------
 $('#close-button-0').on('click', function(){
@@ -301,6 +258,7 @@ function updateCompareURL(){
     //alert(url);
     $('#button-compare').attr('href', url);
 }
+// --------------------------------- / update compare button href url ---------------------------------
 
 // --------------------------------- set wage function ---------------------------------
 var wage = 10;
@@ -334,6 +292,7 @@ $(':radio').change(
       stars = this.value;
   }
 );
+// --------------------------------- / set wage function ---------------------------------
 
 // --------------------------------- Hire button visibility toggler ---------------------------------
 function toggleHireButtonVisibility(id){
@@ -361,6 +320,7 @@ function toggleHireButtonVisibility(id){
         $('#hire-button-' + id).css('visibility', 'hidden');
     }
 }
+// --------------------------------- / Hire button visibility toggler ---------------------------------
 
 // --------------------------------- get code for tag ---------------------------------
 function getCodeForTag(tag){
@@ -408,7 +368,9 @@ function getCodeForTag(tag){
     }
     return ret;
 }
+// --------------------------------- / get code for tag ---------------------------------
 
+// --------------------------------- get tag from code ---------------------------------
 function getTagForCode(code){
     var ret;
     var ar = [
@@ -443,18 +405,81 @@ function getTagForCode(code){
 			"Windows",
 			"Linux"
             */
+// --------------------------------- / get tag from code ---------------------------------
 
-// ---------------------------------  ---------------------------------
-function getTagsHTML(tagCount){
+// --------------------------------- get tags + count cell  ---------------------------------
+function getTagsHTML(id){
     var cell = '<td>';
-    for(var i=0;i<tagCount.length;i++){
-        if(tagCount[i]){
-            cell += ('<span class="label label-info">' + getTagForCode(i) + ' <span class="badge">' + tagCount[i] +'</span></span> ');
+    var tagLocalArray = allTags[id - 1];
+    for(var i=0;i<tagLocalArray.length;i++){
+        if(tagLocalArray[i]){
+            cell += ('<span class="label label-info">' + getTagForCode(i) + ' <span class="badge">' + tagLocalArray[i] +'</span></span> ');
         }
     }
     cell += '</td>';
     return cell;
 }
+// --------------------------------- / get tags + count cell  ---------------------------------
+
+// --------------------------------- populate tables based on the database ---------------------------------
+function populateDatabase(){
+        // set tables 
+	projects = alasql('SELECT id,emp,difficulty,sum(hours_worked) as sum_hours_worked,hours_worked,client_rating,date_of_completion,money_earned FROM projects GROUP BY emp', []);
+    //alert(projects[0].sum_hours_worked);
+	tags = alasql('SELECT * FROM tags', []);
+    
+    
+    // create employee list
+    var tbody = $('#tbody-emps');
+    tbody.empty();
+    for (var i = 0; i < emps.length; i++) {
+        var emp = emps[i];
+        var tr = $('<tr id="row-' + emp.id + '"></tr>');
+        tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')"></td>');
+        tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
+        tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
+        tr.append('<td>' + emp.name + '</td>');
+        tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
+        tr.append('<td>' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
+                
+        tr.append(getTagsHTML(emp.id)); // experienced in
+        
+        if(emp.hire){
+            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
+            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+        }else{
+            tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
+            tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+        }
+        tr.appendTo(tbody);
+    }
+}
+// --------------------------------- / populate tables based on the database ---------------------------------
+
+// --------------------------------- init values of project tags etc to be used later quickly ---------------------------------
+function initTags(){
+    var tempEmps = alasql('SELECT * FROM emp', []);
+    
+    allTags = [];
+    
+    for(var i=0;i<tempEmps.length;i++){
+        var emp = tempEmps[i];
+        var tagCount = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var projectList = alasql('SELECT * FROM projects WHERE emp=?', [emp.id]);
+        
+        for(var j=0;j<projectList.length;j++){
+            var project = projectList[j];
+            var tagList = alasql('SELECT * FROM tags WHERE project_id=?', [ project.id ]);
+            for(var k=0;k<tagList.length;k++){
+                tagCount[getCodeForTag(tagList[k].tag)]++;
+            }
+        }
+        
+        allTags.push(tagCount);
+    }
+}
+
+// --------------------------------- / init values of project tags etc to be used later quickly ---------------------------------
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

@@ -440,10 +440,14 @@ function populateDatabase(){
         tr.append('<td><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
         tr.append('<td>' + emp.name + '</td>');
         tr.append('<td>' + DB.choice(emp.sex) + '</td>'); // rating
-        tr.append('<td>' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
+        if(projects[emp.id - 1]){
+            tr.append('<td>' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
+            tr.append(getTagsHTML(emp.id)); // experienced in
+        }else{
+            tr.append('<td>' + 0 + '</td>'); //hours
+            tr.append('<td></td>'); //experienced in
+        }
                 
-        tr.append(getTagsHTML(emp.id)); // experienced in
-        
         if(emp.hire){
             tr.append('<td><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
             tr.append('<td><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button

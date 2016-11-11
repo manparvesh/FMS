@@ -21,6 +21,7 @@ if (id) {
 	$('#sex select').val(emp.sex);
 	$('#birthday input').val(emp.birthday);
 	$('#tel input').val(emp.tel);
+	$('#email input').val(emp.email);
 	$('#ctct_name input').val(emp.ctct_name);
 	$('#ctct_addr input').val(emp.ctct_addr);
 	$('#ctct_tel input').val(emp.ctct_tel);
@@ -52,6 +53,8 @@ function update() {
 	emp.push($('#pspt_date input').val());
 	emp.push($('#pspt_name input').val());
 	emp.push(parseInt($('#rental select').val()));
+    emp.push($('#email input').val());
+    emp.push(1);
 
 	if (id) {
 		emp.push(id);
@@ -69,6 +72,8 @@ function update() {
 				pspt_date = ?, \
 				pspt_name = ?, \
 				rental = ? \
+				email = ? \
+				hire = ? \
 				WHERE id = ?',
 				emp);
 	} else {
@@ -88,8 +93,10 @@ function update() {
 				pspt_no, \
 				pspt_date, \
 				pspt_name, \
-				rental) \
-				VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);',
+				rental, \
+				email, \
+				hire) \
+				VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
 				emp);
 	}
 	window.location.assign('emp.html?id=' + id);

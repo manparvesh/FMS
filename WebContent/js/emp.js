@@ -6,6 +6,7 @@ $('#name').text(emp.name);
 $('#sex').text(DB.choice(emp.sex));
 $('#birthday').text(emp.birthday);
 $('#tel').text(emp.tel);
+$('#email').text(emp.email);
 $('#ctct_name').text(emp.ctct_name);
 $('#ctct_addr').text(emp.ctct_addr);
 $('#ctct_tel').text(emp.ctct_tel);

@@ -262,35 +262,25 @@ function updateCompareURL(){
 
 // --------------------------------- set wage function ---------------------------------
 var wage = 10;
-function setWage(){
-    $( function() {
-        $( "#setWageDialog" ).dialog({
-            closeOnEscape: true,
-            open: function(event, ui) {
-                $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-            }
-        });
-        $( "#wageSpinner" ).spinner();
-        $( "#wageSpinner" ).spinner().spinner("value", wage);
-    } );
-    document.getElementById('setWageDialog').style.display = 'block';
-}
+
+$( "#wageSpinner" ).spinner();
+$( "#wageSpinner" ).spinner().spinner("value", wage);
 
 var stars = 0;
 
 $('#doneWage').on('click', function(){
     var spinner = $( "#wageSpinner" ).spinner();
     wage = spinner.spinner( "value" );
-    $( "#setWageDialog" ).dialog('close');
+    //$( "#setWageDialog" ).hide();
     //alert($('#star-rating-test').value);
-    alert(stars);
+    //alert(stars);
 });
 
 $(':radio').change(
-  function(){
-    //alert(this.value+" stars");
-      stars = this.value;
-  }
+    function(){
+        //alert(this.value+" stars");
+        stars = this.value;
+    }
 );
 // --------------------------------- / set wage function ---------------------------------
 
@@ -440,7 +430,7 @@ function populateDatabase(){
         tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
         tr.append('<td class="col-md-2">' + emp.name + '</td>');
         if(projects[emp.id - 1]){
-            tr.append('<td class="col-md-1">' + calculateRating(emp.id) + '</td>'); // rating
+            tr.append('<td class="col-md-1"><a href="#rating" onclick="showRating(' + emp.id + ')">' + calculateRating(emp.id) + '</a></td>'); // rating
             tr.append('<td class="col-md-1">' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
             tr.append(getTagsHTML(emp.id)); // experienced in
         }else{
@@ -494,9 +484,9 @@ function calculateRating(id){
         var tProject = tProjects[i];
         client += tProject.client_rating;
         difficulty += tProject.difficulty;
-        time += (tProject.hours_needed / tProject.hours_worked);
+        time += (tProject.hours_needed / tProject.hours_worked)*10;
     }
-    return (client + difficulty + time)/(tProjects.length * 3);
+    return (client + difficulty + time)/(tProjects.length * 6);
 }
 // --------------------------------- / rating caulculator ---------------------------------
 
@@ -627,6 +617,23 @@ $("#col-hours").click(function () {
 });
 // --------------------------------- / onclick functions to sort \m/ ---------------------------------
 
+// --------------------------------- function to set rating history and stuff in a cool modal ---------------------------------
+function showRating(id){
+    var tbody = $('#tbody-projects');
+    tbody.empty();
+    projects = alasql('SELECT * FROM projects WHERE emp=?', [ id ]);
+    for (var i = 0; i < projects.length; i++) {
+        var project = projects[i];
+        var tr = $('<tr></tr>');
+        tr.append('<td>'+ project.name + '</td>');
+        tr.append('<td>'+ project.client_rating + '</td>');
+        tr.append('<td>'+ project.difficulty + '</td>');
+        tr.append('<td>'+ project.hours_needed + '</td>');
+        tr.append('<td>'+ project.hours_worked + '</td>');
+        tr.appendTo(tbody);
+    }
+}
+// --------------------------------- / function to set rating history and stuff in a cool modal ---------------------------------
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

@@ -5,6 +5,7 @@
     <link href="css/index.css" rel="stylesheet" />
     <link href="css/jquery-ui.css" rel="stylesheet" />
     <link href="css/star-rating.css" rel="stylesheet" />
+    <link href="css/cool-modal.css" rel="stylesheet" />
 
     <script src="lib/jquery.js"></script>
     <script src="lib/bootstrap.js"></script>
@@ -46,7 +47,7 @@
 						data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>
 							Settings <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a onclick="setWage();"  style="cursor: pointer;"><span
+							<li><a style="cursor: pointer;" href="#setWageDialog"><span
 									class="glyphicon glyphicon-wrench"></span> Set initial wage</a></li><!-- TODO -->
                             <li><a onclick="window.location.reload(true);" style="cursor: pointer;"><span
 									class="glyphicon glyphicon-refresh"></span> Reload</a></li>
@@ -242,17 +243,47 @@
         </table>
 	</div>
     
-    <div id="setWageDialog" title="Select initial wage" style="display:none;" class="center-block">
-        <label for="wageSpinner">Select a value (in USD):</label>
-        <input id="wageSpinner" name="wage">
-        <a class="btn btn-primary" id="doneWage">Done</a>
-        <span class="star-rating" id="star-rating-test">
-            <input type="radio" name="rating" value="1"><i></i>
-            <input type="radio" name="rating" value="2"><i></i>
-            <input type="radio" name="rating" value="3"><i></i>
-            <input type="radio" name="rating" value="4"><i></i>
-            <input type="radio" name="rating" value="5"><i></i>
-        </span>
+    <div id="setWageDialog" title="Select initial wage" class="cool-modal">
+        <div>
+            <a href="#closeWage" title="Close" class="close">X</a>
+            <label for="wageSpinner">Select a value (in USD):</label>
+            <input id="wageSpinner" name="wage">
+            <a class="btn btn-primary" id="doneWage" href="#closeWage">Done</a>
+        </div>
+    </div>
+    <div id="rating" class="cool-modal">
+        <div>   
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Rating</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!-- Project name -->
+                        <th>
+                            Project name
+                        </th>
+                        <!-- rating -->
+                        <th>
+                            Client rating
+                        </th>
+                        <!-- Difficulty -->
+                        <th>
+                            Difficulty
+                        </th>
+                        <!-- Hours needed -->
+                        <th>
+                            Hours needed
+                        </th>
+                        <!-- Hours taken -->
+                        <th>
+                            Hours taken
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-projects"></tbody>
+            </table>
+
+        </div>
     </div>
 	<script src="js/index.js"></script>
 </body>

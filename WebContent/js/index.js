@@ -622,6 +622,8 @@ function showRating(id){
     var tbody = $('#tbody-projects');
     tbody.empty();
     projects = alasql('SELECT * FROM projects WHERE emp=?', [ id ]);
+    var tempWage = wage;
+    var totalMoneyEarned = 0;
     for (var i = 0; i < projects.length; i++) {
         var project = projects[i];
         var tr = $('<tr></tr>');
@@ -630,8 +632,37 @@ function showRating(id){
         tr.append('<td>'+ project.difficulty + '</td>');
         tr.append('<td>'+ project.hours_needed + '</td>');
         tr.append('<td>'+ project.hours_worked + '</td>');
+        
+        //overall rating for this project
+        var tempRating = (project.client_rating + project.difficulty + (project.hours_needed / project.hours_worked)*10)/6;
+        tr.append('<td>'+ tempRating + '</td>');
+        
+        // hourly wages for this project
+        tr.append('<td>'+ tempWage + '</td>');
+        
+        // total money earned from this project
+        tr.append('<td>'+ (tempWage * project.hours_worked) + '</td>');
+        totalMoneyEarned += (tempWage * project.hours_worked);
+        
+        if(i){
+            tempWage *= ((tempRating - 2.5)/5 + 1);
+        }
+        
         tr.appendTo(tbody);
     }
+    
+    var cell = '';
+    var tagLocalArray = allTags[id - 1];
+    for(var i=0;i<tagLocalArray.length;i++){
+        if(tagLocalArray[i]){
+            cell += ('<button class="btn btn-info btn-xs" type="button" style="margin:1px;">' + getTagForCode(i) + ' <span class="badge">' + tagLocalArray[i] +'</span></button> ');
+        }
+    }
+    
+    $('#projectTags').empty();
+    $('#projectTags').append(cell);
+    
+    // display totalMoneyEarned also
 }
 // --------------------------------- / function to set rating history and stuff in a cool modal ---------------------------------
 

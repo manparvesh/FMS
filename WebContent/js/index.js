@@ -18,6 +18,8 @@ var wage = 10;
 var stars = 0;
 var ratingFilter = 3;
 
+var a = 1, b = 1, c = 1;
+
 initTags();
 
 if (q) {
@@ -503,7 +505,6 @@ function initTags(){
 // --------------------------------- / init values of project tags etc to be used later quickly ---------------------------------
 
 // --------------------------------- rating caulculator ---------------------------------
-var a = 1, b = 1, c = 1;
 function calculateRating(id){
     //var tEmp =  = alasql('SELECT * FROM emp WHERE id=?', [ id ]);
     var tProjects = alasql('SELECT * FROM projects WHERE emp=?', [ id ]);
@@ -514,7 +515,7 @@ function calculateRating(id){
         difficulty += tProject.difficulty;
         time += (tProject.hours_needed / tProject.hours_worked)*10;
     }
-    return (client + difficulty + time)/(tProjects.length * 6);
+    return ((client*a + difficulty*b + time*c)/(tProjects.length * 2 * (a + b + c)));
 }
 // --------------------------------- / rating caulculator ---------------------------------
 
@@ -848,6 +849,31 @@ $("#skill-filter-linux").change(function() {
 $('#doneFilters').click(function(){
     //do everything bruh
     // 1. skills
+    
+    // 3. rating preference
+    switch(ratingFilter){
+        case 0:
+            a = 2;
+            b = 1;
+            c = 1;
+            break;
+        case 1:
+            a = 1;
+            b = 2;
+            c = 1;
+            break;
+        case 2:
+            a = 1;
+            b = 1;
+            c = 2;
+            break;
+        case 3:
+            a = 2;
+            b = 2;
+            c = 2;
+            break;
+    }
+    
     // 2. hireable
     if(hireable == 2){
         emps = alasql('SELECT * FROM emp', []);
@@ -860,7 +886,8 @@ $('#doneFilters').click(function(){
     
     // update checkboxes and row backgrounds
     updateCheckBoxes();
-    // 3. rating preference
+    
+    //alert(a + ' ' + b + ' ' + c);
 });
 // --------------------------------- / checkboxes for filters ---------------------------------
 

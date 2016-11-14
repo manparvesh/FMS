@@ -13,35 +13,64 @@ var allTags;
 
 var colors = ['#ffb3ff', '#b3ecff', '#b3ffb3', '#fad581', '#ff9a9a'];
 
+var hireable = 2;
+var wage = 10;
+var stars = 0;
+var ratingFilter = 3;
+
 initTags();
 
 if (q) {
 	//emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
 } else {
-	emps = alasql('SELECT * FROM emp', []);
-    
-    // input values into table
-    populateDatabase();
-    
-    // update checkboxes and row backgrounds
-    updateCheckBoxes();
+    showEntries();
 }
 
 $('#input-search').on('input',function(){
     q = $(this).val();
-    switch($('#search-col').text()){
-        case 'Number':
-            emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
-            break;
-        case 'Name':
-            emps = alasql('SELECT * FROM emp WHERE name LIKE ?', [ '%' + q + '%' ]);
-            break;
-        case 'Skills':
-            emps = alasql('SELECT * FROM emp WHERE name LIKE ?', [ '%' + q + '%' ]);
-            break;
-        case '':
+    showEntries($('#search-col').text(), q);
+});
+
+// searchColumn, search query, hireable, rating criteria, skills
+function showEntries(searchCol, q){
+    if(hireable == 2){
+        if(searchCol){
+            switch(searchCol){
+                case 'Number':
+                    emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
+                    break;
+                case 'Name':
+                    emps = alasql('SELECT * FROM emp WHERE name LIKE ?', [ '%' + q + '%' ]);
+                    break;
+                case 'Skills':
+                    emps = alasql('SELECT * FROM emp WHERE name LIKE ?', [ '%' + q + '%' ]);
+                    break;
+                case '':
+                    emps = alasql('SELECT * FROM emp', []);
+                    break;
+            }
+        }else{
             emps = alasql('SELECT * FROM emp', []);
-            break;
+        }
+    }else{
+        if(searchCol){
+            switch(searchCol){
+                case 'Number':
+                    emps = alasql('SELECT * FROM emp WHERE number LIKE ? AND hire=?', [ '%' + q + '%', hireable ]);
+                    break;
+                case 'Name':
+                    emps = alasql('SELECT * FROM emp WHERE name LIKE ? AND hire=?', [ '%' + q + '%', hireable ]);
+                    break;
+                case 'Skills':
+                    emps = alasql('SELECT * FROM emp WHERE name LIKE ? AND hire=?', [ '%' + q + '%', hireable ]);
+                    break;
+                case '':
+                    emps = alasql('SELECT * FROM emp WHERE hire=?', [ hireable ]);
+                    break;
+            }
+        }else{
+            emps = alasql('SELECT * FROM emp WHERE hire=?', [ hireable ]);
+        }
     }
     
     // input values into table
@@ -49,7 +78,7 @@ $('#input-search').on('input',function(){
 
     // update checkboxes and row backgrounds
     updateCheckBoxes();
-});
+}
 
 //$('#search-col').text()
 $('#cols-num').on('click',function(){
@@ -261,12 +290,10 @@ function updateCompareURL(){
 // --------------------------------- / update compare button href url ---------------------------------
 
 // --------------------------------- set wage function ---------------------------------
-var wage = 10;
 
 $( "#wageSpinner" ).spinner();
 $( "#wageSpinner" ).spinner().spinner("value", wage);
 
-var stars = 0;
 
 $('#doneWage').on('click', function(){
     var spinner = $( "#wageSpinner" ).spinner();
@@ -281,7 +308,7 @@ $(':radio').change(
         //alert(this.value+" stars");
         stars = this.value;
     }
-);
+); 
 // --------------------------------- / set wage function ---------------------------------
 
 // --------------------------------- Hire button visibility toggler ---------------------------------
@@ -476,6 +503,7 @@ function initTags(){
 // --------------------------------- / init values of project tags etc to be used later quickly ---------------------------------
 
 // --------------------------------- rating caulculator ---------------------------------
+var a = 1, b = 1, c = 1;
 function calculateRating(id){
     //var tEmp =  = alasql('SELECT * FROM emp WHERE id=?', [ id ]);
     var tProjects = alasql('SELECT * FROM projects WHERE emp=?', [ id ]);
@@ -665,6 +693,176 @@ function showRating(id){
     // display totalMoneyEarned also
 }
 // --------------------------------- / function to set rating history and stuff in a cool modal ---------------------------------
+
+// --------------------------------- checkboxes for filters ---------------------------------
+
+// hireable options
+$("#option-no").change(function() {
+    if(this.checked) {
+        hireable = 0;
+    }
+});
+$("#option-yes").change(function() {
+    if(this.checked) {
+        hireable = 1;
+    }
+});
+$("#option-both").change(function() {
+    if(this.checked) {
+        hireable = 2;
+    }
+});
+
+// type of rating to compute
+$("#option-client").change(function() {
+    if(this.checked) {
+        ratingFilter = 0;
+    }
+});
+$("#option-difficulty").change(function() {
+    if(this.checked) {
+        ratingFilter = 1;
+    }
+});
+$("#option-time").change(function() {
+    if(this.checked) {
+        ratingFilter = 2;
+    }
+});
+$("#option-simple").change(function() {
+    if(this.checked) {
+        ratingFilter = 3;
+    }
+});
+
+// filters for skill tags
+var skillFilter = {
+    'C++' : false,
+    'Java' : false,
+    'JavaScript' : false,
+    'HTML' : false,
+    'C#' : false,
+    'CSS' : false,
+    'PHP' : false,
+    'Python' : false,
+    'Scala' : false,
+    'Ruby' : false,
+    'Android' : false,
+    'Windows' : false,
+    'Linux' : false
+};
+
+$("#skill-filter-cpp").change(function() {
+    if(this.checked) {
+        skillFilter['C++'] = true;
+    }else{
+        skillFilter['C++'] = false;
+    }
+});
+$("#skill-filter-java").change(function() {
+    if(this.checked) {
+        skillFilter['Java'] = true;
+    }else{
+        skillFilter['Java'] = false;
+    }
+});
+$("#skill-filter-js").change(function() {
+    if(this.checked) {
+        skillFilter['JavaScript'] = true;
+    }else{
+        skillFilter['JavaScript'] = false;
+    }
+});
+$("#skill-filter-html").change(function() {
+    if(this.checked) {
+        skillFilter['HTML'] = true;
+    }else{
+        skillFilter['HTML'] = false;
+    }
+});
+$("#skill-filter-cs").change(function() {
+    if(this.checked) {
+        skillFilter['C#'] = true;
+    }else{
+        skillFilter['C#'] = false;
+    }
+});
+$("#skill-filter-css").change(function() {
+    if(this.checked) {
+        skillFilter['CSS'] = true;
+    }else{
+        skillFilter['CSS'] = false;
+    }
+});
+$("#skill-filter-php").change(function() {
+    if(this.checked) {
+        skillFilter['PHP'] = true;
+    }else{
+        skillFilter['PHP'] = false;
+    }
+});
+$("#skill-filter-py").change(function() {
+    if(this.checked) {
+        skillFilter['Python'] = true;
+    }else{
+        skillFilter['Python'] = false;
+    }
+});
+$("#skill-filter-scala").change(function() {
+    if(this.checked) {
+        skillFilter['Scala'] = true;
+    }else{
+        skillFilter['Scala'] = false;
+    }
+});
+$("#skill-filter-rb").change(function() {
+    if(this.checked) {
+        skillFilter['Ruby'] = true;
+    }else{
+        skillFilter['Ruby'] = false;
+    }
+});
+$("#skill-filter-android").change(function() {
+    if(this.checked) {
+        skillFilter['Android'] = true;
+    }else{
+        skillFilter['Android'] = false;
+    }
+});
+$("#skill-filter-windows").change(function() {
+    if(this.checked) {
+        skillFilter['Windows'] = true;
+    }else{
+        skillFilter['Windows'] = false;
+    }
+});
+$("#skill-filter-linux").change(function() {
+    if(this.checked) {
+        skillFilter['Linux'] = true;
+    }else{
+        skillFilter['Linux'] = false;
+    }
+});
+
+//button to apply filters
+$('#doneFilters').click(function(){
+    //do everything bruh
+    // 1. skills
+    // 2. hireable
+    if(hireable == 2){
+        emps = alasql('SELECT * FROM emp', []);
+    }else{
+        emps = alasql('SELECT * FROM emp WHERE hire=?', [ hireable ]);
+    }
+    
+    // input values into table
+    populateDatabase();
+    
+    // update checkboxes and row backgrounds
+    updateCheckBoxes();
+    // 3. rating preference
+});
+// --------------------------------- / checkboxes for filters ---------------------------------
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

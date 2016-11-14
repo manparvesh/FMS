@@ -13,6 +13,22 @@ var allTags;
 
 var colors = ['#ffb3ff', '#b3ecff', '#b3ffb3', '#fad581', '#ff9a9a'];
 
+var skillFilter = {
+    'C++' : false,
+    'Java' : false,
+    'JavaScript' : false,
+    'HTML' : false,
+    'C#' : false,
+    'CSS' : false,
+    'PHP' : false,
+    'Python' : false,
+    'Scala' : false,
+    'Ruby' : false,
+    'Android' : false,
+    'Windows' : false,
+    'Linux' : false
+};
+
 var hireable = 2;
 var wage = 10;
 var stars = 0;
@@ -393,19 +409,19 @@ function getCodeForTag(tag){
 function getTagForCode(code){
     var ret;
     var ar = [
-        "C++",
-        "Java",
-        "JavaScript",
-        "HTML",
-        "C#",
-        "CSS",
-        "PHP",
-        "Python",
-        "Scala",
-        "Ruby",
-        "Android",
-        "Windows",
-        "Linux"
+        'C++',
+        'Java',
+        'JavaScript',
+        'HTML',
+        'C#',
+        'CSS',
+        'PHP',
+        'Python',
+        'Scala',
+        'Ruby',
+        'Android',
+        'Windows',
+        'Linux'
     ];
     ret = ar[code];
     return ret;
@@ -453,29 +469,32 @@ function populateDatabase(){
     tbody.empty();
     for (var i = 0; i < emps.length; i++) {
         var emp = emps[i];
-        var tr = $('<tr id="row-' + emp.id + '" class="row"></tr>');
-        tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')"></td>');
-        tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
-        tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
-        tr.append('<td class="col-md-2">' + emp.name + '</td>');
-        if(projects[emp.id - 1]){
-            tr.append('<td class="col-md-1"><a href="#rating" onclick="showRating(' + emp.id + ')">' + calculateRating(emp.id) + '</a></td>'); // rating
-            tr.append('<td class="col-md-1">' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
-            tr.append(getTagsHTML(emp.id)); // experienced in
-        }else{
-            tr.append('<td class="col-md-1">' + 0 + '</td>'); // rating
-            tr.append('<td class="col-md-1">' + 0 + '</td>'); //hours
-            tr.append('<td class="col-md-4">-</td>'); //experienced in
+        var tempTags = allTags[emp.id - 1];
+        if(matchesTags(tempTags)){
+            var tr = $('<tr id="row-' + emp.id + '" class="row"></tr>');
+            tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')"></td>');
+            tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
+            tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
+            tr.append('<td class="col-md-2">' + emp.name + '</td>');
+            if(projects[emp.id - 1]){
+                tr.append('<td class="col-md-1"><a href="#rating" onclick="showRating(' + emp.id + ')">' + calculateRating(emp.id) + '</a></td>'); // rating
+                tr.append('<td class="col-md-1">' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
+                tr.append(getTagsHTML(emp.id)); // experienced in
+            }else{
+                tr.append('<td class="col-md-1">' + 0 + '</td>'); // rating
+                tr.append('<td class="col-md-1">' + 0 + '</td>'); //hours
+                tr.append('<td class="col-md-4">-</td>'); //experienced in
+            }
+
+            if(emp.hire){
+                tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
+                tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+            }else{
+                tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
+                tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+            }
+            tr.appendTo(tbody);
         }
-                
-        if(emp.hire){
-            tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
-            tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
-        }else{
-            tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
-            tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
-        }
-        tr.appendTo(tbody);
     }
 }
 // --------------------------------- / populate tables based on the database ---------------------------------
@@ -737,21 +756,6 @@ $("#option-simple").change(function() {
 });
 
 // filters for skill tags
-var skillFilter = {
-    'C++' : false,
-    'Java' : false,
-    'JavaScript' : false,
-    'HTML' : false,
-    'C#' : false,
-    'CSS' : false,
-    'PHP' : false,
-    'Python' : false,
-    'Scala' : false,
-    'Ruby' : false,
-    'Android' : false,
-    'Windows' : false,
-    'Linux' : false
-};
 
 $("#skill-filter-cpp").change(function() {
     if(this.checked) {
@@ -890,6 +894,34 @@ $('#doneFilters').click(function(){
     //alert(a + ' ' + b + ' ' + c);
 });
 // --------------------------------- / checkboxes for filters ---------------------------------
+
+// --------------------------------- check if tags in this cell match with the filters ---------------------------------
+function allFalse(){
+    var ar = [];
+    for(var i=0;i<13;i++){
+        //alert(skillFilter[getTagForCode(i)]);
+        if(skillFilter[getTagForCode(i)]){
+            return false;
+        }
+    }
+    return true;
+}
+
+// skillFilter[getTagForCode(i)]
+function matchesTags(tempTags){
+    if(allFalse()){
+        //console.log(allFalse());
+        return true;
+    }
+    for(var i=0;i<13;i++){
+        if(skillFilter[getTagForCode(i)]){
+            if(tempTags[i] < 1){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

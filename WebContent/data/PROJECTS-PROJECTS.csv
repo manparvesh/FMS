@@ -1,585 +1,348 @@
 ID,EMP,NAME,DIFFICULTY,HOURS_WORKED,HOURS_NEEDED,CLIENT_RATING,DATE_OF_COMPLETION,MONEY_EARNED
-1,1,Full stack development,10,93,62,7,1960-5-16,956
-2,1,Windows app development,10,87,52,3,1971-2-16,337
-3,1,Cross platform development,7,52,55,6,1954-2-28,738
-4,1,Windows app development,5,74,63,8,1944-6-23,472
-5,2,Website design,2,77,60,4,1966-2-7,314
-6,2,Cross platform development,5,66,64,6,1955-9-10,412
-7,2,Java development,3,82,62,2,1949-1-20,451
-8,3,Windows app development,8,62,86,9,1943-11-4,143
-9,3,Cross platform development,10,76,68,7,1962-10-29,402
-10,4,Website design,7,71,87,3,1972-1-19,193
-11,4,Android app development,10,91,59,10,1948-7-21,652
-12,4,Website design,9,50,81,8,1965-7-10,877
-13,4,Linux development,3,94,97,7,1972-3-17,535
-14,4,Cross platform development,2,98,55,4,1967-3-15,500
-15,4,Linux development,7,58,96,7,1957-5-20,295
-16,5,Windows app development,4,52,76,5,1975-1-14,431
-17,5,C++ development,1,77,93,7,1976-9-14,909
-18,6,Cross platform development,10,94,51,5,1973-4-10,490
-19,6,Website design,3,96,68,4,1951-3-30,935
-20,7,Java development,3,88,83,7,1940-12-12,1080
-21,7,C++ development,9,96,77,10,1940-1-9,287
-22,7,Java development,1,93,57,4,1967-11-3,810
-23,7,Android app development,1,71,81,1,1972-7-23,740
-24,7,Linux development,10,52,98,10,1978-9-6,948
-25,7,Android app development,6,89,85,5,1941-11-17,337
-26,8,Android app development,1,64,87,1,1975-5-9,556
-27,8,Backend development,2,84,78,9,1949-6-5,396
-28,8,Java development,4,86,56,4,1976-1-1,776
-29,8,Windows app development,2,55,54,1,1940-7-30,218
-30,8,C++ development,10,78,89,9,1952-3-5,995
-31,8,Full stack development,6,96,73,7,1966-1-2,1088
-32,9,Backend development,4,79,76,5,1973-7-2,548
-33,9,Backend development,5,66,53,8,1963-12-26,840
-34,9,Linux development,1,82,92,5,1979-8-12,657
-35,9,Full stack development,1,81,91,2,1978-2-21,298
-36,9,Windows app development,6,84,62,4,1949-3-7,744
-37,9,Java development,6,73,88,5,1953-12-2,1020
-38,10,Java development,8,77,83,4,1942-5-7,718
-39,10,Linux development,6,69,73,10,1977-6-23,965
-40,10,Backend development,1,67,89,9,1976-3-23,668
-41,11,Android app development,3,92,88,1,1976-12-20,181
-42,11,Backend development,5,52,55,2,1951-6-25,625
-43,11,C++ development,5,90,74,1,1974-5-5,920
-44,11,Full stack development,5,78,77,2,1970-6-4,1020
-45,11,C++ development,4,59,94,2,1960-4-13,511
-46,11,Backend development,4,89,51,5,1977-8-9,1081
-47,12,C++ development,5,70,81,3,1976-1-15,583
-48,12,C++ development,10,85,52,3,1948-1-27,819
-49,13,Backend development,1,78,84,6,1949-8-30,293
-50,13,Linux development,10,82,56,2,1960-11-28,353
-51,13,Full stack development,6,60,71,10,1948-7-19,921
-52,13,Cross platform development,7,97,60,1,1940-1-29,475
-53,14,Android app development,1,97,87,8,1940-6-3,305
-54,14,Full stack development,5,72,76,3,1963-4-26,556
-55,15,Backend development,6,74,99,4,1961-11-5,364
-56,15,Linux development,4,52,56,9,1978-12-30,700
-57,15,Website design,5,82,77,10,1950-1-21,308
-58,16,Backend development,1,68,65,6,1941-4-3,655
-59,16,Website design,5,91,59,6,1969-3-6,119
-60,16,Windows app development,6,85,91,1,1947-9-4,859
-61,16,Website design,10,64,53,2,1942-5-5,1084
-62,16,C++ development,8,86,51,2,1950-4-27,442
-63,17,Android app development,6,58,62,2,1969-8-12,1022
-64,17,Linux development,7,63,79,3,1975-2-26,384
-65,17,Windows app development,2,94,71,7,1951-1-30,943
-66,17,Windows app development,8,73,91,10,1953-6-14,413
-67,17,Backend development,8,93,77,7,1977-7-11,457
-68,17,Backend development,10,58,52,1,1973-12-2,110
-69,18,Cross platform development,8,70,55,5,1965-11-21,784
-70,18,Linux development,2,64,95,4,1976-4-15,162
-71,18,Windows app development,1,66,89,8,1977-9-1,520
-72,18,C++ development,5,84,69,6,1958-2-23,500
-73,19,Android app development,7,66,82,4,1974-10-7,486
-74,19,C++ development,6,77,99,4,1961-3-24,193
-75,19,Linux development,1,89,68,4,1962-8-30,554
-76,19,C++ development,5,61,64,9,1953-1-7,402
-77,20,Cross platform development,6,70,53,8,1963-10-2,544
-78,20,Backend development,10,94,77,5,1953-11-7,589
-79,21,Android app development,6,78,62,9,1952-6-25,835
-80,21,Backend development,1,51,51,10,1951-12-8,671
-81,21,Cross platform development,6,97,81,8,1971-3-29,265
-82,21,C++ development,1,78,51,4,1947-3-17,1095
-83,21,Linux development,9,74,50,6,1963-12-9,568
-84,21,Java development,8,79,63,8,1948-2-26,141
-85,22,Linux development,3,64,82,4,1943-8-4,174
-86,22,Backend development,3,83,68,1,1945-12-5,940
-87,22,Full stack development,9,74,74,8,1972-3-12,585
-88,22,Linux development,1,52,88,8,1960-10-18,896
-89,23,Linux development,9,68,54,2,1971-10-17,983
-90,23,Windows app development,1,84,88,2,1968-5-6,373
-91,23,Linux development,4,72,62,2,1962-2-13,448
-92,23,Android app development,3,64,80,1,1955-10-30,391
-93,23,Windows app development,3,75,84,10,1974-3-13,946
-94,23,Java development,5,77,82,9,1979-11-18,556
-95,24,Linux development,5,90,60,8,1962-9-2,1018
-96,24,Windows app development,5,68,55,6,1978-1-3,165
-97,24,Cross platform development,8,88,63,3,1968-1-11,248
-98,24,Full stack development,9,99,88,1,1942-4-26,163
-99,24,Website design,2,68,76,9,1942-8-4,140
-100,25,Linux development,5,58,50,6,1957-11-29,974
-101,25,Linux development,3,65,84,9,1965-4-30,635
-102,25,Linux development,10,59,77,1,1972-3-18,675
-103,25,Full stack development,4,64,81,3,1970-7-24,374
-104,25,Windows app development,6,88,66,7,1943-7-7,609
-105,26,Backend development,8,51,60,3,1960-1-9,509
-106,26,Android app development,5,78,70,10,1975-8-3,409
-107,26,Full stack development,10,99,87,1,1961-9-2,343
-108,26,Cross platform development,6,65,69,5,1941-11-24,594
-109,26,Android app development,1,57,57,1,1979-2-25,365
-110,26,Backend development,2,57,98,1,1971-8-21,451
-111,27,Backend development,7,60,53,7,1963-7-19,827
-112,27,Cross platform development,1,63,96,7,1945-3-24,766
-113,27,C++ development,5,76,86,1,1955-3-29,476
-114,27,C++ development,8,89,90,2,1953-11-21,765
-115,27,Backend development,10,62,69,9,1952-12-26,387
-116,28,Linux development,4,54,55,6,1965-2-5,442
-117,28,Linux development,9,58,89,2,1942-9-13,999
-118,28,Linux development,2,53,70,5,1969-8-3,947
-119,28,Backend development,8,70,87,3,1950-12-21,328
-120,28,Website design,7,88,52,7,1965-7-14,1049
-121,29,Website design,1,89,58,4,1965-3-11,706
-122,29,Website design,1,56,95,5,1978-6-3,318
-123,29,Windows app development,10,57,61,3,1979-10-27,500
-124,29,Android app development,7,54,67,3,1976-10-4,1038
-125,29,Website design,2,61,69,8,1946-9-28,765
-126,29,Android app development,8,91,93,5,1942-4-14,233
-127,30,Linux development,6,56,60,6,1947-12-25,532
-128,30,Full stack development,5,51,88,3,1955-10-23,783
-129,30,Android app development,2,51,86,9,1978-11-15,821
-130,30,C++ development,6,93,72,1,1941-8-14,142
-131,30,Android app development,6,80,54,3,1965-6-12,207
-132,30,Backend development,5,94,78,1,1973-10-20,310
-133,31,Linux development,9,63,90,5,1946-8-24,558
-134,31,Cross platform development,8,78,64,9,1940-6-16,909
-135,31,Backend development,4,53,99,8,1962-5-20,236
-136,31,Backend development,8,95,91,5,1940-10-7,635
-137,31,Windows app development,5,69,82,10,1965-9-7,231
-138,32,Backend development,5,55,62,9,1947-5-1,340
-139,32,C++ development,4,58,62,3,1957-9-8,839
-140,32,Windows app development,4,80,57,9,1961-7-28,407
-141,32,Linux development,7,65,85,5,1965-8-20,351
-142,32,C++ development,9,74,51,7,1953-7-23,1055
-143,32,Website design,4,91,99,3,1943-5-11,758
-144,33,Full stack development,1,50,96,6,1956-9-9,990
-145,33,Java development,3,94,54,9,1967-8-28,189
-146,33,Linux development,8,81,90,4,1941-10-15,1069
-147,33,Full stack development,2,87,65,6,1970-11-24,653
-148,33,C++ development,2,95,86,4,1967-2-7,746
-149,33,C++ development,4,95,96,10,1952-6-16,305
-150,34,Java development,2,95,58,9,1968-4-19,160
-151,34,C++ development,7,64,80,4,1951-12-4,832
-152,34,Java development,1,79,96,3,1977-3-15,907
-153,34,Android app development,8,67,59,7,1941-1-23,1079
-154,35,Full stack development,4,88,97,6,1962-6-25,281
-155,35,Backend development,9,76,85,3,1964-4-29,993
-156,35,Backend development,9,89,72,2,1950-5-2,162
-157,36,Java development,6,55,61,5,1948-4-25,965
-158,36,Cross platform development,7,55,54,1,1965-2-15,418
-159,36,Full stack development,6,57,75,4,1941-5-8,800
-160,36,Linux development,9,71,97,3,1975-5-29,696
-161,37,Full stack development,6,90,86,5,1979-1-10,201
-162,37,C++ development,3,61,84,7,1954-9-8,744
-163,37,Backend development,7,90,79,9,1942-5-7,813
-164,37,Android app development,1,79,89,2,1968-10-27,606
-165,37,Windows app development,1,90,68,2,1945-10-30,1010
-166,37,Website design,1,97,89,1,1951-2-24,631
-167,38,Android app development,6,82,59,7,1977-9-8,719
-168,38,Java development,1,62,67,5,1974-8-4,1087
-169,38,Cross platform development,7,71,82,2,1947-7-27,661
-170,38,Website design,10,66,70,3,1957-2-20,816
-171,39,Java development,5,85,76,2,1961-1-18,263
-172,39,Linux development,7,59,67,10,1977-12-29,156
-173,39,Cross platform development,5,53,92,6,1969-5-14,808
-174,40,C++ development,1,57,55,6,1943-9-19,347
-175,40,C++ development,5,89,50,3,1944-6-8,347
-176,40,Android app development,6,85,54,8,1970-3-16,782
-177,41,Full stack development,4,50,59,9,1942-3-29,217
-178,41,Linux development,10,77,54,2,1944-11-18,555
-179,41,Backend development,5,56,97,3,1946-12-22,1049
-180,41,Android app development,3,67,80,10,1953-11-15,277
-181,41,Java development,5,99,99,4,1978-9-8,458
-182,41,Backend development,10,84,52,10,1979-7-8,832
-183,42,C++ development,9,95,61,6,1962-3-8,370
-184,42,Website design,6,97,94,8,1952-1-7,591
-185,42,Android app development,7,81,70,1,1979-10-23,690
-186,42,C++ development,4,54,69,2,1953-2-17,649
-187,42,C++ development,5,64,53,6,1950-11-8,260
-188,43,C++ development,6,98,58,10,1950-1-30,515
-189,43,Backend development,10,54,71,7,1964-5-14,313
-190,44,Full stack development,3,90,51,8,1970-9-25,312
-191,44,Full stack development,1,64,80,8,1973-3-12,1089
-192,44,Android app development,1,83,70,8,1955-3-16,311
-193,44,C++ development,3,82,53,5,1952-4-12,1038
-194,44,C++ development,1,85,87,4,1942-3-24,208
-195,45,Cross platform development,7,51,80,6,1975-8-25,792
-196,45,Java development,6,66,56,8,1941-2-16,1048
-197,46,Linux development,2,98,80,9,1946-10-1,517
-198,46,Linux development,9,90,76,10,1948-7-11,157
-199,46,Windows app development,1,50,50,3,1940-9-11,679
-200,47,Cross platform development,2,75,95,1,1951-11-6,643
-201,47,Windows app development,1,70,70,4,1955-1-8,719
-202,47,Website design,5,87,95,7,1942-9-15,174
-203,47,Full stack development,10,63,61,2,1948-10-2,792
-204,47,Backend development,7,80,80,7,1952-4-18,877
-205,48,Android app development,4,97,53,4,1943-8-14,916
-206,48,Cross platform development,2,86,68,4,1975-3-5,600
-207,48,Website design,2,52,52,8,1941-11-7,695
-208,48,Cross platform development,4,79,78,9,1962-3-8,236
-209,49,Windows app development,3,54,60,6,1946-9-13,305
-210,49,Cross platform development,6,93,66,7,1970-1-27,787
-211,49,Java development,8,63,54,7,1972-11-18,262
-212,49,Java development,7,50,98,10,1944-6-14,939
-213,49,Backend development,9,95,75,9,1958-3-3,806
-214,49,Full stack development,3,89,76,2,1948-5-19,1056
-215,50,Website design,1,56,93,5,1958-1-7,540
-216,50,Full stack development,3,64,57,9,1949-12-12,875
-217,51,C++ development,10,69,68,8,1958-2-14,292
-218,51,Backend development,7,65,91,10,1956-10-28,116
-219,51,Windows app development,1,78,84,3,1950-9-9,503
-220,52,Java development,2,64,97,7,1959-4-13,115
-221,52,Backend development,2,62,84,2,1951-12-11,510
-222,52,Android app development,9,65,76,5,1962-5-24,832
-223,52,Backend development,1,52,53,4,1942-6-16,637
-224,52,Java development,6,99,56,1,1972-7-1,721
-225,52,Windows app development,5,79,86,4,1958-7-13,236
-226,53,Java development,8,59,66,3,1959-12-22,406
-227,53,Cross platform development,6,73,55,3,1953-7-30,655
-228,53,Linux development,4,72,89,2,1944-2-4,612
-229,53,Full stack development,4,69,84,4,1947-8-15,1098
-230,54,C++ development,6,80,71,10,1960-5-21,988
-231,54,Website design,9,60,77,3,1964-3-12,704
-232,54,C++ development,7,73,59,8,1950-2-22,634
-233,54,Backend development,6,82,67,9,1951-10-18,185
-234,54,Android app development,6,66,96,8,1945-9-13,580
-235,54,Backend development,6,74,81,3,1940-1-18,964
-236,55,Windows app development,7,90,68,2,1970-10-17,525
-237,55,Backend development,9,71,86,10,1946-4-25,716
-238,55,Full stack development,4,84,61,9,1958-7-8,705
-239,56,Java development,4,57,85,10,1949-9-1,474
-240,56,Java development,2,70,69,6,1944-11-25,846
-241,56,Full stack development,7,78,87,8,1976-9-18,508
-242,56,Windows app development,5,84,93,8,1970-6-24,429
-243,56,C++ development,6,79,83,5,1941-11-28,413
-244,57,Cross platform development,3,60,85,10,1944-1-23,220
-245,57,Android app development,9,62,67,8,1942-9-23,354
-246,57,Java development,10,54,67,6,1943-4-25,1016
-247,57,Android app development,7,75,53,2,1964-7-16,858
-248,58,Windows app development,5,93,95,10,1957-4-23,449
-249,58,Linux development,2,66,78,1,1947-7-30,905
-250,58,Full stack development,5,95,93,4,1953-11-4,933
-251,58,Website design,7,82,83,2,1968-5-10,248
-252,59,Cross platform development,2,55,83,7,1960-1-4,1084
-253,59,Java development,6,70,86,1,1959-2-9,618
-254,59,C++ development,6,82,61,3,1972-4-14,244
-255,59,Android app development,7,71,71,2,1940-7-25,265
-256,59,Android app development,9,63,68,1,1964-9-10,962
-257,59,Windows app development,10,59,60,6,1943-4-22,355
-258,60,Android app development,10,66,89,5,1960-2-11,212
-259,60,Full stack development,1,68,59,7,1957-10-1,777
-260,60,Full stack development,7,52,85,4,1953-2-3,728
-261,60,Backend development,8,86,88,9,1941-11-23,745
-262,61,Backend development,8,57,85,9,1952-9-4,544
-263,61,Full stack development,5,86,70,2,1973-8-28,420
-264,61,Cross platform development,3,67,71,6,1953-7-20,499
-265,61,Linux development,2,61,74,5,1964-5-5,1016
-266,62,C++ development,5,78,77,4,1972-3-22,938
-267,62,Windows app development,3,70,82,4,1971-7-8,110
-268,62,C++ development,1,70,62,9,1956-7-28,336
-269,62,Cross platform development,5,50,86,9,1947-1-12,1063
-270,63,Backend development,10,72,55,10,1947-9-14,633
-271,63,Linux development,7,84,97,8,1958-1-28,695
-272,64,Backend development,2,83,72,6,1964-11-11,515
-273,64,Linux development,6,85,61,4,1964-11-11,222
-274,65,Linux development,5,97,64,4,1946-11-27,823
-275,65,Full stack development,5,74,70,4,1940-10-13,165
-276,65,C++ development,9,82,79,4,1972-10-9,771
-277,65,Android app development,10,97,54,7,1965-6-6,726
-278,66,Website design,10,52,57,10,1964-7-6,545
-279,66,Android app development,3,68,79,9,1955-8-1,704
-280,67,Android app development,9,66,75,10,1946-7-16,693
-281,67,Windows app development,7,66,89,2,1941-10-6,201
-282,67,Android app development,2,98,96,6,1950-6-12,571
-283,67,Java development,9,72,83,8,1952-9-9,705
-284,67,Java development,10,98,78,4,1969-4-26,1027
-285,67,Android app development,1,92,95,7,1974-9-3,293
-286,68,C++ development,8,92,82,4,1956-11-7,776
-287,68,Android app development,1,79,77,4,1955-3-2,263
-288,68,Windows app development,9,98,60,6,1944-6-11,174
-289,68,Backend development,9,58,98,3,1977-6-4,1028
-290,68,C++ development,7,55,64,9,1955-10-13,354
-291,68,Windows app development,8,99,90,1,1956-12-8,247
-292,69,Linux development,1,80,94,9,1953-4-21,339
-293,69,Windows app development,2,55,83,10,1964-12-10,376
-294,69,Website design,1,80,73,4,1977-10-30,920
-295,69,C++ development,2,97,89,4,1961-2-26,309
-296,69,Website design,3,60,99,2,1960-7-16,641
-297,69,Android app development,7,64,69,3,1946-4-3,350
-298,70,Cross platform development,7,68,84,3,1953-8-26,333
-299,70,Full stack development,10,97,82,4,1948-2-4,465
-300,70,Backend development,9,75,87,5,1965-8-2,816
-301,71,Java development,5,88,68,4,1955-8-11,944
-302,71,Android app development,5,61,80,5,1943-3-25,1094
-303,72,Full stack development,5,81,83,10,1944-5-28,748
-304,72,Windows app development,9,80,67,2,1950-9-17,818
-305,72,Java development,8,84,83,1,1970-10-1,339
-306,72,Website design,1,90,84,5,1972-6-6,1070
-307,72,Linux development,2,78,61,3,1976-7-7,212
-308,72,Linux development,10,75,62,5,1944-6-7,364
-309,73,Linux development,1,64,50,7,1969-5-26,148
-310,73,Windows app development,7,98,97,6,1979-8-28,197
-311,73,Windows app development,8,97,98,2,1968-6-30,816
-312,74,Linux development,9,89,50,2,1967-8-29,1083
-313,74,Windows app development,2,69,62,5,1967-12-15,396
-314,74,C++ development,5,89,82,6,1940-3-16,109
-315,74,Backend development,8,76,56,7,1979-11-15,902
-316,74,Cross platform development,2,80,61,4,1949-9-21,937
-317,75,Windows app development,1,54,74,8,1952-8-15,808
-318,75,Linux development,2,77,83,7,1952-7-3,244
-319,75,Java development,5,50,93,10,1955-2-14,797
-320,75,Android app development,9,75,51,10,1965-4-26,825
-321,75,Full stack development,1,94,88,8,1941-1-3,225
-322,75,Linux development,5,87,66,1,1959-9-13,805
-323,76,Android app development,8,77,52,7,1954-1-5,766
-324,76,C++ development,4,67,98,4,1946-8-23,367
-325,76,Android app development,4,83,62,5,1951-6-3,333
-326,76,Cross platform development,9,88,61,7,1953-1-30,929
-327,76,C++ development,8,98,63,4,1959-3-16,430
-328,77,Linux development,4,57,64,2,1942-9-2,119
-329,77,C++ development,4,99,84,1,1970-12-27,426
-330,77,Full stack development,6,52,50,9,1969-11-26,751
-331,78,Linux development,8,85,55,4,1969-8-21,1091
-332,78,Cross platform development,1,58,89,8,1974-2-10,572
-333,79,Website design,3,81,99,8,1979-2-7,147
-334,79,Windows app development,10,51,62,3,1947-9-23,546
-335,79,Linux development,8,57,85,6,1961-3-1,416
-336,79,Website design,3,76,55,10,1958-1-26,989
-337,79,Windows app development,5,70,55,1,1969-7-21,844
-338,79,Linux development,1,66,92,6,1951-9-10,414
-339,80,C++ development,10,81,87,1,1958-5-14,927
-340,80,Full stack development,2,65,80,10,1975-10-19,148
-341,81,Full stack development,6,84,53,3,1977-5-27,190
-342,81,Cross platform development,4,67,65,8,1968-8-11,124
-343,82,C++ development,3,97,97,2,1970-2-8,588
-344,82,Linux development,8,89,53,6,1963-3-26,313
-345,82,Windows app development,2,53,57,8,1947-5-18,518
-346,82,Android app development,4,72,63,9,1954-7-29,425
-347,82,Windows app development,4,67,96,7,1967-12-23,1022
-348,82,Full stack development,4,79,89,9,1975-7-15,633
-349,83,Java development,6,95,71,7,1967-4-28,196
-350,83,C++ development,9,64,73,10,1964-4-7,534
-351,83,Backend development,6,53,88,3,1950-1-28,597
-352,84,Website design,8,85,74,4,1954-3-10,1030
-353,84,Android app development,10,89,84,9,1946-1-19,263
-354,84,Android app development,4,51,58,5,1941-10-11,836
-355,84,Android app development,9,70,84,7,1949-10-22,180
-356,85,Java development,4,83,69,6,1965-4-19,868
-357,85,Windows app development,8,95,60,2,1943-2-9,471
-358,85,Android app development,2,56,81,7,1962-9-13,985
-359,85,Website design,8,62,94,9,1954-12-25,447
-360,86,Linux development,8,93,50,4,1943-2-30,1094
-361,86,Full stack development,10,87,83,4,1947-8-28,876
-362,86,C++ development,5,63,68,5,1979-8-3,700
-363,86,Cross platform development,3,79,81,10,1978-1-11,242
-364,87,Android app development,2,75,90,3,1969-6-8,1087
-365,87,Website design,10,75,57,6,1940-12-22,276
-366,88,C++ development,10,97,84,6,1978-3-30,794
-367,88,C++ development,10,70,56,3,1961-5-8,955
-368,88,Full stack development,5,80,84,1,1954-9-1,147
-369,89,Website design,1,65,87,5,1967-2-18,490
-370,89,Windows app development,1,75,61,2,1953-12-24,1003
-371,89,Linux development,5,89,59,2,1953-6-6,567
-372,89,Cross platform development,7,57,90,4,1957-2-8,735
-373,89,Linux development,10,82,74,7,1942-12-24,171
-374,90,Linux development,10,70,51,4,1950-7-15,272
-375,90,Cross platform development,3,78,55,2,1965-4-27,684
-376,90,Cross platform development,1,73,51,5,1976-6-16,993
-377,90,Cross platform development,5,73,69,10,1977-9-18,126
-378,91,Java development,7,81,86,7,1957-5-3,953
-379,91,Linux development,2,73,75,4,1959-2-17,305
-380,92,Java development,7,97,52,2,1973-7-26,1070
-381,92,Windows app development,4,72,75,4,1945-1-13,204
-382,92,Windows app development,1,73,76,2,1966-9-7,951
-383,93,Windows app development,8,80,80,6,1977-2-13,200
-384,93,Cross platform development,6,94,80,10,1964-6-10,761
-385,93,Java development,8,85,52,7,1952-11-11,860
-386,93,Website design,4,90,88,3,1965-3-30,575
-387,94,C++ development,6,79,98,10,1971-11-19,938
-388,94,Windows app development,3,62,68,1,1961-7-3,995
-389,94,C++ development,3,61,53,2,1958-12-29,123
-390,94,Windows app development,10,67,93,10,1969-10-2,1013
-391,94,Full stack development,7,51,66,1,1949-5-6,804
-392,94,Java development,1,84,89,6,1969-5-21,790
-393,95,Linux development,2,60,68,5,1967-8-30,1052
-394,95,Windows app development,10,56,76,5,1972-11-15,322
-395,95,Website design,8,85,99,5,1941-6-9,581
-396,95,Windows app development,8,87,59,3,1964-2-17,793
-397,95,C++ development,8,61,52,1,1961-3-13,147
-398,95,Cross platform development,7,93,75,9,1955-1-21,244
-399,96,Android app development,9,68,89,9,1972-6-19,193
-400,96,Full stack development,7,78,67,9,1946-1-26,471
-401,96,C++ development,7,71,75,10,1967-10-24,662
-402,96,Java development,6,53,74,9,1954-8-15,391
-403,96,Java development,8,67,71,2,1973-3-20,248
-404,96,Linux development,3,91,85,6,1952-8-11,1019
-405,97,Backend development,10,66,94,7,1971-10-26,897
-406,97,Website design,5,53,59,6,1957-4-14,277
-407,97,Linux development,2,61,65,6,1961-8-20,945
-408,97,Android app development,3,79,71,1,1972-3-9,996
-409,98,Windows app development,4,57,90,1,1965-3-11,722
-410,98,Windows app development,2,78,72,9,1958-5-14,123
-411,98,Linux development,9,95,88,7,1965-12-17,1067
-412,98,C++ development,9,81,52,1,1967-11-10,599
-413,99,Backend development,5,57,68,1,1962-7-12,338
-414,99,Full stack development,5,82,91,7,1974-8-27,438
-415,99,C++ development,4,84,92,7,1949-10-19,415
-416,99,Backend development,8,68,87,7,1958-1-24,1081
-417,99,Android app development,2,82,72,6,1970-5-7,669
-418,100,Linux development,3,58,59,7,1951-8-3,844
-419,100,Website design,10,64,77,4,1961-8-6,1061
-420,100,Linux development,9,74,75,5,1962-8-29,856
-421,100,C++ development,3,87,97,6,1970-3-19,703
-422,101,Website design,10,90,71,9,1961-11-20,1062
-423,101,Backend development,3,76,98,10,1977-11-21,920
-424,102,Java development,4,97,82,9,1965-2-2,577
-425,102,Java development,3,91,99,5,1972-11-14,200
-426,102,Backend development,5,70,79,10,1959-2-1,1049
-427,102,Backend development,2,94,68,9,1947-7-27,276
-428,103,Java development,1,72,70,9,1976-12-20,213
-429,103,Cross platform development,8,53,73,10,1970-1-25,249
-430,104,Linux development,9,71,96,7,1947-12-1,204
-431,104,Full stack development,5,62,79,9,1946-12-17,329
-432,104,Website design,7,73,81,9,1956-12-14,305
-433,104,C++ development,4,69,78,2,1943-2-5,600
-434,104,Android app development,10,70,54,10,1971-9-12,605
-435,104,Backend development,7,78,94,8,1953-2-28,1054
-436,105,Cross platform development,8,66,86,4,1940-7-2,951
-437,105,C++ development,9,78,85,5,1959-12-22,1036
-438,106,Linux development,4,53,67,4,1961-6-14,180
-439,106,Android app development,7,75,58,3,1953-12-15,548
-440,106,C++ development,7,90,95,10,1962-11-19,1090
-441,106,Android app development,4,60,52,7,1977-6-24,1089
-442,106,C++ development,8,62,84,5,1963-5-9,1053
-443,106,Android app development,6,73,77,2,1948-4-17,901
-444,107,Backend development,4,86,90,1,1969-4-19,646
-445,107,Java development,9,69,62,5,1973-10-2,421
-446,108,C++ development,1,93,79,6,1941-8-20,1032
-447,108,Linux development,6,97,77,1,1965-11-23,835
-448,108,Full stack development,4,58,83,9,1951-10-23,217
-449,108,Linux development,7,97,56,5,1974-11-6,812
-450,109,Backend development,5,64,63,4,1979-12-27,429
-451,109,Website design,3,96,84,6,1953-4-5,715
-452,110,Java development,9,54,93,5,1955-10-4,535
-453,110,Backend development,10,88,63,1,1944-11-8,520
-454,110,C++ development,7,67,61,3,1947-12-29,362
-455,110,Android app development,1,94,72,10,1971-1-9,885
-456,110,Backend development,7,54,95,3,1956-8-14,581
-457,110,Windows app development,10,95,76,5,1949-8-26,796
-458,111,Website design,9,52,66,2,1962-10-29,616
-459,111,C++ development,8,52,77,4,1973-6-29,205
-460,112,Java development,1,87,67,7,1976-4-28,222
-461,112,Backend development,9,83,87,5,1950-7-4,428
-462,112,Full stack development,4,66,71,7,1947-6-20,946
-463,112,Java development,9,82,74,4,1940-4-6,948
-464,113,Android app development,5,76,84,3,1954-6-10,255
-465,113,Cross platform development,9,89,61,10,1965-9-14,1040
-466,114,Cross platform development,1,99,92,6,1973-9-15,618
-467,114,Cross platform development,3,87,76,4,1951-3-2,166
-468,114,Backend development,10,58,80,4,1960-5-23,945
-469,114,Windows app development,5,92,57,6,1973-4-8,699
-470,114,Website design,9,64,86,1,1955-1-13,520
-471,114,C++ development,6,99,62,10,1960-5-28,602
-472,115,Full stack development,1,53,96,6,1969-10-10,417
-473,115,Java development,9,61,66,5,1955-1-21,418
-474,116,Website design,5,65,77,1,1975-12-25,1074
-475,116,Backend development,3,62,87,2,1954-2-12,728
-476,116,Java development,1,80,69,6,1941-8-1,929
-477,116,Full stack development,9,68,90,6,1948-11-26,201
-478,116,Java development,9,55,98,3,1957-2-11,457
-479,117,Android app development,2,67,66,3,1965-11-26,541
-480,117,Linux development,9,63,83,1,1948-9-26,1020
-481,117,Website design,2,58,95,6,1964-9-1,186
-482,117,Windows app development,3,62,81,4,1973-5-13,111
-483,118,Website design,9,57,88,2,1951-1-22,829
-484,118,Linux development,1,95,89,8,1962-11-18,366
-485,118,Backend development,2,85,63,3,1942-7-16,122
-486,118,Cross platform development,1,87,71,10,1943-5-22,247
-487,118,Cross platform development,5,89,79,10,1973-6-30,662
-488,119,Cross platform development,6,93,78,2,1951-7-5,607
-489,119,Full stack development,4,53,63,4,1971-8-6,663
-490,119,Cross platform development,7,83,83,3,1958-4-17,428
-491,120,Windows app development,8,98,60,4,1963-6-20,1084
-492,120,Full stack development,3,65,85,7,1966-10-2,405
-493,120,Android app development,1,75,51,8,1975-2-10,182
-494,121,Android app development,7,96,84,4,1947-11-15,458
-495,121,Full stack development,1,87,54,8,1942-2-8,268
-496,121,Linux development,7,70,92,9,1977-10-8,1080
-497,121,Java development,8,74,90,3,1957-12-2,329
-498,122,Website design,3,81,93,2,1956-5-15,651
-499,122,C++ development,6,64,76,1,1968-9-19,182
-500,122,Cross platform development,1,71,64,9,1978-2-29,411
-501,122,C++ development,2,67,85,9,1954-7-4,333
-502,122,Android app development,2,62,58,4,1979-10-23,173
-503,122,Cross platform development,4,98,82,5,1942-4-30,331
-504,123,Website design,3,79,66,6,1977-2-23,632
-505,123,Backend development,8,94,65,8,1959-3-20,1004
-506,123,Cross platform development,3,56,67,10,1964-5-2,100
-507,123,C++ development,10,59,88,3,1946-1-3,199
-508,123,Full stack development,6,84,77,6,1978-9-20,735
-509,123,Android app development,2,56,59,3,1957-4-17,261
-510,124,C++ development,10,57,75,6,1963-5-13,339
-511,124,Full stack development,7,50,63,4,1966-4-10,342
-512,124,Backend development,2,51,56,1,1964-5-14,138
-513,124,Android app development,4,64,67,8,1976-6-23,771
-514,124,Android app development,3,60,51,2,1963-10-16,241
-515,125,Backend development,6,61,77,1,1954-2-16,400
-516,125,Website design,2,51,66,1,1956-2-6,613
-517,125,Website design,5,98,89,10,1977-10-4,774
-518,125,Java development,3,97,62,3,1979-8-26,369
-519,125,Linux development,7,86,97,8,1956-12-24,390
-520,125,Website design,4,85,59,7,1973-11-24,500
-521,126,Full stack development,6,77,72,2,1967-8-23,497
-522,126,Cross platform development,4,61,76,2,1970-7-8,477
-523,126,Windows app development,1,82,62,6,1947-1-5,673
-524,127,Cross platform development,6,70,66,9,1970-2-23,602
-525,127,Website design,5,88,94,8,1966-12-27,820
-526,127,Website design,7,70,73,9,1951-1-27,173
-527,127,Website design,8,60,72,5,1955-2-17,703
-528,127,Cross platform development,7,97,72,3,1955-1-6,1080
-529,127,Java development,3,71,80,3,1955-10-27,133
-530,128,Java development,3,63,82,6,1949-8-10,300
-531,128,Cross platform development,4,84,61,1,1978-12-13,487
-532,128,Windows app development,8,67,81,4,1961-1-17,541
-533,128,Cross platform development,10,89,78,6,1971-3-2,933
-534,129,Full stack development,2,72,73,1,1952-6-26,465
-535,129,Website design,4,88,85,6,1966-12-13,772
-536,129,Java development,6,57,61,9,1952-8-16,523
-537,130,Linux development,6,57,72,5,1954-5-22,600
-538,130,Backend development,10,71,51,1,1974-11-29,893
-539,130,Android app development,8,95,61,4,1954-12-24,299
-540,131,Full stack development,7,99,84,7,1972-11-11,105
-541,131,Windows app development,9,61,90,10,1957-3-13,104
-542,131,Linux development,3,76,64,5,1972-2-21,383
-543,132,C++ development,2,71,76,6,1969-4-7,150
-544,132,C++ development,9,65,69,9,1962-7-14,137
-545,133,Android app development,8,90,63,9,1977-8-27,781
-546,133,C++ development,3,55,76,1,1966-12-22,487
-547,133,Java development,9,73,87,2,1948-1-25,783
-548,133,Linux development,6,87,86,9,1956-7-20,459
-549,133,Linux development,5,83,94,8,1979-4-19,313
-550,133,Android app development,8,91,96,2,1956-2-5,1045
-551,134,Android app development,8,77,86,10,1946-11-29,158
-552,134,Linux development,7,87,57,9,1950-12-4,631
-553,134,Website design,8,69,57,5,1965-5-16,332
-554,135,Android app development,1,77,55,8,1970-9-4,149
-555,135,Full stack development,8,88,96,2,1958-3-30,416
-556,135,Java development,9,60,81,8,1949-12-27,191
-557,135,Windows app development,4,80,99,10,1955-9-6,351
-558,136,Windows app development,3,80,80,9,1950-10-29,482
-559,136,Backend development,5,84,56,5,1940-6-7,158
-560,136,Full stack development,2,70,64,8,1942-12-21,119
-561,136,Android app development,5,55,55,1,1950-12-20,396
-562,136,Android app development,7,61,69,6,1940-4-29,1057
-563,137,Website design,1,78,57,1,1978-1-16,190
-564,137,C++ development,3,80,92,3,1970-7-3,950
-565,137,Linux development,7,61,87,4,1974-5-13,438
-566,137,Java development,1,93,94,4,1975-12-25,765
-567,137,Backend development,10,66,61,2,1945-6-29,515
-568,138,Windows app development,7,88,95,3,1967-9-12,697
-569,138,Full stack development,6,66,99,3,1979-3-17,668
-570,138,Linux development,9,61,75,1,1955-5-24,1084
-571,138,Full stack development,7,67,66,6,1979-5-7,710
-572,138,Backend development,4,76,62,9,1946-5-24,925
-573,138,Full stack development,9,59,84,10,1975-6-8,246
-574,139,C++ development,6,59,98,8,1941-2-30,473
-575,139,C++ development,10,59,78,6,1954-1-30,642
-576,139,Cross platform development,1,55,71,6,1967-11-19,150
-577,139,Backend development,6,58,98,4,1956-10-10,341
-578,139,Windows app development,3,70,62,10,1970-12-7,691
-579,139,Website design,10,97,51,2,1954-3-25,406
-580,140,Linux development,2,56,73,3,1949-9-16,941
-581,140,Cross platform development,3,61,92,8,1972-4-24,269
-582,140,Website design,2,96,76,4,1943-6-14,981
-583,140,Java development,3,80,50,8,1966-9-14,232
-584,140,Windows app development,4,77,78,4,1956-8-24,735
+1,1,Full stack development,8,57,75,6,1949-3-27,134
+2,1,Website design,7,98,65,7,1951-11-14,285
+3,1,C++ development,6,63,97,3,1948-3-6,131
+4,1,Backend development,9,96,91,5,1952-1-29,922
+5,2,Cross platform development,2,50,52,4,1947-12-14,980
+6,2,Backend development,10,84,83,4,1941-5-2,155
+7,2,Linux development,2,81,64,1,1962-6-7,1067
+8,2,Full stack development,6,69,83,5,1974-1-13,580
+9,3,Website design,9,78,67,1,1976-6-18,256
+10,3,Windows app development,1,97,54,10,1979-5-8,814
+11,3,Java development,9,99,92,5,1973-2-17,164
+12,3,Windows app development,9,55,82,8,1974-6-6,379
+13,3,Backend development,2,76,80,4,1951-6-16,279
+14,4,C++ development,3,59,52,4,1962-9-8,1016
+15,4,Website design,4,59,81,10,1943-5-26,617
+16,4,C++ development,8,90,68,1,1979-7-20,1096
+17,4,C++ development,10,59,94,5,1974-10-21,976
+18,4,Full stack development,6,78,90,3,1956-6-14,865
+19,4,Linux development,7,82,86,9,1953-11-22,839
+20,4,C++ development,2,56,73,1,1956-8-30,922
+21,4,Cross platform development,3,66,61,7,1976-8-6,460
+22,5,Windows app development,3,96,67,1,1940-1-13,727
+23,5,Full stack development,5,50,50,1,1975-2-16,747
+24,5,C++ development,4,57,69,6,1952-6-3,802
+25,5,Backend development,6,86,56,10,1961-1-8,867
+26,6,Website design,3,70,69,1,1962-1-21,392
+27,6,Windows app development,10,79,93,1,1949-10-1,790
+28,6,Cross platform development,7,77,51,5,1953-4-23,846
+29,6,Full stack development,10,66,77,10,1959-11-17,391
+30,6,Cross platform development,2,93,90,3,1965-8-17,690
+31,6,Windows app development,3,97,62,6,1953-3-4,826
+32,6,Backend development,3,71,93,4,1956-12-16,418
+33,7,C++ development,7,68,62,6,1961-4-3,664
+34,7,Linux development,7,68,70,8,1956-1-11,114
+35,7,Full stack development,4,68,51,6,1967-6-17,957
+36,7,C++ development,3,85,78,4,1975-6-28,825
+37,8,C++ development,2,93,93,5,1968-9-16,202
+38,8,Cross platform development,7,85,72,3,1970-2-26,132
+39,8,Full stack development,4,63,87,8,1946-4-4,586
+40,8,Android app development,6,54,61,4,1943-8-27,970
+41,8,Backend development,1,76,68,8,1959-7-22,444
+42,8,C++ development,10,71,88,7,1945-1-1,446
+43,9,Android app development,2,65,64,6,1965-7-28,193
+44,9,Cross platform development,9,51,78,2,1979-10-10,622
+45,9,C++ development,2,89,72,5,1956-10-21,590
+46,9,Windows app development,10,78,64,5,1944-2-16,871
+47,9,Windows app development,6,82,78,10,1956-9-9,286
+48,9,Full stack development,10,50,72,8,1959-6-17,162
+49,9,Java development,9,84,66,7,1943-10-25,155
+50,10,Website design,3,96,68,7,1962-1-11,851
+51,10,Backend development,10,69,76,3,1977-5-10,1085
+52,10,Linux development,6,67,56,7,1975-11-2,864
+53,10,Windows app development,4,56,80,4,1977-7-18,549
+54,10,Windows app development,2,77,90,7,1953-6-23,787
+55,11,Backend development,6,74,65,3,1940-12-17,742
+56,11,Linux development,7,57,64,4,1948-7-22,879
+57,11,Java development,5,58,54,2,1972-5-9,780
+58,11,Full stack development,3,97,90,5,1969-2-15,847
+59,11,Windows app development,5,84,50,3,1965-11-11,723
+60,11,Cross platform development,6,93,74,8,1967-3-12,547
+61,11,Java development,5,91,67,10,1964-12-5,834
+62,12,Website design,2,57,83,8,1947-12-6,285
+63,12,Website design,9,75,77,6,1952-3-28,862
+64,12,C++ development,7,80,80,1,1971-12-4,525
+65,12,Android app development,8,90,58,2,1948-9-18,1012
+66,12,Website design,2,73,84,2,1941-7-15,206
+67,12,Linux development,3,52,87,7,1976-6-1,361
+68,13,C++ development,10,97,92,8,1974-3-1,195
+69,13,Windows app development,5,68,58,2,1962-10-14,482
+70,13,C++ development,5,51,53,6,1958-4-16,458
+71,13,Cross platform development,1,82,90,1,1975-6-6,901
+72,14,C++ development,3,51,50,5,1941-1-30,490
+73,14,Website design,9,88,52,7,1965-6-13,1035
+74,14,Backend development,10,56,50,3,1979-12-12,989
+75,14,Java development,7,79,84,10,1941-8-27,404
+76,14,Full stack development,5,79,66,7,1961-6-15,189
+77,14,Java development,4,79,55,7,1941-6-25,701
+78,15,Windows app development,8,52,74,4,1949-7-20,949
+79,15,Java development,5,72,65,8,1948-9-5,987
+80,15,Backend development,5,54,67,7,1952-12-28,835
+81,15,Cross platform development,1,52,68,9,1948-7-22,306
+82,15,Android app development,1,78,64,5,1973-8-23,430
+83,16,Backend development,8,63,83,3,1942-2-5,836
+84,16,C++ development,2,76,72,3,1949-8-25,824
+85,16,Windows app development,5,51,56,8,1940-8-14,1010
+86,16,Java development,4,84,96,7,1970-9-18,1040
+87,16,Android app development,7,93,64,5,1979-2-1,744
+88,16,Cross platform development,7,61,88,9,1977-2-23,357
+89,17,C++ development,7,80,64,5,1964-2-18,213
+90,17,Android app development,3,71,58,3,1961-11-27,755
+91,17,Android app development,3,82,71,8,1973-12-8,1089
+92,17,Java development,5,57,89,4,1954-3-1,350
+93,17,C++ development,3,82,51,6,1941-5-24,1066
+94,17,Windows app development,3,77,52,8,1957-10-11,881
+95,17,Android app development,10,80,90,7,1976-11-15,1021
+96,17,C++ development,8,57,51,2,1959-10-9,853
+97,18,Cross platform development,9,87,59,8,1945-10-1,253
+98,18,Windows app development,1,78,54,6,1950-11-29,207
+99,18,Website design,7,90,76,9,1950-8-6,320
+100,18,Cross platform development,10,88,94,6,1975-8-4,233
+101,18,Backend development,4,78,79,9,1951-2-10,534
+102,19,Android app development,9,76,69,6,1955-10-3,955
+103,19,C++ development,2,90,75,3,1954-10-26,822
+104,19,Backend development,2,95,54,6,1967-10-29,721
+105,19,Website design,2,85,99,8,1977-12-13,1080
+106,19,Backend development,7,64,68,3,1945-4-5,1018
+107,19,Java development,3,58,86,5,1951-3-10,668
+108,19,Backend development,5,80,99,10,1944-4-21,567
+109,20,Backend development,3,94,95,2,1940-5-14,772
+110,20,Backend development,4,74,55,2,1955-12-30,170
+111,20,Android app development,6,59,60,8,1947-2-2,583
+112,20,Backend development,6,83,68,10,1965-12-28,500
+113,20,Website design,5,81,78,4,1978-1-27,699
+114,20,Linux development,6,97,57,9,1965-9-4,636
+115,20,C++ development,1,92,69,5,1961-2-5,332
+116,21,Backend development,1,61,72,9,1962-4-15,442
+117,21,Java development,7,90,65,1,1968-8-2,577
+118,21,Java development,3,57,62,10,1940-4-3,207
+119,21,Windows app development,8,53,99,9,1946-2-25,836
+120,21,Full stack development,3,94,50,8,1946-9-17,995
+121,21,Cross platform development,9,91,91,7,1969-7-2,977
+122,21,Website design,8,82,99,6,1978-7-11,901
+123,21,Android app development,4,65,68,7,1942-10-29,125
+124,22,Java development,1,82,71,8,1945-9-3,538
+125,22,Linux development,6,87,69,10,1963-12-9,449
+126,22,C++ development,2,52,70,6,1960-7-27,576
+127,22,C++ development,4,77,91,10,1969-2-20,211
+128,23,Windows app development,2,64,73,10,1968-1-9,450
+129,23,C++ development,3,79,80,8,1978-10-14,244
+130,23,Website design,7,56,61,10,1972-10-22,956
+131,23,Java development,8,63,68,10,1975-8-26,230
+132,23,Full stack development,8,92,54,2,1975-4-14,685
+133,23,Full stack development,8,85,58,2,1951-11-15,599
+134,23,C++ development,10,65,76,4,1974-6-7,953
+135,23,Cross platform development,4,69,95,1,1955-2-26,280
+136,24,Android app development,6,87,75,6,1973-4-15,481
+137,24,Backend development,8,73,86,6,1968-5-10,866
+138,24,Cross platform development,5,96,50,7,1960-9-15,581
+139,24,Backend development,5,82,97,8,1945-1-23,588
+140,24,Android app development,10,95,95,5,1975-1-17,490
+141,24,Website design,10,50,51,6,1978-12-24,662
+142,24,Website design,3,77,74,9,1970-3-1,362
+143,25,Linux development,6,59,95,7,1959-2-5,176
+144,25,Windows app development,2,60,81,2,1953-1-1,492
+145,25,Windows app development,4,80,67,1,1958-11-25,494
+146,25,Website design,8,89,85,7,1969-8-29,276
+147,25,Cross platform development,6,62,91,2,1976-2-1,1041
+148,25,Website design,1,93,59,7,1973-4-18,475
+149,26,Windows app development,3,83,73,3,1946-12-18,771
+150,26,Windows app development,3,69,70,6,1953-5-5,673
+151,26,Backend development,8,77,58,10,1950-8-16,171
+152,26,Linux development,9,52,61,5,1976-3-13,338
+153,26,Android app development,8,62,89,3,1975-11-12,975
+154,26,Full stack development,7,71,65,8,1947-6-7,683
+155,26,Cross platform development,3,53,77,5,1950-6-2,1055
+156,26,Windows app development,3,95,97,3,1969-8-4,469
+157,27,Cross platform development,9,56,86,9,1977-5-4,243
+158,27,Windows app development,3,84,78,4,1952-4-29,167
+159,27,Backend development,2,50,98,6,1958-1-3,457
+160,27,Cross platform development,4,85,91,2,1962-8-25,932
+161,27,Windows app development,1,89,97,3,1958-12-21,817
+162,28,Windows app development,2,58,59,9,1954-10-5,424
+163,28,Full stack development,6,77,70,7,1950-11-15,100
+164,28,Full stack development,2,55,50,4,1977-5-18,567
+165,28,Full stack development,4,74,93,5,1967-8-19,825
+166,28,Full stack development,8,96,85,3,1976-4-24,426
+167,28,C++ development,4,72,77,3,1978-10-29,602
+168,28,Full stack development,1,53,83,1,1947-5-28,123
+169,28,Backend development,6,75,99,10,1964-5-23,508
+170,29,Linux development,6,51,58,6,1966-11-8,269
+171,29,Backend development,5,84,92,10,1952-10-11,1012
+172,29,Java development,10,83,99,3,1962-4-7,448
+173,29,Website design,1,71,78,1,1958-5-13,334
+174,30,Full stack development,5,51,79,7,1968-9-24,776
+175,30,Java development,1,59,82,8,1943-8-27,381
+176,30,Windows app development,6,52,94,10,1953-12-4,808
+177,30,C++ development,2,87,76,5,1961-11-25,270
+178,31,Linux development,9,60,61,1,1978-5-4,713
+179,31,Cross platform development,8,62,51,7,1955-12-29,218
+180,31,Full stack development,4,63,74,9,1942-9-1,805
+181,31,Windows app development,5,95,72,1,1944-12-8,689
+182,31,Cross platform development,5,86,68,1,1958-7-28,163
+183,32,Android app development,9,96,65,2,1970-2-2,207
+184,32,C++ development,4,87,69,5,1956-3-25,154
+185,32,Backend development,3,86,54,2,1968-7-25,689
+186,32,Android app development,10,90,89,7,1955-5-3,701
+187,33,Website design,10,76,51,3,1946-2-10,867
+188,33,Backend development,4,83,58,2,1973-1-22,762
+189,33,Cross platform development,7,80,58,7,1979-6-18,353
+190,33,Website design,5,58,85,7,1956-6-2,459
+191,34,Full stack development,7,98,62,2,1973-10-2,340
+192,34,Windows app development,1,91,93,8,1965-7-27,290
+193,34,Java development,6,72,73,10,1971-4-8,327
+194,34,C++ development,5,68,85,1,1966-2-12,527
+195,34,Full stack development,9,74,71,10,1969-8-24,398
+196,34,Backend development,2,87,69,5,1942-10-15,172
+197,34,Cross platform development,10,92,64,6,1973-4-26,1092
+198,35,Linux development,6,62,56,1,1949-3-26,676
+199,35,Backend development,2,90,86,5,1948-3-12,1018
+200,35,Android app development,1,53,97,9,1951-11-2,775
+201,35,C++ development,7,64,74,6,1947-8-15,799
+202,36,Android app development,1,92,75,5,1965-9-28,835
+203,36,Windows app development,9,54,56,4,1969-7-25,364
+204,36,Backend development,7,60,50,8,1961-12-22,1043
+205,36,Full stack development,5,65,61,7,1961-1-13,546
+206,37,Linux development,5,65,92,1,1943-11-9,412
+207,37,Android app development,1,69,86,4,1974-3-2,356
+208,37,Backend development,6,57,54,9,1944-3-19,151
+209,37,Backend development,2,94,99,2,1968-1-12,995
+210,37,Website design,3,63,52,3,1968-2-28,392
+211,37,Java development,6,66,79,1,1941-8-7,289
+212,37,Website design,10,89,88,4,1946-2-18,862
+213,38,C++ development,1,52,57,4,1967-7-15,799
+214,38,Linux development,6,90,65,10,1971-8-3,245
+215,38,C++ development,8,58,91,10,1972-2-30,763
+216,38,Cross platform development,2,76,83,8,1950-5-3,588
+217,38,Android app development,5,76,67,8,1963-12-17,301
+218,38,Java development,8,81,84,9,1953-4-24,1081
+219,39,Cross platform development,2,99,89,6,1967-9-3,409
+220,39,C++ development,10,59,90,3,1943-9-19,639
+221,39,Cross platform development,6,73,82,5,1950-8-27,293
+222,39,Full stack development,8,71,65,10,1970-11-27,931
+223,39,Website design,10,50,90,3,1958-8-1,974
+224,40,Android app development,5,81,99,10,1949-1-17,818
+225,40,Website design,5,76,90,1,1960-9-21,1048
+226,40,Backend development,6,94,78,2,1977-6-6,835
+227,40,Website design,7,51,92,10,1954-3-6,294
+228,40,Backend development,10,53,60,4,1950-3-25,181
+229,40,Full stack development,9,52,81,4,1963-6-23,550
+230,41,Windows app development,4,64,78,7,1962-12-1,193
+231,41,Linux development,9,60,74,10,1961-3-10,216
+232,41,Windows app development,5,67,56,7,1977-10-17,998
+233,41,Backend development,8,62,82,5,1963-8-25,124
+234,41,C++ development,8,80,84,8,1974-2-20,418
+235,42,Windows app development,1,54,62,4,1972-8-24,825
+236,42,Java development,6,68,72,7,1970-9-27,117
+237,42,Linux development,5,57,52,1,1976-11-25,879
+238,42,Android app development,5,79,74,4,1969-10-1,995
+239,42,Full stack development,6,53,90,9,1971-3-3,670
+240,43,Windows app development,2,54,95,6,1963-6-28,1034
+241,43,Android app development,5,59,66,7,1942-2-14,689
+242,43,Cross platform development,7,61,52,3,1948-5-9,142
+243,43,Cross platform development,2,63,52,9,1941-11-26,654
+244,43,Linux development,2,83,60,4,1951-4-11,168
+245,43,C++ development,4,77,72,2,1955-6-16,612
+246,44,Website design,2,91,94,10,1964-11-7,223
+247,44,Windows app development,4,62,57,2,1944-11-20,337
+248,44,Website design,10,83,84,4,1967-5-11,433
+249,44,Linux development,1,80,63,9,1978-8-2,906
+250,44,Windows app development,5,90,93,6,1951-4-4,492
+251,44,Linux development,10,83,92,10,1956-9-19,206
+252,44,C++ development,3,53,93,5,1977-10-30,658
+253,45,Linux development,10,76,52,1,1957-7-18,553
+254,45,Linux development,5,88,67,7,1947-5-25,939
+255,45,Cross platform development,2,71,77,1,1970-11-26,419
+256,45,Java development,5,59,63,9,1943-9-1,757
+257,46,Windows app development,3,61,86,3,1951-1-10,960
+258,46,C++ development,8,55,83,3,1968-7-21,986
+259,46,Full stack development,3,75,60,1,1978-9-30,511
+260,46,Android app development,4,78,80,5,1947-8-17,174
+261,47,C++ development,8,90,92,8,1955-10-6,658
+262,47,Website design,1,85,52,7,1958-11-21,759
+263,47,C++ development,4,80,53,4,1943-5-10,628
+264,47,Android app development,7,96,72,1,1944-11-22,387
+265,47,Full stack development,10,86,88,6,1947-1-12,221
+266,47,Full stack development,1,78,50,3,1972-3-29,555
+267,48,Android app development,9,64,93,4,1978-3-26,973
+268,48,Linux development,7,96,99,7,1975-8-15,523
+269,48,Linux development,1,93,76,2,1953-2-3,981
+270,48,C++ development,4,78,95,9,1972-7-22,269
+271,48,Java development,1,56,51,1,1972-5-14,669
+272,48,Linux development,2,67,63,3,1973-7-28,610
+273,48,Windows app development,7,86,52,3,1978-12-13,572
+274,48,Full stack development,10,89,87,1,1947-3-8,807
+275,49,Java development,3,68,74,8,1945-8-23,932
+276,49,Full stack development,7,83,68,6,1975-3-23,846
+277,49,Cross platform development,3,85,71,6,1955-8-8,278
+278,49,Android app development,10,86,64,1,1979-1-26,736
+279,49,Android app development,2,67,82,7,1942-9-24,169
+280,49,C++ development,10,90,96,3,1957-2-26,330
+281,49,Java development,3,67,93,8,1949-5-24,875
+282,50,Full stack development,1,89,77,4,1967-3-7,460
+283,50,Windows app development,8,55,66,8,1951-11-30,545
+284,50,Linux development,9,72,80,2,1973-5-14,1000
+285,50,Java development,3,84,98,9,1959-9-30,891
+286,50,Java development,5,89,65,5,1951-12-25,449
+287,50,Android app development,7,63,91,1,1956-12-4,525
+288,50,Cross platform development,9,79,60,5,1963-9-19,851
+289,51,Linux development,10,67,76,3,1971-1-17,684
+290,51,Windows app development,1,53,73,10,1946-12-17,640
+291,51,C++ development,5,80,62,6,1944-6-8,515
+292,51,Full stack development,7,90,92,9,1965-4-21,702
+293,51,Windows app development,7,76,78,8,1974-4-7,771
+294,51,Linux development,9,68,66,5,1968-2-3,621
+295,51,Windows app development,8,92,88,6,1942-2-23,1036
+296,52,C++ development,10,93,53,8,1963-5-25,771
+297,52,C++ development,9,56,69,10,1959-8-3,163
+298,52,Windows app development,4,59,58,9,1950-10-14,1070
+299,52,Windows app development,3,91,77,1,1944-6-24,1025
+300,52,Website design,6,92,69,6,1949-4-24,310
+301,52,Full stack development,10,54,76,9,1961-1-25,1011
+302,52,Java development,5,82,94,9,1948-1-13,497
+303,53,Cross platform development,8,54,60,6,1977-8-16,450
+304,53,Website design,10,74,90,6,1975-6-20,504
+305,53,Cross platform development,4,74,63,3,1974-6-1,834
+306,53,C++ development,5,71,97,1,1942-3-13,661
+307,54,Full stack development,7,87,93,1,1952-8-22,998
+308,54,C++ development,10,92,77,3,1958-10-4,292
+309,54,Full stack development,1,72,82,6,1956-5-1,258
+310,54,Full stack development,3,53,51,2,1972-2-10,129
+311,54,C++ development,7,81,95,4,1962-2-17,1048
+312,55,Windows app development,9,50,86,5,1960-7-4,756
+313,55,Website design,5,81,63,5,1946-9-19,339
+314,55,Backend development,6,82,70,2,1970-3-9,146
+315,55,C++ development,1,78,95,9,1972-7-28,1021
+316,55,Linux development,4,70,71,1,1962-1-28,1025
+317,55,Backend development,4,50,75,4,1972-10-5,927
+318,55,Backend development,7,72,81,1,1951-4-23,476
+319,55,Website design,5,94,54,4,1956-1-18,228
+320,56,Java development,7,98,60,10,1949-5-9,311
+321,56,Full stack development,2,72,60,10,1940-2-19,912
+322,56,C++ development,10,91,62,10,1947-6-23,494
+323,56,Java development,1,67,60,6,1970-5-9,471
+324,56,Linux development,5,62,67,3,1953-5-27,437
+325,57,Java development,4,76,74,10,1971-4-4,1033
+326,57,Backend development,3,73,74,7,1966-1-20,330
+327,57,Windows app development,10,88,98,3,1940-2-6,849
+328,57,Full stack development,6,52,92,3,1959-5-29,551
+329,57,C++ development,4,96,66,7,1962-7-23,404
+330,57,Backend development,8,86,78,9,1972-11-28,387
+331,57,Full stack development,3,78,74,8,1979-10-6,818
+332,58,Backend development,9,67,51,1,1966-3-5,278
+333,58,Backend development,10,70,62,10,1977-10-25,119
+334,58,C++ development,5,92,57,8,1941-12-2,625
+335,58,Full stack development,5,85,67,6,1963-8-15,694
+336,59,Website design,5,54,50,2,1968-8-21,516
+337,59,Full stack development,2,81,55,2,1969-11-2,1039
+338,59,Cross platform development,1,70,81,10,1945-11-14,612
+339,59,Windows app development,8,83,54,8,1950-5-10,945
+340,59,Java development,3,58,55,10,1963-11-22,432
+341,60,Cross platform development,8,72,85,1,1953-12-25,664
+342,60,Backend development,2,78,90,4,1966-6-2,966
+343,60,Android app development,2,72,80,9,1943-12-19,267
+344,60,C++ development,5,86,98,2,1962-3-26,809
+345,60,Website design,9,54,63,4,1964-4-15,541
+346,60,Android app development,5,91,53,6,1941-3-16,1095
+347,60,Cross platform development,1,67,76,1,1956-2-21,141

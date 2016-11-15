@@ -112,7 +112,6 @@ $('#cols-skills').on('click',function(){
 });
 
 // ----------------------------- comparison bar functions with UI ans stuff -----------------------------
-
 function comparisonProcedure(id){
     if(compareIDs.includes(id)){
         removeFromCompare(id);
@@ -120,7 +119,6 @@ function comparisonProcedure(id){
         addToCompare(id);
     }
 }
-
 function addToCompare(id){
     compareIDs.push(id);
     compareNumber++;
@@ -130,7 +128,6 @@ function addToCompare(id){
     //showIDs();
     ui();
 }
-
 function removeFromCompare(id){
     if(checkIfCompareIsFull()){
         enableAllCheckBoxes();
@@ -140,15 +137,12 @@ function removeFromCompare(id){
     $('#row-'+id).css('background-color', 'white');
     ui();
 }
-
 function showIDs(){
     alert(compareIDs);
 }
-
 function checkIfCompareIsFull(){
     return compareNumber >= 5;
 }
-
 function ui(){
     if(compareNumber > 0){
         showComparisonMenuAtTheTop();
@@ -164,7 +158,6 @@ function ui(){
         document.getElementById("button-compare").onclick = function() { return true; };
     }
 }
-
 function displayUsersInComparisonBar(){
     var tempEmps = alasql('SELECT * FROM emp', []);
     for(var i=0;i<compareNumber;i++){
@@ -188,22 +181,18 @@ function displayUsersInComparisonBar(){
         }
     }
 }
-
 function showComparisonMenuAtTheTop(){
     document.getElementById('comparison-bar').style.display = 'block';
 }
-
 function hideComparisonMenu(){
     document.getElementById('comparison-bar').style.display = 'none';
 }
-
 function setBackgroundColorOfSelectedIDsForComparison(){
     for(var i=0;i<compareIDs.length;i++){
         var id = compareIDs[i];
         $('#row-'+id).css('background-color', colors[i]);
     }
 }
-
 function disableOtherCheckboxes(){
     for(var i=0;i<emps.length;i++){
         if(!compareIDs.includes(emps[i].id)){
@@ -211,21 +200,17 @@ function disableOtherCheckboxes(){
         }
     }
 }
-
 function enableAllCheckBoxes(){
     for(var i=0;i<emps.length;i++){
         enableCheckbox(emps[i].id);
     }
 }
-
 function disableCheckbox(id){
     document.getElementById('checkbox-'+id).disabled = true;
 }
-
 function enableCheckbox(id){
     document.getElementById('checkbox-'+id).disabled = false;
 }
-
 function updateCheckBoxes(){
     for(var i = 0;i < compareIDs.length;i++){
         var id = compareIDs[i];
@@ -238,7 +223,6 @@ function updateCheckBoxes(){
     }
     ui();
 }
-
 function isIDThere(id){
     for(var i=0;i<emps.length;i++){
         var emp = emps[i];
@@ -258,7 +242,6 @@ $('#close-button-0').on('click', function(){
         document.getElementById('checkbox-'+id).checked = false;
     }
 });
-
 $('#close-button-1').on('click', function(){
     var id = compareIDs[1];
     removeFromCompare(id);
@@ -266,7 +249,6 @@ $('#close-button-1').on('click', function(){
         document.getElementById('checkbox-'+id).checked = false;
     }
 });
-
 $('#close-button-2').on('click', function(){
     var id = compareIDs[2];
     removeFromCompare(id);
@@ -274,7 +256,6 @@ $('#close-button-2').on('click', function(){
         document.getElementById('checkbox-'+id).checked = false;
     }
 });
-
 $('#close-button-3').on('click', function(){
     var id = compareIDs[3];
     removeFromCompare(id);
@@ -282,7 +263,6 @@ $('#close-button-3').on('click', function(){
         document.getElementById('checkbox-'+id).checked = false;
     }
 });
-
 $('#close-button-4').on('click', function(){
     var id = compareIDs[4];
     removeFromCompare(id);
@@ -312,7 +292,6 @@ function updateCompareURL(){
 $( "#wageSpinner" ).spinner();
 $( "#wageSpinner" ).spinner().spinner("value", wage);
 
-
 $('#doneWage').on('click', function(){
     var spinner = $( "#wageSpinner" ).spinner();
     wage = spinner.spinner( "value" );
@@ -320,7 +299,6 @@ $('#doneWage').on('click', function(){
     //alert($('#star-rating-test').value);
     //alert(stars);
 });
-
 $(':radio').change(
     function(){
         //alert(this.value+" stars");
@@ -1001,8 +979,7 @@ function matchesTags(tempTags){
     }
     return true;
 }
+// --------------------------------- / check if tags in this cell match with the filters ---------------------------------
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------
-// sample label with count:
-// <h4><span class="label label-primary">Primary <span class="badge">4</span></span></h4>

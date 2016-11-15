@@ -3,7 +3,6 @@
 <head>
 <script src="lib/jquery.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet" />
-<link href="css/cool-modal.css" rel="stylesheet" />
 <script src="lib/bootstrap.js"></script>
 <script src="lib/alasql.js"></script>
 <script src="lib/purl.js"></script>
@@ -12,7 +11,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta name="viewport" content="width=device-width">
-<title>COMPANY</title>
+<title>Compare Freelancers</title>
 </head>
 <body>
     <!-- Navigation bar -->
@@ -32,8 +31,10 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html">Freelancer
+					<li class="active" style="padding:1px;"><a href="index.html">Freelancer
 							Management System</a></li>
+                    <li class="active" style="padding:1px;"><a href="compare.html">Compare Freelancers</a></li>
+                    
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -45,145 +46,45 @@
     <div class="container">
         <!-- The data table -->
         <table class="table table-hover">
-            <!-- row 1 -->
-            <tr class="row">
-                <div class="col-md-2">
-                    <th>
-                        Name
-                    </th>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Name1
-                    </td>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Name2
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Name3
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Name4
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Name5
-                    </td> <!-- checkboxes -->
-                </div>
-            </tr>
-            <!-- / row 1 -->
-
-            <!-- row 2 -->
-            <tr class="row">
-                <div class="col-md-2">
-                    <th>
-                        Heading
-                    </th>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-            </tr>
-            <!-- / row 2 -->
-
-            <!-- row 3 -->
-            <tr class="row">
-                <div class="col-md-2">
-                    <th>
-                        Heading
-                    </th>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-            </tr>
-            <!-- / row 3 -->
-
-            <!-- row 4 -->
-            <tr class="row">
-                <div class="col-md-2">
-                    <th>
-                        Heading
-                    </th>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td>
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-                <div class="col-md-2">
-                    <td>
-                        Data
-                    </td> <!-- checkboxes -->
-                </div>
-            </tr>
-            <!-- / row 4 -->
+            <thread>
+                <!-- row 1 -->
+                <tr class="row">
+                    <div class="col-md-2">
+                        <th>
+                            
+                        </th>
+                    </div>
+                    <div class="col-md-2">
+                        <td>
+                            <img src="img/demo.jpg" height="100px" id="profile-pic-0" class="img-circle">
+                        </td>
+                    </div>
+                    <div class="col-md-2">
+                        <td>
+                            <img src="img/demo.jpg" height="100px" id="profile-pic-1" class="img-circle">
+                        </td> <!-- checkboxes -->
+                    </div>
+                    <div class="col-md-2">
+                        <td>
+                            <img src="img/demo.jpg" height="100px" id="profile-pic-2" class="img-circle">
+                        </td> <!-- checkboxes -->
+                    </div>
+                    <div class="col-md-2">
+                        <td>
+                            <img src="img/demo.jpg" height="100px" id="profile-pic-3" class="img-circle">
+                        </td> <!-- checkboxes -->
+                    </div>
+                    <div class="col-md-2">
+                        <td>
+                            <img src="img/demo.jpg" height="100px" id="profile-pic-4" class="img-circle">
+                        </td> <!-- checkboxes -->
+                    </div>
+                </tr>
+                <!-- / row 1 -->
+                
+            </thread>
+            
+            <tbody id="tbody-compare"></tbody>
 
         </table>
     </div>

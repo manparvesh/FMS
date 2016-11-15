@@ -7,6 +7,8 @@
     <link href="css/cool-modal.css" rel="stylesheet" />
 
     <script src="lib/jquery.js"></script>
+    <script src="js/Chart.bundle.js"></script>
+    <script src="js/utils.js"></script>
     <script src="lib/bootstrap.js"></script>
     <script src="lib/jquery-ui.js"></script>
     <script src="lib/alasql.js"></script>
@@ -192,7 +194,7 @@
         <div class="row">
 
             <div class="clearfix col-xs-6" style="margin: 10px 0;">
-                <a href="#filters" class="btn btn-sm btn-warning pull-left"><span class="glyphicon glyphicon-filter"></span>&nbsp;Filter results</a>
+                <a href="#filters" class="btn btn-sm btn-warning pull-left"  data-toggle="modal"><span class="glyphicon glyphicon-filter"></span>&nbsp;Filter results</a>
             </div>
 
             <div class="clearfix col-xs-6" style="margin: 10px 0;">
@@ -252,11 +254,19 @@
         </div>
     </div>
     
-    <!-- Rating dialog -->
-    <div id="rating" class="cool-modal">
-        <div>   
-            <a href="#closeRating" title="Close" class="close">X</a>
-            <h2>Rating</h2>
+    <!-- rating dialog modal -->
+    <div class="modal fade bs-example-modal-lg" id="rating" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRating">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title text-center text-primary " id="myModalLabelRating"><strong>Rating system</strong></h4>
+          </div>
+          <div class="modal-body">
+            <div>
+              
+              <canvas id="canvas" class="col-md-12"></canvas>
+            
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -296,20 +306,29 @@
                 </thead>
                 <tbody id="tbody-projects"></tbody>
             </table>
-            
-            <div id="projectTags">
-            </div>
-
+              
+              <div id="projectTags">
+              </div>
+          </div>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success col-md-12" id="doneRating" data-dismiss="modal">Apply</button>
+          </div>
         </div>
+      </div>
     </div>
+
     
-    <!-- Filters dialog -->
-    <div id="filters" class="cool-modal">
-        <div>
-            <a href="#closeFilters" title="Close" class="close">X</a>
-            
-            <h3 class="text-primary text-center">Choose filters</h3>
-            
+    <!-- Filters dialog modal -->
+    <div class="modal fade" id="filters" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title text-center text-primary " id="myModalLabel"><strong>Choose filters</strong></h4>
+          </div>
+          <div class="modal-body">
             <!-- 1. skills
                 2. available for hire
                 3. rating preference -->
@@ -321,48 +340,48 @@
                       <div class="panel-body">
                           <div class="row">
                               <div class="col-md-6">
-                                  <div class="btn-group-vertical col-md-12" data-toggle="buttons">
-                                      <label class="btn btn-info">
+                                  <div class="btn-group-vertical" data-toggle="buttons">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-cpp"> C++
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-java"> Java
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-js"> JavaScript
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-html"> HTML
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-cs"> C#
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-css"> CSS
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-php"> PHP
                                       </label>
                                     </div>
                               </div>
                               <div class="col-md-6">
-                                  <div class="btn-group-vertical col-md-12" data-toggle="buttons">
-                                      <label class="btn btn-info">
+                                  <div class="btn-group-vertical" data-toggle="buttons">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-py"> Python
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-scala"> Scala
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-rb"> Ruby
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-android"> Android
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-windows"> Windows
                                       </label>
-                                      <label class="btn btn-info">
+                                      <label class="btn btn-info col-md-12">
                                         <input type="checkbox" autocomplete="off" id="skill-filter-linux"> Linux
                                       </label>
                                     </div>
@@ -411,12 +430,15 @@
                             </div>
                       </div>
                     </div>
-                    <!-- / rating preference -->
-
                 </div>
             </div>
-            <a class="btn btn-success col-md-12" id="doneFilters" href="#closeFilters">Apply</a>
+                    <!-- / rating preference -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success col-md-12" id="doneFilters" data-dismiss="modal">Apply</button>
+          </div>
         </div>
+      </div>
     </div>
 
     

@@ -477,7 +477,7 @@ function populateDatabase(){
             tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
             tr.append('<td class="col-md-2">' + emp.name + '</td>');
             if(projects[emp.id - 1]){
-                tr.append('<td class="col-md-1"><a href="#rating" onclick="showRating(' + emp.id + ')">' + calculateRating(emp.id) + '</a></td>'); // rating
+                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')">' + calculateRating(emp.id) + '</a></td>'); // rating
                 tr.append('<td class="col-md-1">' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
                 tr.append(getTagsHTML(emp.id)); // experienced in
             }else{
@@ -665,6 +665,83 @@ $("#col-hours").click(function () {
 });
 // --------------------------------- / onclick functions to sort \m/ ---------------------------------
 
+
+
+// --------------------------------- chart ---------------------------------
+var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var config = {
+    type: 'line',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+            label: "My First dataset",
+            backgroundColor: window.chartColors.red,
+            borderColor: window.chartColors.red,
+            data: [
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor()
+            ],
+            fill: false,
+        }, {
+            label: "My Second dataset",
+            fill: false,
+            backgroundColor: window.chartColors.blue,
+            borderColor: window.chartColors.blue,
+            data: [
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor(), 
+                randomScalingFactor()
+            ],
+        }]
+    },
+    options: {
+        responsive: true,
+        title:{
+            display:true,
+            text:'Chart.js Line Chart'
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Month'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Value'
+                }
+            }]
+        }
+    }
+};
+
+function showChart(){
+    var ctx = document.getElementById("canvas").getContext("2d");
+    window.myLine = new Chart(ctx, config);
+}
+// --------------------------------- / chart  ---------------------------------
+
 // --------------------------------- function to set rating history and stuff in a cool modal ---------------------------------
 function showRating(id){
     var tbody = $('#tbody-projects');
@@ -709,6 +786,8 @@ function showRating(id){
     
     $('#projectTags').empty();
     $('#projectTags').append(cell);
+    
+    showChart();
     
     // display totalMoneyEarned also
 }

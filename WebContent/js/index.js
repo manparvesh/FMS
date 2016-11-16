@@ -11,7 +11,7 @@ var compareNumber = 0;
 
 var allTags;
 
-var colors = ['#ffb3ff', '#b3ecff', '#b3ffb3', '#fad581', '#ff9a9a'];
+var colors = ['#b3ecff', '#b3ecff', '#b3ecff', '#b3ecff', '#b3ecff'];
 
 var skillFilter = {
     'C++' : false,
@@ -211,10 +211,14 @@ function enableAllCheckBoxes(){
     }
 }
 function disableCheckbox(id){
-    document.getElementById('checkbox-'+id).disabled = true;
+    if(document.getElementById('checkbox-'+id)){
+        document.getElementById('checkbox-'+id).disabled = true;
+    }
 }
 function enableCheckbox(id){
-    document.getElementById('checkbox-'+id).disabled = false;
+    if(document.getElementById('checkbox-'+id)){
+        document.getElementById('checkbox-'+id).disabled = false;
+    }
 }
 function updateCheckBoxes(){
     for(var i = 0;i < compareIDs.length;i++){

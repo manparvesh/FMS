@@ -437,7 +437,7 @@ function getTagsHTML(id){
 // --------------------------------- populate tables based on the database ---------------------------------
 function populateDatabase(){
         // set tables 
-	projects = alasql('SELECT id,emp,difficulty,sum(hours_worked) as sum_hours_worked,hours_worked,client_rating,date_of_completion,money_earned FROM projects GROUP BY emp', []);
+	//projects = alasql('SELECT id,emp,difficulty,sum(hours_worked) as sum_hours_worked,hours_worked,client_rating,date_of_completion,money_earned FROM projects GROUP BY emp', []);
     //alert(projects[0].sum_hours_worked);
 	tags = alasql('SELECT * FROM tags', []);
     
@@ -454,12 +454,14 @@ function populateDatabase(){
             tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
             tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
             tr.append('<td class="col-md-2">' + emp.name + '</td>');
-            if(projects[emp.id - 1]){
+            var tempProj = alasql('SELECT id,emp,sum(hours_worked) as sum_hours_worked,hours_worked FROM projects WHERE emp=? GROUP BY emp', [ emp.id ]);
+            console.log(tempProj.length);
+            if(tempProj[0].sum_hours_worked){
                 tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')">' + calculateRating(emp.id) + '</a></td>'); // rating
-                tr.append('<td class="col-md-1">' + projects[emp.id - 1].sum_hours_worked + '</td>'); //hours
+                tr.append('<td class="col-md-1">' + tempProj[0].sum_hours_worked + '</td>'); //hours
                 tr.append(getTagsHTML(emp.id)); // experienced in
             }else{
-                tr.append('<td class="col-md-1">' + 0 + '</td>'); // rating
+                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')">0</a></td>'); // rating
                 tr.append('<td class="col-md-1">' + 0 + '</td>'); //hours
                 tr.append('<td class="col-md-4">-</td>'); //experienced in
             }

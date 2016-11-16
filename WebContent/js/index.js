@@ -38,6 +38,11 @@ var a = 1, b = 1, c = 1;
 
 initTags();
 
+function roundOff(n){
+    n = parseFloat(n);
+    return (Math.round((n*Math.pow(10,2)).toFixed(1))/Math.pow(10,2)).toFixed(2);;
+}
+
 if (q) {
 	//emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
 } else {
@@ -455,9 +460,9 @@ function populateDatabase(){
             tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
             tr.append('<td class="col-md-2">' + emp.name + '</td>');
             var tempProj = alasql('SELECT id,emp,sum(hours_worked) as sum_hours_worked,hours_worked FROM projects WHERE emp=? GROUP BY emp', [ emp.id ]);
-            console.log(tempProj.length);
+            //console.log(tempProj.length);
             if(tempProj[0].sum_hours_worked){
-                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')">' + calculateRating(emp.id) + '</a></td>'); // rating
+                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')">' + roundOff(calculateRating(emp.id)) + '</a></td>'); // rating
                 tr.append('<td class="col-md-1">' + tempProj[0].sum_hours_worked + '</td>'); //hours
                 tr.append(getTagsHTML(emp.id)); // experienced in
             }else{
@@ -645,41 +650,122 @@ $("#col-hours").click(function () {
 });
 // --------------------------------- / onclick functions to sort \m/ ---------------------------------
 
-
+/*
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(231,233,237)'
+*/
 
 // --------------------------------- chart ---------------------------------
-var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var projectCount = 0;
+
+var customTooltips = function(tooltip) {
+    // Tooltip Element
+    var tooltipEl = document.getElementById('chartjs-tooltip');
+
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'chartjs-tooltip';
+        tooltipEl.innerHTML = "<table></table>"
+        document.body.appendChild(tooltipEl);
+    }
+
+    // Hide if no tooltip
+    if (tooltip.opacity === 0) {
+        tooltipEl.style.opacity = 0;
+        return;
+    }
+
+    // Set caret Position
+    tooltipEl.classList.remove('above', 'below', 'no-transform');
+    if (tooltip.yAlign) {
+        tooltipEl.classList.add(tooltip.yAlign);
+    } else {
+        tooltipEl.classList.add('no-transform');
+    }
+
+    function getBody(bodyItem) {
+        return bodyItem.lines;
+    }
+
+    // Set Text
+    if (tooltip.body) {
+        var titleLines = tooltip.title || [];
+        var bodyLines = tooltip.body.map(getBody);
+
+        var innerHtml = '<thead>';
+
+        titleLines.forEach(function(title) {
+            innerHtml += '<tr><th>' + title + '</th></tr>';
+        });
+        innerHtml += '</thead><tbody>';
+
+        bodyLines.forEach(function(body, i) {
+            var colors = tooltip.labelColors[i];
+            var style = 'background:' + colors.backgroundColor;
+            style += '; border-color:' + colors.borderColor;
+            style += '; border-width: 2px'; 
+            var span = '<span class="chartjs-tooltip-key" style="' + style + '"></span>';
+            innerHtml += '<tr><td>' + span + body + '</td></tr>';
+        });
+        innerHtml += '</tbody>';
+
+        var tableRoot = tooltipEl.querySelector('table');
+        tableRoot.innerHTML = innerHtml;
+    }
+
+    var position = this._chart.canvas.getBoundingClientRect();
+
+    // Display, position, and set styles for font
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.left = position.left + tooltip.caretX + 'px';
+    tooltipEl.style.top = position.top + tooltip.caretY + 'px';
+    tooltipEl.style.fontFamily = tooltip._fontFamily;
+    tooltipEl.style.fontSize = tooltip.fontSize;
+    tooltipEl.style.fontStyle = tooltip._fontStyle;
+    tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+};
+
 var config = {
     type: 'line',
     data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: [],
         datasets: [{
-            label: "My First dataset",
+            label: "Overall rating",
             backgroundColor: window.chartColors.red,
             borderColor: window.chartColors.red,
+            pointRadius: 5,
+            pointHoverRadius: 10,
             data: [
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor()
             ],
             fill: false,
         }, {
-            label: "My Second dataset",
+            label: "Client rating",
             fill: false,
             backgroundColor: window.chartColors.blue,
             borderColor: window.chartColors.blue,
+            borderDash: [5, 5],
             data: [
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor(), 
-                randomScalingFactor()
+            ],
+        }, {
+            label: "Difficulty",
+            fill: false,
+            backgroundColor: window.chartColors.green,
+            borderColor: window.chartColors.green,
+            borderDash: [5, 5],
+            data: [
+            ],
+        }, {
+            label: "Time efficiency",
+            fill: false,
+            backgroundColor: window.chartColors.orange,
+            borderColor: window.chartColors.orange,
+            borderDash: [5, 5],
+            data: [
             ],
         }]
     },
@@ -687,11 +773,11 @@ var config = {
         responsive: true,
         title:{
             display:true,
-            text:'Chart.js Line Chart'
+            text:'Rating history'
         },
         tooltips: {
             mode: 'index',
-            intersect: false,
+            intersect: false
         },
         hover: {
             mode: 'nearest',
@@ -702,27 +788,93 @@ var config = {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Month'
+                    labelString: 'Project serial number'
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Value'
+                    labelString: 'Rating'
                 }
             }]
         }
     }
 };
 
-function showChart(){
+function addDataToChart(projData) {
+    if (config.data.datasets.length > 0) {
+        projectCount++;
+        config.data.labels.push(projectCount);
+
+        for(var i=0;i<4;i++){
+            config.data.datasets[i].data.push(projData[i]);
+        }
+
+        window.myLine.update();
+    }
+};
+
+function clearChartData(){
+    if (config.data.datasets.length > 0) {
+        projectCount = 0;
+        var len = config.data.labels.length;
+        for(var i=0;i<len;i++){
+            config.data.labels.pop();
+        }
+
+        len = config.data.datasets[0].data.length;
+        
+        for(var i=0;i<len;i++){
+            config.data.datasets[0].data.pop();
+            config.data.datasets[1].data.pop();
+            config.data.datasets[2].data.pop();
+            config.data.datasets[3].data.pop();
+        }
+
+        window.myLine.update();
+    }
+}
+
+function showChart(id){
     var ctx = document.getElementById("canvas").getContext("2d");
     window.myLine = new Chart(ctx, config);
+    var projDataList = alasql('SELECT * FROM projects WHERE emp=?', [ id ]);
+    clearChartData();
+    for(var i=0;i<projDataList.length;i++){
+        var proj = projDataList[i];
+        var projData = [];
+        
+        var tClient = proj.client_rating / 2, tDiff = proj.difficulty / 2, tTimeNeeded = proj.hours_needed, tTimeWorked = proj.hours_worked;
+        
+        var tTime = (tTimeNeeded / tTimeWorked) * 5;
+        
+        var overallRating = (tClient * a + tDiff * b + tTime * c) / (a + b + c);
+        
+        //projData.push((proj.name)); // name of project 
+        projData.push(roundOff(overallRating)); // overall 
+        projData.push(roundOff(tClient)); // client
+        projData.push(roundOff(tDiff)); // diff
+        projData.push(roundOff(tTime)); // time
+        
+        // add this to chart
+        addDataToChart(projData);
+    }
 }
 // --------------------------------- / chart  ---------------------------------
 
 // --------------------------------- function to set rating history and stuff in a cool modal ---------------------------------
+
+function getProjectTags(project_id){
+    var ret = '';
+    var tTags = alasql('SELECT * FROM tags WHERE project_id=?', [ project_id ]);
+    for(var i=0;i<tTags.length;i++){
+        var tTag = tTags[i];
+        ret += '<span class="label label-info">' + tTag.tag + '</span> ';
+    }
+    return ret;
+}
+
 function showRating(id){
     var tbody = $('#tbody-projects');
     tbody.empty();
@@ -731,32 +883,32 @@ function showRating(id){
     var totalMoneyEarned = 0;
     for (var i = 0; i < projects.length; i++) {
         var project = projects[i];
-        var tr = $('<tr></tr>');
-        tr.append('<td>'+ project.name + '</td>');
-        tr.append('<td>'+ project.client_rating + '</td>');
-        tr.append('<td>'+ project.difficulty + '</td>');
-        tr.append('<td>'+ project.hours_needed + '</td>');
-        tr.append('<td>'+ project.hours_worked + '</td>');
+        var tr = $('<tr class="row"></tr>');
+        tr.append('<td class="col-md-1">'+ (i+1) + '</td>'); //no
+        tr.append('<td class="col-md-2">'+ project.name + '</td>'); //name
         
         //overall rating for this project
-        var tempRating = (project.client_rating + project.difficulty + (project.hours_needed / project.hours_worked)*10)/6;
-        tr.append('<td>'+ tempRating + '</td>');
+        var tempRating = (a * project.client_rating + b *  project.difficulty + c * (project.hours_needed / project.hours_worked)*10)/(2*(a+b+c));
+        tr.append('<td class="col-md-1">'+ roundOff(tempRating) + '</td>'); //rating
         
         // hourly wages for this project
-        tr.append('<td>'+ tempWage + '</td>');
+        //tr.append('<td>'+ tempWage + '</td>');
         
         // total money earned from this project
-        tr.append('<td>'+ (tempWage * project.hours_worked) + '</td>');
-        totalMoneyEarned += (tempWage * project.hours_worked);
+        //tr.append('<td>'+ (tempWage * project.hours_worked) + '</td>');
+        //totalMoneyEarned += (tempWage * project.hours_worked);
         
-        if(i){
-            tempWage *= ((tempRating - 2.5)/5 + 1);
-        }
+        //if(i){
+        //    tempWage *= ((tempRating - 2.5)/5 + 1);
+        //}
+        
+        tr.append('<td class="col-md-8 text-center">'+ getProjectTags(project.id) + '</td>'); //rating
+        
         
         tr.appendTo(tbody);
     }
     
-    var cell = '';
+    /*var cell = '';
     var tagLocalArray = allTags[id - 1];
     for(var i=0;i<tagLocalArray.length;i++){
         if(tagLocalArray[i]){
@@ -766,8 +918,8 @@ function showRating(id){
     
     $('#projectTags').empty();
     $('#projectTags').append(cell);
-    
-    showChart();
+    */
+    showChart(id);
     
     // display totalMoneyEarned also
 }

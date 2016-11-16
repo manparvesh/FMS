@@ -291,3 +291,26 @@ function showRating(){
 }
 
 showRating();
+
+$('#doneAddProject').click(function(){
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": true,
+      "progressBar": false,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "100",
+      "hideDuration": "1000",
+      "timeOut": "3000",
+      "extendedTimeOut": "100",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+    
+    toastr["success"]("Project added", "Success");
+
+});

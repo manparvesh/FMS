@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="lib/jquery.js"></script>
-<link href="css/bootstrap.css" rel="stylesheet" />
-<script src="lib/bootstrap.js"></script>
-<script src="lib/alasql.js"></script>
-<script src="lib/purl.js"></script>
-<script src="js/db.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/Chart.bundle.js"></script>
-<meta charset="utf-8">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta name="viewport" content="width=device-width">
-<title>COMPANY</title>
+    <script src="lib/jquery.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/toastr.css" rel="stylesheet" />
+
+    <script src="lib/bootstrap.js"></script>
+    <script src="lib/alasql.js"></script>
+    <script src="lib/purl.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/Chart.bundle.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="viewport" content="width=device-width">
+    <title>COMPANY</title>
 </head>
 <body>
 
@@ -246,8 +249,8 @@
                             </tr>
                         </thead>
                         <div class="clearfix" style="margin: 10px 0;">
-                            <a id="ins-project" class="btn btn-sm btn-success pull-right"><span
-                                class="glyphicon glyphicon-plus"></span> Add</a>
+                            <a id="ins-project" class="btn btn-sm btn-success pull-right" data-toggle="modal" href="#addProjDialog" onclick="cleanAddProjectForm()"><span
+                                class="glyphicon glyphicon-plus"></span> Add Project</a>
                         </div>
                         <tbody id="tbody-projects"></tbody>
                     </table>
@@ -279,6 +282,111 @@
 			</div>
 		</div>
 	</div>
+    
+        <!-- Add project dialog modal -->
+    <div class="modal fade" id="addProjDialog" tabindex="-1" role="dialog" aria-labelledby="addProjDialogLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title text-center text-primary " id="addProjDialogLabel"><strong>Add a project</strong></h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- form -->
+                    <form>
+                      <div class="form-group">
+                        <label for="newProjName">Project name</label>
+                        <input type="text" class="form-control" id="newProjName" placeholder="Project name">
+                      </div>
+                      <div class="form-group">
+                        <label for="newProjClient">Client rating (out of 10)</label>
+                        <input type="number" class="form-control" id="newProjClient" placeholder="">
+                      </div>
+                      <div class="form-group">
+                        <label for="newProjDifficulty">Difficulty level (out of 10)</label>
+                        <input type="number" class="form-control" id="newProjDifficulty" placeholder="">
+                      </div>
+                      <div class="form-group">
+                        <label for="newProjHoursNeeded">Time set to complete project (hours)</label>
+                        <input type="number" class="form-control" id="newProjHoursNeeded" placeholder="">
+                      </div>
+                      <div class="form-group">
+                        <label for="newProjHoursWorked">Time taken to complete project (hours)</label>
+                        <input type="number" class="form-control" id="newProjHoursWorked" placeholder="">
+                      </div>
+                    </form>
+                    <!-- / form -->
+                </div>
+                <!-- Skills -->
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                      <div class="panel-heading">Choose skills used</div>
+                      <div class="panel-body">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="btn-group-vertical" data-toggle="buttons">
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-cpp"> C++
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-java"> Java
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-js"> JavaScript
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-html"> HTML
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-cs"> C#
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-css"> CSS
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-php"> PHP
+                                      </label>
+                                    </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="btn-group-vertical" data-toggle="buttons">
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-py"> Python
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-scala"> Scala
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-rb"> Ruby
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-android"> Android
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-windows"> Windows
+                                      </label>
+                                      <label class="btn btn-info col-md-12">
+                                        <input type="checkbox" autocomplete="off" id="skill-filter-linux"> Linux
+                                      </label>
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success col-md-12" id="doneAddProject" data-dismiss="modal"><span class="glyphicon glyphicon-plus"></span> Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
 	<script src="js/emp.js"></script>
 </body>
 </html>

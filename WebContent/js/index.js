@@ -481,8 +481,7 @@ function populateDatabase(){
         var tempTags = allTags[emp.id - 1];
         if(matchesTags(tempTags)){
             var tr = $('<tr id="row-' + emp.id + '" class="row"></tr>');
-            tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')" data-toggle="tooltip" data-placement="top" title="Click to select this user for comparison"></td>');
-            tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
+            tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')" data-toggle="tooltip" data-placement="top" title="Click to select this user for comparison"></td> <td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
             tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
             tr.append('<td class="col-md-2">' + emp.name + '</td>');
             var tempProj = alasql('SELECT id,emp,sum(hours_worked) as sum_hours_worked,hours_worked FROM projects WHERE emp=? GROUP BY emp', [ emp.id ]);
@@ -511,6 +510,8 @@ function populateDatabase(){
             tr.appendTo(tbody);
         }
     }
+    
+    $('[data-toggle="tooltip"]').tooltip();
 }
 // --------------------------------- / populate tables based on the database ---------------------------------
 

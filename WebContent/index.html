@@ -11,7 +11,6 @@
     <script src="lib/jquery.js"></script>
     <script src="js/Chart.bundle.js"></script>
     <script src="js/utils.js"></script>
-    <script src="lib/bootstrap.js"></script>
     <script src="lib/jquery-ui.js"></script>
     <script src="lib/alasql.js"></script>
     <script src="lib/purl.js"></script>
@@ -212,29 +211,29 @@
                         <th></th> <!-- checkboxes -->
                         <th></th>  <!-- photos -->
                     </div>
-                    <th style="cursor: pointer;" class="col-md-1" id="col-num" data-toggle="tooltip" data-placement="top" title="Click to sort by Employee Number">
+                    <th style="cursor: pointer;" class="col-md-1" id="col-num">
                         Number&nbsp;
-                        <span class="glyphicon glyphicon-sort" id="num-sort"></span>
-                        <span class="glyphicon glyphicon-sort-by-attributes" id="num-asc"></span>
-                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="num-desc"></span>
+                        <span class="glyphicon glyphicon-sort" id="num-sort" data-toggle="tooltip" data-placement="top" title="Click to sort by Number"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes" id="num-asc" data-toggle="tooltip" data-placement="top" title="Click to sort by Number"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="num-desc" data-toggle="tooltip" data-placement="top" title="Click to sort by Number"></span>
                     </th>
-                    <th style="cursor: pointer;" class="col-md-2" id="col-name" data-toggle="tooltip" data-placement="top" title="Click to sort by Name">
+                    <th style="cursor: pointer;" class="col-md-2" id="col-name">
                         Name&nbsp;
-                        <span class="glyphicon glyphicon-sort" id="name-sort"></span>
-                        <span class="glyphicon glyphicon-sort-by-alphabet" id="name-asc"></span>
-                        <span class="glyphicon glyphicon-sort-by-alphabet-alt" id="name-desc"></span>
+                        <span class="glyphicon glyphicon-sort" id="name-sort" data-toggle="tooltip" data-placement="top" title="Click to sort by Name"></span>
+                        <span class="glyphicon glyphicon-sort-by-alphabet" id="name-asc" data-toggle="tooltip" data-placement="top" title="Click to sort by Name"></span>
+                        <span class="glyphicon glyphicon-sort-by-alphabet-alt" id="name-desc" data-toggle="tooltip" data-placement="top" title="Click to sort by Name"></span>
                     </th>
-                    <th style="cursor: pointer;" class="col-md-1 text-center" id="col-rating" data-toggle="tooltip" data-placement="top" title="Click to sort by Rating">
+                    <th style="cursor: pointer;" class="col-md-1 text-center" id="col-rating">
                         Rating&nbsp;
-                        <span class="glyphicon glyphicon-sort" id="rating-sort"></span>
-                        <span class="glyphicon glyphicon-sort-by-attributes" id="rating-asc"></span>
-                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="rating-desc"></span>
+                        <span class="glyphicon glyphicon-sort" id="rating-sort" data-toggle="tooltip" data-placement="top" title="Click to sort by Rating"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes" id="rating-asc" data-toggle="tooltip" data-placement="top" title="Click to sort by Rating"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="rating-desc" data-toggle="tooltip" data-placement="top" title="Click to sort by Rating"></span>
                     </th>
-                    <th style="cursor: pointer;" class="col-md-1" id="col-hours" data-toggle="tooltip" data-placement="top" title="Click to sort by Hours worked">
+                    <th style="cursor: pointer;" class="col-md-1" id="col-hours">
                         Hours worked&nbsp;
-                        <span class="glyphicon glyphicon-sort" id="hours-sort"></span>
-                        <span class="glyphicon glyphicon-sort-by-attributes" id="hours-asc"></span>
-                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="hours-desc"></span>
+                        <span class="glyphicon glyphicon-sort" id="hours-sort" data-toggle="tooltip" data-placement="top" title="Click to sort by Hours worked"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes" id="hours-asc" data-toggle="tooltip" data-placement="top" title="Click to sort by Hours worked"></span>
+                        <span class="glyphicon glyphicon-sort-by-attributes-alt" id="hours-desc" data-toggle="tooltip" data-placement="top" title="Click to sort by Hours worked"></span>
                     </th>
                     <th class="col-md-4">Experienced in  <span class="glyphicon glyphicon-info-sign"  data-toggle="tooltip" data-placement="top" title="Skills worked on by the freelancer in the past projects, and number of projects in which the skills were used" style="cursor:pointer;"></span></th>
                     <th class="col-md-1">Available for hire  <span class="glyphicon glyphicon-info-sign"  data-toggle="tooltip" data-placement="top" title="If checked, the freelancer can be contacted for opprotunities. Uncheck if the freelancer is unavailable" style="cursor:pointer;"></span></th>
@@ -435,6 +434,7 @@
     </div>
 
     <script src="js/star-rating.js"></script>
+    <script src="lib/bootstrap.js"></script>
 
     <script src="js/index.js"></script>
 </body>

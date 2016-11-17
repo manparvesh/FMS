@@ -119,10 +119,10 @@ function getTags(id){
         //alert(project.name);
     }
 
-    //var tagLocalArray = tagCount;
+    var tagLocalArray = tagCount;
     for(var i=0;i<tagCount.length;i++){
         if(tagCount[i]){
-            cell += ('<button class="btn btn-info btn-xs" type="button" style="margin:1px;">' + getTagForCode(i) + ' <span class="badge">' + tagCount[i] +'</span></button> ');
+            cell += ('<button class="btn btn-info btn-xs" type="button" style="margin:1px;" data-toggle="tooltip" data-placement="top" title="'+ tagLocalArray[i] +' project' + (tagLocalArray[i]<2?'':'s') +' related to ' + getTagForCode(i) + '">' + getTagForCode(i) + ' <span class="badge">' + tagLocalArray[i] +'</span></button> ');
         }
     }
     
@@ -136,7 +136,7 @@ function clientRating(id){
         var tProject = tProjects[i];
         client += tProject.client_rating;
     }
-    return client/tProjects.length;
+    return client/(2*tProjects.length);
 }
 
 function difficultyAvg(id){
@@ -146,7 +146,7 @@ function difficultyAvg(id){
         var tProject = tProjects[i];
         difficulty += tProject.difficulty;
     }
-    return difficulty/tProjects.length;
+    return difficulty/(2*tProjects.length);
 }
 
 function timeEfficiency(id){
@@ -154,19 +154,23 @@ function timeEfficiency(id){
     var time = 0;
     for(var i=0;i<tProjects.length;i++){
         var tProject = tProjects[i];
-        time += (tProject.hours_needed / tProject.hours_worked)*10;
+        time += (tProject.hours_needed / tProject.hours_worked)*5;
+    }
+    if(time/tProjects.length > 5.0){
+        return 5.0;
     }
     return time/tProjects.length;
 }
 
 function overallRating(id){
     var client = clientRating(id), difficulty = difficultyAvg(id), time = timeEfficiency(id);
-    return ((client*a + difficulty*b + time*c)/(2 * (a + b + c)));
+    return ((client*a + difficulty*b + time*c)/( (a + b + c)));
 }
 
 function hoursWorked(id){
-    var tempEmps = alasql('SELECT emp,sum(hours_worked) as sum_hours_worked FROM projects GROUP BY emp', []);
-    return tempEmps[id - 1].sum_hours_worked;
+    var tTempProj = alasql('SELECT id,emp,sum(hours_worked) as sum_hours_worked,hours_worked FROM projects WHERE emp=? GROUP BY emp', [ parseInt(id) ]);
+    //console.log(tTempProj[0].sum_hours_worked);
+    return tTempProj[0].sum_hours_worked;
 }
 
 function getProjects(id){
@@ -174,9 +178,19 @@ function getProjects(id){
     var tProjects = alasql('SELECT * FROM projects WHERE emp=?', [ parseInt(id) ]);
     for(var i=0;i<tProjects.length;i++){
         var tProject = tProjects[i];
-        ret += tProject.name;
+        var tTags = alasql('SELECT * FROM tags WHERE project_id=?', [ tProject.id ]);
+        var s = '';
+        for(var j=0;j<tTags.length;j++){
+            s += tTags[j].tag;
+            if(j< tTags.length - 1){
+                s += ', ';
+            }
+        }
+        
+        ret += ('<span  data-toggle="tooltip" data-placement="top" title="' + s + '" style="cursor:pointer;">' + tProject.name +'</span>');
+
         if(i < tProjects.length - 1){
-            ret += ', ';
+            ret += '<br> ';
         }
     }
     return ret;
@@ -194,6 +208,7 @@ function getHireButton(id){
 
 function putValue(id, i){
     var emp = emps[id - 1];
+    var tTempProj = alasql('SELECT id,emp,sum(hours_worked) as sum_hours_worked,hours_worked FROM projects WHERE emp=? GROUP BY emp', [ parseInt(id) ]);
     switch(i){
         case 0: // name
             return emp.name;
@@ -205,16 +220,28 @@ function putValue(id, i){
             return getTags(id);
             break;
         case 3: // average client rating
-            return roundOff(clientRating(id));
+            if(tTempProj[0].sum_hours_worked){
+                return roundOff(clientRating(id));
+            }
+            return 0;
             break;
         case 4: //Average project difficulty
-            return roundOff(difficultyAvg(id));
+            if(tTempProj[0].sum_hours_worked){
+                return roundOff(difficultyAvg(id));
+            }
+            return 0;
             break;
         case 5: //Average time efficiency
-            return roundOff(timeEfficiency(id));
+            if(tTempProj[0].sum_hours_worked){
+                return roundOff(timeEfficiency(id));
+            }
+            return 0;
             break;
         case 6: //Overall rating
-            return roundOff(overallRating(id));
+            if(tTempProj[0].sum_hours_worked){
+                return roundOff(overallRating(id));
+            }
+            return 0;
             break;
         case 7: //Total hours worked
             return hoursWorked(id);
@@ -230,6 +257,39 @@ function putValue(id, i){
     }
 }
 
+function getStars(r){
+    return '<div class="rating-container rating-xs rating-animate" style="cursor:pointer;"><div class="rating"><span class="empty-stars"><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span></span><span class="filled-stars" style="width: '+ (r*20) +'%;"><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span></span></div><input id="rating-input" type="number" class="hide"></div>';
+}
+
+function getInfoIcon(s){
+    return '<span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="' + s + '" style="cursor:pointer;"></span>';
+}
+
+function getInfo(i){
+    switch(i){
+        case 2: // skills
+            return getInfoIcon('Skills the freelancer is familiar with');
+            break;
+        case 3: // average client rating
+            return getInfoIcon('Average of all ratings by past clients');
+            break;
+        case 4: //Average project difficulty
+            return getInfoIcon('Average of difficulty ratings of previous projects');
+            break;
+        case 5: //Average time efficiency
+            return getInfoIcon('Average of Time efficiency');
+            break;
+        case 6: //Overall rating
+            return getInfoIcon('Average of all the above ratings');
+            break;
+        case 8: //Projects
+            return getInfoIcon('Projects worked on. Hover on each project to know the skills used');
+            break;
+        default:
+            return '';
+    }
+}
+
 function comparePeople(){
     setPhotos();
     var tbody = $('#tbody-compare');
@@ -239,9 +299,14 @@ function comparePeople(){
         //var emp = emps[i];
         //var tempTags = allTags[emp.id - 1];
         var tr = $('<tr class="row"></tr>');
-        tr.append('<th class="col-md-2">' + columnName +'</th>');
+        tr.append('<th class="col-md-2">' + columnName + ' ' +getInfo(i)+'</th>');
         for(var j=0;j<num;j++){
-            tr.append('<td class="col-md-2">'+ putValue(ids[j], i) +'</td>');
+            var stars = '';
+            var value = putValue(ids[j], i);
+            if(i>2 && i<7 && parseFloat(value)>0.00000000001){
+                stars = getStars(parseFloat(value));
+            }
+            tr.append('<td class="col-md-2 text-center">'+ value + ' ' + stars +'</td>');
         }
         for(var j=num;j<5;j++){
             tr.append('<td class="col-md-2"></td>');
@@ -251,3 +316,5 @@ function comparePeople(){
 }
 
 comparePeople();
+
+$('[data-toggle="tooltip"]').tooltip();

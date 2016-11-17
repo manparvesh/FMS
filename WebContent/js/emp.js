@@ -307,7 +307,11 @@ function showRating(){
     totalRating /= projects.length;
     
     $('#rating').empty();
-    $('#rating').append(roundOff(totalRating) + ' ' +getStars(totalRating));
+    if(totalHours){
+        $('#rating').append(roundOff(totalRating) + ' ' +getStars(totalRating));
+    }else{
+        $('#rating').append(0);
+    }
     
     $('#hours').text(totalHours);
     $('#wage').text(roundOff(tempWage));

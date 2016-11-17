@@ -4,9 +4,11 @@
     <script src="lib/jquery.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/toastr.css" rel="stylesheet" />
+    <link href="css/star-rating.css" rel="stylesheet" />
 
     <script src="lib/bootstrap.js"></script>
     <script src="lib/alasql.js"></script>
+    <script src="js/star-rating.js"></script>
     <script src="lib/purl.js"></script>
     <script src="js/db.js"></script>
     <script src="js/toastr.js"></script>
@@ -232,21 +234,21 @@
                             <tr class="row">
                                 <!-- Project name -->
                                 <th class="col-md-1">
-                                    Project Number
+                                    Project Number <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Serial no. of project as dispayed in the chart" style="cursor:pointer;"></span>
                                 </th>
                                 <!-- rating -->
                                 <th class="col-md-2">
                                     Project name
                                 </th>
                                 <!-- Overall rating -->
-                                <th class="col-md-1">
-                                    Overall rating
+                                <th class="col-md-1 text-center">
+                                    Rating <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Rating per project calculated after considering the client ratings, difficulty ratings and time efficiency in previous projects undertaken by the freelancer" style="cursor:pointer;"></span>
                                 </th>
                                 <!-- Skills used -->
                                 <th class="col-md-7 text-center">
-                                    Skills used
+                                    Skills used <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Skills using which a particular project was completed" style="cursor:pointer;"></span>
                                 </th>
-                                <!-- Remoe project -->
+                                <!-- Remove project -->
                                 <th class="col-md-1 text-center">
                                     
                                 </th>
@@ -262,6 +264,10 @@
                     <h4>More information</h4>
                     <table class="table table-striped">
                         <tbody>
+                            <tr>
+                                <td class="col-sm-2">Overall rating</td>
+                                <td class="col-sm-10" id="rating"></td>
+                            </tr>
                             <tr>
                                 <td class="col-sm-2">Hours worked</td>
                                 <td class="col-sm-10" id="hours"></td>
@@ -306,11 +312,12 @@
                       </div>
                       <div class="form-group">
                         <label for="newProjClient">Client rating (out of 10)</label>
-                        <input type="number" class="form-control" id="newProjClient" placeholder="">
+<!--                        <input type="number" class="form-control" id="newProjClient" placeholder="">-->
+                          <input id="newProjClient" value="0" type="number" class="rating" min=0 max=10 step=1 data-size="xs" >
                       </div>
                       <div class="form-group">
                         <label for="newProjDifficulty">Difficulty level (out of 10)</label>
-                        <input type="number" class="form-control" id="newProjDifficulty" placeholder="">
+                        <input id="newProjDifficulty" value="0" type="number" class="rating" min=0 max=10 step=1 data-size="xs" >
                       </div>
                       <div class="form-group">
                         <label for="newProjHoursNeeded">Time set to complete project (hours)</label>

@@ -31,6 +31,10 @@ var skillFilter = {
     'Linux' : false
 };
 
+function getStars(r){
+    return '<div class="rating-container rating-xs rating-animate" style="cursor:pointer;"><div class="rating"><span class="empty-stars"><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span></span><span class="filled-stars" style="width: '+ (r*20) +'%;"><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span></span></div><input id="rating-input" type="number" class="hide"></div>';
+}
+
 
 // set image and name
 $('#img-emp').attr('src', 'img/ (' + emp.id + ').jpg');
@@ -264,6 +268,7 @@ function showRating(){
     var tempWage = 10;
     var totalMoneyEarned = 0;
     var totalHours = 0;
+    var totalRating = 0;
     for (var i = 0; i < projects.length; i++) {
         var project = projects[i];
         var tr = $('<tr class="row"></tr>');
@@ -276,8 +281,8 @@ function showRating(){
             tempX = 1.0;
         }
         var tempRating = (a * project.client_rating + b *  project.difficulty + c * (tempX)*10)/(2*(a+b+c));
-        tr.append('<td class="col-md-1">'+ roundOff(tempRating) + '</td>'); //rating
-        
+        tr.append('<td class="col-md-1 text-center">'+ roundOff(tempRating) + ' ' + getStars(roundOff(tempRating)) + '</td>'); //rating
+        totalRating += tempRating;
         // hourly wages for this project
         //tr.append('<td>'+ tempWage + '</td>');
         
@@ -298,6 +303,11 @@ function showRating(){
     }
     
     showChart(id);
+    
+    totalRating /= projects.length;
+    
+    $('#rating').empty();
+    $('#rating').append(roundOff(totalRating) + ' ' +getStars(totalRating));
     
     $('#hours').text(totalHours);
     $('#wage').text(roundOff(tempWage));
@@ -626,3 +636,5 @@ function cleanAddProjectForm(){
 //    $("#skill-filter-windows").prop('checked', false);
 //    $("#skill-filter-linux").prop('checked', false);
 }
+
+$('[data-toggle="tooltip"]').tooltip();

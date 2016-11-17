@@ -5,6 +5,7 @@
     <link href="css/jquery-ui.css" rel="stylesheet" />
     <link href="css/star-rating.css" rel="stylesheet"/>
     <link href="css/toastr.css" rel="stylesheet" />
+    <link href="css/star-rating.css" rel="stylesheet" />
 
     <script src="js/toastr.js"></script>
     <script src="lib/jquery.js"></script>
@@ -223,7 +224,7 @@
                         <span class="glyphicon glyphicon-sort-by-alphabet" id="name-asc"></span>
                         <span class="glyphicon glyphicon-sort-by-alphabet-alt" id="name-desc"></span>
                     </th>
-                    <th style="cursor: pointer;" class="col-md-1" id="col-rating" data-toggle="tooltip" data-placement="top" title="Click to sort by Rating">
+                    <th style="cursor: pointer;" class="col-md-1 text-center" id="col-rating" data-toggle="tooltip" data-placement="top" title="Click to sort by Rating">
                         Rating&nbsp;
                         <span class="glyphicon glyphicon-sort" id="rating-sort"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes" id="rating-asc"></span>
@@ -290,11 +291,11 @@
                             Project name
                         </th>
                         <!-- Overall rating -->
-                        <th class="col-md-1">
-                            Overall rating <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Rating calculated after considering the client ratings, difficulty ratings and time efficiency in previous projects undertaken by the freelancer" style="cursor:pointer;"></span>
+                        <th class="col-md-2 text-center">
+                            Rating <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Rating per project calculated after considering the client ratings, difficulty ratings and time efficiency in previous projects undertaken by the freelancer" style="cursor:pointer;"></span>
                         </th>
                         <!-- Skills used -->
-                        <th class="col-md-8 text-center">
+                        <th class="col-md-7 text-center">
                             Skills used <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Skills using which a particular project was completed" style="cursor:pointer;"></span>
                         </th>
                     </tr>
@@ -433,7 +434,8 @@
       </div>
     </div>
 
-    
+    <script src="js/star-rating.js"></script>
+
     <script src="js/index.js"></script>
 </body>
 </html>

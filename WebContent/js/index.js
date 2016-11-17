@@ -61,6 +61,10 @@ function roundOff(n){
     return (Math.round((n*Math.pow(10,2)).toFixed(1))/Math.pow(10,2)).toFixed(2);;
 }
 
+function getStars(r){
+    return '<div class="rating-container rating-xs rating-animate" style="cursor:pointer;"><div class="rating"><span class="empty-stars"><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span><span class="star"><i class="glyphicon glyphicon-star-empty"></i></span></span><span class="filled-stars" style="width: '+ (r*20) +'%;"><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span><span class="star"><i class="glyphicon glyphicon-star"></i></span></span></div><input id="rating-input" type="number" class="hide"></div>';
+}
+
 if (q) {
 	//emps = alasql('SELECT * FROM emp WHERE number LIKE ?', [ '%' + q + '%' ]);
 } else {
@@ -484,11 +488,15 @@ function populateDatabase(){
             var tempProj = alasql('SELECT id,emp,sum(hours_worked) as sum_hours_worked,hours_worked FROM projects WHERE emp=? GROUP BY emp', [ emp.id ]);
             //console.log(tempProj.length);
             if(tempProj[0].sum_hours_worked){
-                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')"  data-toggle="tooltip" data-placement="top" title="Click to display detailed rating history">' + roundOff(calculateRating(emp.id)) + '</a></td>'); // rating
+                var tempRating = roundOff(calculateRating(emp.id));
+                var starRating = getStars(tempRating);
+                
+                tr.append('<td class="col-md-1 text-center"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')"  data-toggle="tooltip" data-placement="top" title="Click to display detailed rating history"><span style="display:block;">' + tempRating + '</span> '+ starRating + '</a></td>'); // rating
+                
                 tr.append('<td class="col-md-1">' + tempProj[0].sum_hours_worked + '</td>'); //hours
                 tr.append(getTagsHTML(emp.id)); // experienced in
             }else{
-                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')" data-toggle="tooltip" data-placement="top" title="This person has not undertaken any projects. To add a project, open their page">0</a></td>'); // rating
+                tr.append('<td class="col-md-1 text-center"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')" data-toggle="tooltip" data-placement="top" title="This person has not undertaken any projects. To add a project, open their page">0</a></td>'); // rating
                 tr.append('<td class="col-md-1">' + 0 + '</td>'); //hours
                 tr.append('<td class="col-md-4">-</td>'); //experienced in
             }
@@ -856,7 +864,7 @@ function showRating(id){
         }
         
         var tempRating = (a * project.client_rating + b *  project.difficulty + c * (tempX)*10)/(2*(a+b+c));
-        tr.append('<td class="col-md-1">'+ roundOff(tempRating) + '</td>'); //rating
+        tr.append('<td class="col-md-2 text-center">'+ roundOff(tempRating) + ' ' + getStars(roundOff(tempRating)) + '</td>'); //rating
         
         // hourly wages for this project
         //tr.append('<td>'+ tempWage + '</td>');
@@ -869,7 +877,7 @@ function showRating(id){
         //    tempWage *= ((tempRating - 2.5)/5 + 1);
         //}
         
-        tr.append('<td class="col-md-8 text-center">'+ getProjectTags(project.id) + '</td>'); //rating
+        tr.append('<td class="col-md-7 text-center">'+ getProjectTags(project.id) + '</td>'); //rating
         
         
         tr.appendTo(tbody);

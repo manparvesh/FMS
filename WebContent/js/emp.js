@@ -375,11 +375,11 @@ $('#newProjHoursWorked').on('input', function(){
 });
 
 $('#doneAddProject').click(function(){
-    var newProjName = $('#newProjName').text();
-    var newProjClient = $('#newProjClient').text();
-    var newProjDifficulty = $('#newProjDifficulty').text();
-    var newProjHoursNeeded = $('#newProjHoursNeeded').text();
-    var newProjHoursWorked = $('#newProjHoursWorked').text();
+    var newProjName = $('#newProjName').val();
+    var newProjClient = $('#newProjClient').val();
+    var newProjDifficulty = $('#newProjDifficulty').val();
+    var newProjHoursNeeded = $('#newProjHoursNeeded').val();
+    var newProjHoursWorked = $('#newProjHoursWorked').val();
     //if()
     var proj_id = alasql('SELECT MAX(id) + 1 as id FROM projects')[0].id;
     
@@ -393,6 +393,8 @@ $('#doneAddProject').click(function(){
     proj.push(parseInt(newProjClient));
     proj.push('1990-01-01');
     proj.push(0);
+    
+    alert(proj);
     
     alasql(
         'INSERT INTO projects(\
@@ -413,7 +415,7 @@ $('#doneAddProject').click(function(){
     
     var tempProj = alasql('SELECT * FROM projects WHERE id=?', [proj_id])[0];
     
-    alert(tempProj.id + ' ' + tempProj.emp + ' ' + tempProj.hours_worked + ' ' + tempProj.difficulty + ' ' + tempProj.client_rating);
+    //alert(tempProj.id + ' ' + tempProj.emp + ' ' + tempProj.hours_worked + ' ' + tempProj.difficulty + ' ' + tempProj.client_rating);
 });
 
 function removeProject(proj_id){

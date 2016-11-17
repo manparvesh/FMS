@@ -221,6 +221,9 @@ function showChart(id){
         var tClient = proj.client_rating / 2, tDiff = proj.difficulty / 2, tTimeNeeded = proj.hours_needed, tTimeWorked = proj.hours_worked;
         
         var tTime = (tTimeNeeded / tTimeWorked) * 5;
+        if(tTime > 5.0){
+            tTime = 5.0;
+        }
         
         var overallRating = (tClient * a + tDiff * b + tTime * c) / (a + b + c);
         
@@ -251,7 +254,11 @@ function showRating(){
         tr.append('<td class="col-md-2">'+ project.name + '</td>'); //name
         
         //overall rating for this project
-        var tempRating = (a * project.client_rating + b *  project.difficulty + c * (project.hours_needed / project.hours_worked)*10)/(2*(a+b+c));
+        var tempX = project.hours_needed / project.hours_worked;
+        if(tempX > 1.0){
+            tempX = 1.0;
+        }
+        var tempRating = (a * project.client_rating + b *  project.difficulty + c * (tempX)*10)/(2*(a+b+c));
         tr.append('<td class="col-md-1">'+ roundOff(tempRating) + '</td>'); //rating
         
         // hourly wages for this project

@@ -15,6 +15,23 @@ $('#pspt_date').text(emp.pspt_date);
 $('#pspt_name').text(emp.pspt_name);
 $('#rental').text(DB.choice(emp.rental));
 
+var skillFilter = {
+    'C++' : false,
+    'Java' : false,
+    'JavaScript' : false,
+    'HTML' : false,
+    'C#' : false,
+    'CSS' : false,
+    'PHP' : false,
+    'Python' : false,
+    'Scala' : false,
+    'Ruby' : false,
+    'Android' : false,
+    'Windows' : false,
+    'Linux' : false
+};
+
+
 // set image and name
 $('#img-emp').attr('src', 'img/ (' + emp.id + ').jpg');
 $('#div-name_kanji').text(emp.name);
@@ -291,8 +308,10 @@ function showRating(){
     }
     
     if(emp.hire){
+        $('#hire').empty();
         $('#hire').append('Yes <a href="mailto:' + emp.email + '?subject=New%20Opportunity!" class="btn btn-success pull-right" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a>');
     }else{
+        $('#hire').empty();
         $('#hire').append('No');
     }
     
@@ -381,6 +400,156 @@ $('#newProjHoursWorked').on('input', function(){
     }
 });
 
+// filters for skill tags
+
+$("#skill-filter-cpp").change(function() {
+    if(this.checked) {
+        skillFilter['C++'] = true;
+    }else{
+        skillFilter['C++'] = false;
+    }
+});
+$("#skill-filter-java").change(function() {
+    if(this.checked) {
+        skillFilter['Java'] = true;
+    }else{
+        skillFilter['Java'] = false;
+    }
+});
+$("#skill-filter-js").change(function() {
+    if(this.checked) {
+        skillFilter['JavaScript'] = true;
+    }else{
+        skillFilter['JavaScript'] = false;
+    }
+});
+$("#skill-filter-html").change(function() {
+    if(this.checked) {
+        skillFilter['HTML'] = true;
+    }else{
+        skillFilter['HTML'] = false;
+    }
+});
+$("#skill-filter-cs").change(function() {
+    if(this.checked) {
+        skillFilter['C#'] = true;
+    }else{
+        skillFilter['C#'] = false;
+    }
+});
+$("#skill-filter-css").change(function() {
+    if(this.checked) {
+        skillFilter['CSS'] = true;
+    }else{
+        skillFilter['CSS'] = false;
+    }
+});
+$("#skill-filter-php").change(function() {
+    if(this.checked) {
+        skillFilter['PHP'] = true;
+    }else{
+        skillFilter['PHP'] = false;
+    }
+});
+$("#skill-filter-py").change(function() {
+    if(this.checked) {
+        skillFilter['Python'] = true;
+    }else{
+        skillFilter['Python'] = false;
+    }
+});
+$("#skill-filter-scala").change(function() {
+    if(this.checked) {
+        skillFilter['Scala'] = true;
+    }else{
+        skillFilter['Scala'] = false;
+    }
+});
+$("#skill-filter-rb").change(function() {
+    if(this.checked) {
+        skillFilter['Ruby'] = true;
+    }else{
+        skillFilter['Ruby'] = false;
+    }
+});
+$("#skill-filter-android").change(function() {
+    if(this.checked) {
+        skillFilter['Android'] = true;
+    }else{
+        skillFilter['Android'] = false;
+    }
+});
+$("#skill-filter-windows").change(function() {
+    if(this.checked) {
+        skillFilter['Windows'] = true;
+    }else{
+        skillFilter['Windows'] = false;
+    }
+});
+$("#skill-filter-linux").change(function() {
+    if(this.checked) {
+        skillFilter['Linux'] = true;
+    }else{
+        skillFilter['Linux'] = false;
+    }
+});
+
+function getTagForCode(code){
+    var ret;
+    var ar = [
+        'C++',
+        'Java',
+        'JavaScript',
+        'HTML',
+        'C#',
+        'CSS',
+        'PHP',
+        'Python',
+        'Scala',
+        'Ruby',
+        'Android',
+        'Windows',
+        'Linux'
+    ];
+    ret = ar[code];
+    return ret;
+}
+
+function setAllTagsFalse(){
+    for(var i=0;i<13;i++){
+        //alert(skillFilter[getTagForCode(i)]);
+        skillFilter[getTagForCode(i)] = false;
+    }
+}
+
+function insertTag(proj_id, tag){
+    var tag_id = alasql('SELECT MAX(id) + 1 as id FROM tags')[0].id;
+    var tTag = [];
+    tTag.push(tag_id);
+    tTag.push(proj_id);
+    tTag.push(tag);
+    
+    alasql(
+        'INSERT INTO tags(\
+        id, \
+        project_id, \
+        tag) \
+        VALUES(?,?,?);',
+        tTag);
+    
+    var tempTag = alasql('SELECT * FROM tags WHERE id=?', [tag_id])[0];
+    
+    //console.log(tempTag.id + ' ' + tempTag.project_id + ' ' + tempTag.tag);
+}
+
+function insertTags(proj_id){
+    for(vari=0;i<13;i++){
+        if(skillFilter[getTagForCode(i)]){
+            insertTag(proj_id, getTagForCode(i));
+        }
+    }
+}
+
 $('#doneAddProject').click(function(){
     var newProjName = $('#newProjName').val();
     var newProjClient = $('#newProjClient').val();
@@ -417,6 +586,8 @@ $('#doneAddProject').click(function(){
         VALUES(?,?,?,?,?,?,?,?,?);',
         proj);
     
+    insertTags(proj_id);
+    
     toastr["success"]("Project added", "Success");
     showRating();
     
@@ -429,4 +600,29 @@ function removeProject(proj_id){
     //alert(proj_id);
     alasql('DELETE FROM projects WHERE id=?', [ proj_id ]);
     showRating();
+}
+
+function cleanAddProjectForm(){
+    disableAddButton();
+    
+    $('#newProjName').val('');
+    $('#newProjClient').val('');
+    $('#newProjDifficulty').val('');
+    $('#newProjHoursNeeded').val('');
+    $('#newProjHoursWorked').val('');
+    
+    //setAllTagsFalse();
+//    $("#skill-filter-cpp").prop('checked', false);
+//    $("#skill-filter-java").prop('checked', false);
+//    $("#skill-filter-js").prop('checked', false);
+//    $("#skill-filter-html").prop('checked', false);
+//    $("#skill-filter-cs").prop('checked', false);
+//    $("#skill-filter-css").prop('checked', false);
+//    $("#skill-filter-php").prop('checked', false);
+//    $("#skill-filter-py").prop('checked', false);
+//    $("#skill-filter-scala").prop('checked', false);
+//    $("#skill-filter-rb").prop('checked', false);
+//    $("#skill-filter-android").prop('checked', false);
+//    $("#skill-filter-windows").prop('checked', false);
+//    $("#skill-filter-linux").prop('checked', false);
 }

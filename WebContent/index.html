@@ -76,7 +76,6 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#" id="cols-num">Number</a></li>
                         <li><a href="#" id="cols-name">Name</a></li>
-                        <li><a href="#" id="cols-skills">Skills</a></li>
                     </ul>
                 </div><!-- /btn-group -->
             </div><!-- /input-group -->
@@ -98,7 +97,7 @@
                         </div>
                     </div>
                     <a id="close-button-0" class="img-circle cross btn-default" style="position:absolute;top:0px;right:0px;height:25px;width:25px;padding:4.5px;">
-                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Remove user from compare"></span>
                     </a>
                 </div> 
                 <!-- / ID 1 -->
@@ -115,7 +114,7 @@
                         </div>
                     </div>
                     <a id="close-button-1" class="img-circle cross btn-default" style="position:absolute;top:0px;right:0px;height:25px;width:25px;padding:4.5px;">
-                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Remove user from compare"></span>
                     </a>
                 </div> 
                 <!-- / ID 2 -->
@@ -132,7 +131,7 @@
                         </div>
                     </div>
                     <a id="close-button-2" class="img-circle cross btn-default" style="position:absolute;top:0px;right:0px;height:25px;width:25px;padding:4.5px;">
-                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Remove user from compare"></span>
                     </a>
                 </div> 
                 <!-- / ID 3 -->
@@ -149,7 +148,7 @@
                         </div>
                     </div>
                     <a id="close-button-3" class="img-circle cross btn-default" style="position:absolute;top:0px;right:0px;height:25px;width:25px;padding:4.5px;">
-                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Remove user from compare"></span>
                     </a>
                 </div> 
                 <!-- / ID 4 -->
@@ -166,7 +165,7 @@
                         </div>
                     </div>
                     <a id="close-button-4" class="img-circle cross btn-default" style="position:absolute;top:0px;right:0px;height:25px;width:25px;padding:4.5px;">
-                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;"></span>
+                        <span class="glyphicon glyphicon-remove" style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Remove user from compare"></span>
                     </a>
                 </div> 
                 <!-- / ID 5 -->
@@ -180,7 +179,7 @@
                         </div>
                         <div class="col-sm-3"></div>
                     </div> -->
-                    <a class="btn btn-primary col-sm-12" id="button-compare" target="_blank" href="compare.html">
+                    <a class="btn btn-primary col-sm-12" id="button-compare" target="_blank" href="compare.html" data-toggle="tooltip" data-placement="top" title="Add 2 or more users to compare">
                         <span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-transfer"></span> <span class="glyphicon glyphicon-user"></span>
                         <br>
                         Compare
@@ -199,7 +198,7 @@
             </div>
 
             <div class="clearfix col-xs-6" style="margin: 10px 0;">
-                <a href="emp-form.html" class="btn btn-sm btn-success pull-right"><span
+                <a href="emp-form.html" class="btn btn-sm btn-success pull-right" data-toggle="tooltip" data-placement="top" title="Add new freelancer"><span
                     class="glyphicon glyphicon-plus"></span>&nbsp;New</a>
             </div>
         </div>
@@ -212,32 +211,32 @@
                         <th></th> <!-- checkboxes -->
                         <th></th>  <!-- photos -->
                     </div>
-                    <th style="cursor: pointer;" class="col-md-1" id="col-num">
+                    <th style="cursor: pointer;" class="col-md-1" id="col-num" data-toggle="tooltip" data-placement="top" title="Click to sort by Employee Number">
                         Number&nbsp;
                         <span class="glyphicon glyphicon-sort" id="num-sort"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes" id="num-asc"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes-alt" id="num-desc"></span>
                     </th>
-                    <th style="cursor: pointer;" class="col-md-2" id="col-name">
+                    <th style="cursor: pointer;" class="col-md-2" id="col-name" data-toggle="tooltip" data-placement="top" title="Click to sort by Name">
                         Name&nbsp;
                         <span class="glyphicon glyphicon-sort" id="name-sort"></span>
                         <span class="glyphicon glyphicon-sort-by-alphabet" id="name-asc"></span>
                         <span class="glyphicon glyphicon-sort-by-alphabet-alt" id="name-desc"></span>
                     </th>
-                    <th style="cursor: pointer;" class="col-md-1" id="col-rating">
+                    <th style="cursor: pointer;" class="col-md-1" id="col-rating" data-toggle="tooltip" data-placement="top" title="Click to sort by Rating">
                         Rating&nbsp;
                         <span class="glyphicon glyphicon-sort" id="rating-sort"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes" id="rating-asc"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes-alt" id="rating-desc"></span>
                     </th>
-                    <th style="cursor: pointer;" class="col-md-1" id="col-hours">
+                    <th style="cursor: pointer;" class="col-md-1" id="col-hours" data-toggle="tooltip" data-placement="top" title="Click to sort by Hours worked">
                         Hours worked&nbsp;
                         <span class="glyphicon glyphicon-sort" id="hours-sort"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes" id="hours-asc"></span>
                         <span class="glyphicon glyphicon-sort-by-attributes-alt" id="hours-desc"></span>
                     </th>
-                    <th class="col-md-4">Experienced in</th>
-                    <th class="col-md-1">Available for hire</th>
+                    <th class="col-md-4">Experienced in  <span class="glyphicon glyphicon-info-sign"  data-toggle="tooltip" data-placement="top" title="Skills worked on by the freelancer in the past projects, and number of projects in which the skills were used" style="cursor:pointer;"></span></th>
+                    <th class="col-md-1">Available for hire  <span class="glyphicon glyphicon-info-sign"  data-toggle="tooltip" data-placement="top" title="If checked, the freelancer can be contacted for opprotunities. Uncheck if the freelancer is unavailable" style="cursor:pointer;"></span></th>
                     <th class="col-md-1"></th>  <!-- hire button -->
                 </tr>
             </thead>
@@ -255,7 +254,7 @@
           </div>
           <div class="modal-body">
             <div>
-                <label for="wageSpinner">Set hourly wage (in USD):</label>
+                <label for="wageSpinner">Set default hourly wages of all freelancers (in USD):<span class="glyphicon glyphicon-info-sign pull-right"  data-toggle="tooltip" data-placement="top" title="All freelancers start with a fixed hourly wage. This increases or decreases based on their performance in their projects." style="cursor:pointer;"></span></label>
                 <input id="wageSpinner" name="wage">
             </div>
           </div>
@@ -284,7 +283,7 @@
                     <tr class="row">
                         <!-- Project name -->
                         <th class="col-md-1">
-                            Project Number
+                            Project no. <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Serial no. of project as dispayed in the chart" style="cursor:pointer;"></span>
                         </th>
                         <!-- rating -->
                         <th class="col-md-2">
@@ -292,11 +291,11 @@
                         </th>
                         <!-- Overall rating -->
                         <th class="col-md-1">
-                            Overall rating
+                            Overall rating <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Rating calculated after considering the client ratings, difficulty ratings and time efficiency in previous projects undertaken by the freelancer" style="cursor:pointer;"></span>
                         </th>
                         <!-- Skills used -->
                         <th class="col-md-8 text-center">
-                            Skills used
+                            Skills used <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Skills using which a particular project was completed" style="cursor:pointer;"></span>
                         </th>
                     </tr>
                 </thead>
@@ -329,7 +328,7 @@
                 <!-- Skills -->
                 <div class="col-md-6">
                     <div class="panel panel-info">
-                      <div class="panel-heading">Skills</div>
+                      <div class="panel-heading">Skills <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Select all the skills needed for a project" style="cursor:pointer;"></span></div>
                       <div class="panel-body">
                           <div class="row">
                               <div class="col-md-6">
@@ -387,7 +386,7 @@
                 <div class="col-md-6">
                     <!-- available for hire -->
                     <div class="panel panel-info">
-                      <div class="panel-heading">Available for hire</div>
+                      <div class="panel-heading">Available for hire <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Choose yes if you want to display all freelancers who are ready to be hired" style="cursor:pointer;"></span></div>
                       <div class="panel-body">
                             <div class="btn-group" data-toggle="buttons">
                               <label class="btn btn-info">
@@ -405,19 +404,19 @@
                     <!-- / available for hire -->
                     <!-- rating preference -->
                     <div class="panel panel-info">
-                      <div class="panel-heading">Rating preference</div>
+                      <div class="panel-heading">Rating preference <span class="glyphicon glyphicon-info-sign pull-right" data-toggle="tooltip" title="Choose which type of rating system would you prefer. Hover on each one to know more" style="cursor:pointer;"></span></div>
                       <div class="panel-body">
                           <div class="btn-group-vertical" data-toggle="buttons">
-                              <label class="btn btn-info">
+                              <label class="btn btn-info" data-toggle="tooltip" title="While calculating rating, client ratings from previous projects holds more weightage">
                                 <input type="radio" name="options" id="option-client" autocomplete="off"> Client rating
                               </label>
-                              <label class="btn btn-info">
+                              <label class="btn btn-info" data-toggle="tooltip" title="While calculating rating, difficulty ratings of previous projects holds more weightage">
                                 <input type="radio" name="options" id="option-difficulty" autocomplete="off"> Difficulty
                               </label>
-                              <label class="btn btn-info">
+                              <label class="btn btn-info" data-toggle="tooltip" title="While calculating rating, time efficiency performance from previous projects holds more weightage">
                                 <input type="radio" name="options" id="option-time" autocomplete="off"> Time efficiency
                               </label>
-                              <label class="btn btn-info active">
+                              <label class="btn btn-info active" data-toggle="tooltip" title="While calculating rating, a simple average of client rating, difficulty rating and time efficiency rating is taken">
                                 <input type="radio" name="options" id="option-simple" autocomplete="off" checked> Simple Average
                               </label>
                             </div>

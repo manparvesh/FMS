@@ -13,6 +13,24 @@ var allTags;
 
 var colors = ['#b3ecff', '#b3ecff', '#b3ecff', '#b3ecff', '#b3ecff'];
 
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "100",
+  "hideDuration": "1000",
+  "timeOut": "3000",
+  "extendedTimeOut": "100",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
+
 var skillFilter = {
     'C++' : false,
     'Java' : false,
@@ -435,7 +453,7 @@ function getTagsHTML(id){
     var tagLocalArray = allTags[id - 1];
     for(var i=0;i<tagLocalArray.length;i++){
         if(tagLocalArray[i]){
-            cell += ('<button class="btn btn-info btn-xs" type="button" style="margin:1px;">' + getTagForCode(i) + ' <span class="badge">' + tagLocalArray[i] +'</span></button> ');
+            cell += ('<button class="btn btn-info btn-xs" type="button" style="margin:1px;" data-toggle="tooltip" data-placement="top" title="'+ tagLocalArray[i] +' project' + (tagLocalArray[i]<2?'':'s') +' related to ' + getTagForCode(i) + '">' + getTagForCode(i) + ' <span class="badge">' + tagLocalArray[i] +'</span></button> ');
         }
     }
     cell += '</td>';
@@ -459,27 +477,27 @@ function populateDatabase(){
         var tempTags = allTags[emp.id - 1];
         if(matchesTags(tempTags)){
             var tr = $('<tr id="row-' + emp.id + '" class="row"></tr>');
-            tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')"></td>');
+            tr.append('<td><input type="checkbox" name="checkbox-' + emp.id + '" id="checkbox-' + emp.id + '" onclick="comparisonProcedure(' + emp.id + ')" data-toggle="tooltip" data-placement="top" title="Click to select this user for comparison"></td>');
             tr.append('<td><img height=40 class="img-circle" src="img/ (' + emp.id + ').jpg"></td>');
             tr.append('<td class="col-md-1"><a href="emp.html?id=' + emp.id + '">' + emp.number + '</a></td>');
             tr.append('<td class="col-md-2">' + emp.name + '</td>');
             var tempProj = alasql('SELECT id,emp,sum(hours_worked) as sum_hours_worked,hours_worked FROM projects WHERE emp=? GROUP BY emp', [ emp.id ]);
             //console.log(tempProj.length);
             if(tempProj[0].sum_hours_worked){
-                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')">' + roundOff(calculateRating(emp.id)) + '</a></td>'); // rating
+                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')"  data-toggle="tooltip" data-placement="top" title="Click to display detailed rating history">' + roundOff(calculateRating(emp.id)) + '</a></td>'); // rating
                 tr.append('<td class="col-md-1">' + tempProj[0].sum_hours_worked + '</td>'); //hours
                 tr.append(getTagsHTML(emp.id)); // experienced in
             }else{
-                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')">0</a></td>'); // rating
+                tr.append('<td class="col-md-1"><a href="#rating" data-toggle="modal" onclick="showRating(' + emp.id + ')" data-toggle="tooltip" data-placement="top" title="This person has not undertaken any projects. To add a project, open their page">0</a></td>'); // rating
                 tr.append('<td class="col-md-1">' + 0 + '</td>'); //hours
                 tr.append('<td class="col-md-4">-</td>'); //experienced in
             }
 
             if(emp.hire){
-                tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" checked></td>'); // Available for hire?
-                tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
+                tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"  checked></td>'); // Available for hire?
+                tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" data-toggle="tooltip" data-placement="top" title="This person is available for hire. Click to contact them through email directly"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
             }else{
-                tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')"></td>'); // Available for hire?
+                tr.append('<td class="col-md-1"><input type="checkbox" id="canhire-' + emp.id + '" onclick="toggleHireButtonVisibility(' + emp.id + ')" ></td>'); // Available for hire?
                 tr.append('<td class="col-md-1"><a href="mailto:' + emp.email + '?subject=New%20Opportunity!" id="hire-button-' + emp.id + '" class="btn btn-success" target="_blank" style="visibility:hidden;"><span class="glyphicon glyphicon-briefcase"></span> Hire</a></td>'); // hire button
             }
             tr.appendTo(tbody);
@@ -1083,6 +1101,13 @@ function matchesTags(tempTags){
     return true;
 }
 // --------------------------------- / check if tags in this cell match with the filters ---------------------------------
+
+
+// --------------------------------- tooltip util  ---------------------------------
+
+$('[data-toggle="tooltip"]').tooltip();
+
+// --------------------------------- / tooltip util  ---------------------------------
 
 // starting and ending comment template:
 // ---------------------------------  ---------------------------------

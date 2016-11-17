@@ -401,7 +401,7 @@ $('#doneAddProject').click(function(){
     proj.push('1990-01-01');
     proj.push(0);
     
-    alert(proj);
+    //alert(proj);
     
     alasql(
         'INSERT INTO projects(\

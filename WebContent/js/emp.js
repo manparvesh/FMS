@@ -265,7 +265,9 @@ function showRating(){
             tempWage *= ((tempRating - 2.5)/5 + 1);
         }
         
-        tr.append('<td class="col-md-8 text-center">'+ getProjectTags(project.id) + '</td>'); //rating
+        tr.append('<td class="col-md-7 text-center">'+ getProjectTags(project.id) + '</td>'); //rating
+
+        tr.append('<td class="col-md-1"><a class="btn btn-danger pull-right btn-xs" onclick="removeProject(' + project.id +')"><span class="glyphicon glyphicon-remove"></span> Remove</a></td>'); //rremove
         
         
         tr.appendTo(tbody);
@@ -291,26 +293,131 @@ function showRating(){
 }
 
 showRating();
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": true,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "100",
+  "hideDuration": "1000",
+  "timeOut": "3000",
+  "extendedTimeOut": "100",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
+
+function disableAddButton(){
+    $( "#doneAddProject" ).prop( "disabled", true );
+}
+
+disableAddButton();
+
+function enableAddButton(){
+    $( "#doneAddProject" ).prop( "disabled", false );
+}
+
+function allOK(){
+    if($('#newProjName').val() && (parseFloat($('#newProjClient').val())<=10) && (parseFloat($('#newProjDifficulty').val())<=10) && (parseFloat($('#newProjHoursNeeded').val())) && (parseFloat($('#newProjHoursWorked').val())) ){
+        return true;
+    }
+    
+    return false;
+}
+
+$('#newProjName').on('input', function(){
+    if(allOK()){
+        enableAddButton();
+    }else{
+        disableAddButton();
+        //toastr["warning"]("Project name cannot be empty", "Warning");
+    }
+});
+
+$('#newProjClient').on('input', function(){
+    if(allOK()){
+        enableAddButton();
+    }else{
+        disableAddButton();
+        //toastr["warning"]("Project name cannot be empty", "Warning");
+    }
+});
+
+$('#newProjDifficulty').on('input', function(){
+    if(allOK()){
+        enableAddButton();
+    }else{
+        disableAddButton();
+        //toastr["warning"]("Project name cannot be empty", "Warning");
+    }
+});
+
+$('#newProjHoursNeeded').on('input', function(){
+    if(allOK()){
+        enableAddButton();
+    }else{
+        disableAddButton();
+        //toastr["warning"]("Project name cannot be empty", "Warning");
+    }
+});
+
+$('#newProjHoursWorked').on('input', function(){
+    if(allOK()){
+        enableAddButton();
+    }else{
+        disableAddButton();
+        //toastr["warning"]("Project name cannot be empty", "Warning");
+    }
+});
 
 $('#doneAddProject').click(function(){
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": true,
-      "progressBar": false,
-      "positionClass": "toast-top-right",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "100",
-      "hideDuration": "1000",
-      "timeOut": "3000",
-      "extendedTimeOut": "100",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    };
+    var newProjName = $('#newProjName').text();
+    var newProjClient = $('#newProjClient').text();
+    var newProjDifficulty = $('#newProjDifficulty').text();
+    var newProjHoursNeeded = $('#newProjHoursNeeded').text();
+    var newProjHoursWorked = $('#newProjHoursWorked').text();
+    //if()
+    var proj_id = alasql('SELECT MAX(id) + 1 as id FROM projects')[0].id;
+    
+    var proj = [];
+    proj.push(proj_id);
+    proj.push(id);
+    proj.push(newProjName);
+    proj.push(parseInt(newProjDifficulty));
+    proj.push(parseInt(newProjHoursWorked));
+    proj.push(parseInt(newProjHoursNeeded));
+    proj.push(parseInt(newProjClient));
+    proj.push('1990-01-01');
+    proj.push(0);
+    
+    alasql(
+        'INSERT INTO projects(\
+        id, \
+        emp, \
+        name, \
+        difficulty, \
+        hours_worked, \
+        hours_needed, \
+        client_rating, \
+        date_of_completion, \
+        money_earned) \
+        VALUES(?,?,?,?,?,?,?,?,?);',
+        proj);
     
     toastr["success"]("Project added", "Success");
-
+    showRating();
+    
+    var tempProj = alasql('SELECT * FROM projects WHERE id=?', [proj_id])[0];
+    
+    alert(tempProj.id + ' ' + tempProj.emp + ' ' + tempProj.hours_worked + ' ' + tempProj.difficulty + ' ' + tempProj.client_rating);
 });
+
+function removeProject(proj_id){
+    //alert(proj_id);
+    alasql('DELETE FROM projects WHERE id=?', [ proj_id ]);
+    showRating();
+}

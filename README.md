@@ -9,4 +9,11 @@
   <img src="https://github.com/manparvesh/FMS/raw/master/screenshot.png">
 </div>
 
- 
+## Features
+ - todo
+
+## Services / libraries used
+ - [alasql](https://github.com/agershun/alasql): for using SQL in JavaScript
+ - Bootstrap: design
+ - [Chart.js](http://www.chartjs.org/): charts for displaying data
+ - jQuery

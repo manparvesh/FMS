@@ -10,7 +10,10 @@
 </div>
 
 ## Features
- - todo
+ - Different filters to get freelancers with specific skills, available for hire, and type of rating
+ - Real time addition and update of projects to a user's profile
+ - Sorting by different columns
+ - calculating appropriate wages for every freelancer
 
 ## Services / libraries used
  - [alasql](https://github.com/agershun/alasql): for using SQL in JavaScript

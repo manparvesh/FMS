@@ -1,7 +1,7 @@
 <div align="center">
 
   <h1>Freelancer management system</h1>
-  <p>A simple project to learn web development</p>
+  <p>A simple project while learning web development</p>
   <a href="https://manparvesh.mit-license.org/"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a> 
   
 </div>
@@ -20,3 +20,6 @@
  - Bootstrap: design
  - [Chart.js](http://www.chartjs.org/): charts for displaying data
  - jQuery
+
+## How to use
+Use [Brackets](http://brackets.io/) to open the WebContent folder. Now, just open the index.html file and start the live preview.

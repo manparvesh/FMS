@@ -1,3 +1,6 @@
+<div align="center" style="margin: 20px">
+  <img src="https://github.com/manparvesh/FMS/raw/master/fms.png">
+</div>
 <div align="center">
 
   <h1>Freelancer management system</h1>

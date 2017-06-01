@@ -1,4 +1,4 @@
-<div align="center" style="margin: 20px">
+<div align="center" style="margin: 20px; width:50%">
   <img src="https://github.com/manparvesh/FMS/raw/master/fms.png">
 </div>
 <div align="center">
